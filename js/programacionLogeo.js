@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("Acceso permitido para:", userFound.username);
                 toastr.success("Éxito al iniciar sesión");
                 // Redirigir al dashboard
-              //  window.location.href = "dashboard.html";
+                window.location.href = "dashboard.html";
             } else {
                 toastr.error("Usuario o contraseña incorrectos.", "Error de autenticación");
                 console.log("Intento fallido de inicio de sesión.");
