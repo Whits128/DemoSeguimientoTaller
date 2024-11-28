@@ -287,6 +287,8 @@
             issue: 'La batería no carga correctamente y se descarga rápidamente'
         }
     ];
+// Almacenar los datos en localStorage
+localStorage.setItem('repairData', JSON.stringify(formData));
 
     // Método para limpiar el formulario
     function clearForm() {
