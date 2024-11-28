@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- DevExtreme CSS -->
+      <!-- Hojas de estilo de DevExtreme -->
+<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
+<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+
+<style>
+    .status-class{
+        background-color: green;
+        color: #ffff;
+        border-radius: 50px;
+        text-align: center !important;
+        height: 20px;
+    }
+</style>
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Dashboard</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Panel
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Interfaz</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Páginas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="Recepcion_de_Reparaciones.html">
+                                        Diagnóstico y Presupuesto
+                                    </a>
+                                    <a class="nav-link" href="Aprobar_el_presupuesto.html">
+                                        Aprobar el presupuesto
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
+                    </div>
+                </nav>
+                
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Diagnóstico y Presupuesto                        </h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Diagnóstico y Presupuesto   </li>
+                        </ol>
+                        <div class="row mt-5">
+                            
+<!-- Formulario Completo -->
+<form id="diagnosticBudgetForm" class="border p-3 rounded bg-white">
+    <div class="row gap-1 justify-content-center">
+
+        <!-- Información del Cliente -->
+        <div  class="col-6 " style="width: 450px;" >
+             <h3>Información del Cliente</h3>
+             <div class="mb-3 ">
+                 <label for="customerName" class="form-label">Nombre del Cliente</label>
+                 <input type="text" class="form-control" id="customerName" placeholder="Ingresa el nombre del cliente" required />
+             </div>
+             <div class="mb-3 ">
+                 <label for="customerPhone" class="form-label">Teléfono</label>
+                 <input type="text" class="form-control" id="customerPhone" placeholder="Ingresa el teléfono del cliente" required />
+             </div>
+         </div>
+    
+        <!-- Información del Teléfono -->
+         <div class=" col-6" >
+    
+             <h3>Información del Teléfono</h3>
+             <div class="row">
+  <div class="col-6 ">
+
+      <div class="mb-3">
+          <label for="deviceBrand" class="form-label">Marca del Teléfono</label>
+          <input type="text" class="form-control" id="deviceBrand" placeholder="Ingresa la marca del dispositivo" required />
+      </div>
+</div>
+<div class="col-6 ">
+
+    <div class="mb-3">
+        <label for="deviceModel" class="form-label">Modelo del Teléfono</label>
+        <input type="text" class="form-control" id="deviceModel" placeholder="Ingresa el modelo del dispositivo" required />
+    </div>
+             </div>
+
+             </div>
+             <div class="">
+                 <label for="issue" class="form-label">Problema Reportado</label>
+                 <textarea class="form-control" id="issue" rows="1" placeholder="Describe el problema reportado" required></textarea>
+             </div>
+         </div>
+        <!-- Información del Teléfono fin -->
+
+
+    </div>
+
+
+    <div class="row justify-content-center">
+
+        <!-- Presupuesto -->
+        <h3 class="text-center">Presupuesto</h3>
+        <div class="col-6 " style="width: 400px;">
+
+            <div class="mb-3">
+                <label for="repairType" class="form-label">Tipo de Reparación</label>
+                <select class="form-select" id="repairType" required>
+                    <option value="" selected disabled>Selecciona el tipo de reparación</option>
+                    <option value="1">Reemplazo de pantalla</option>
+                    <option value="2">Cambio de batería</option>
+                    <option value="3">Reparación de placa base</option>
+                    <option value="4">Reparación de puerto de carga</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="repairCost" class="form-label">Costo Estimado</label>
+                <input type="number" class="form-control" id="repairCost" placeholder="Ingresa el costo estimado de la reparación" required />
+            </div>
+            <div class="mb-3">
+                <label for="laborCost" class="form-label">Costo de Mano de Obra</label>
+                <input type="number" class="form-control" id="laborCost" placeholder="Ingresa el costo de mano de obra" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="repairStatus" class="form-label">Estado de la Reparación</label>
+                <select class="form-select" id="repairStatus">
+                    <option value="1">Aprobado</option>
+                   
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="technician" class="form-label">Técnico Asignado</label>
+                <select class="form-select" id="technician" required>
+                    <option value="" selected disabled>Selecciona un técnico</option>
+                    <option value="1">Juan Pérez</option>
+                    <option value="2">María Gómez</option>
+                    <option value="3">Carlos Ruiz</option>
+                </select>
+            </div>
+        
+            <!-- Fila para las fechas -->
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label for="reportDate" class="form-label">Fecha de Reporte</label>
+                    <input type="date" class="form-control" id="reportDate" required />
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="deliveryDate" class="form-label">Fecha Estimada de Entrega</label>
+                    <input type="date" class="form-control" id="deliveryDate" required />
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="d-flex justify-content-end">
+        <button type="button" id="generateBudget" class="btn btn-success w-48">Generar Presupuesto</button>
+    </div>
+</form>
+
+                             
+  
+<!-- Encabezado para el DataGrid -->
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Listado de Reparaciones</h3>
+
+    <!-- DataGrid para mostrar los datos -->
+    <div id="repairGrid" class="mt-3"></div>
+</div>
+
+ 
+  
+                            
+                        </div>
+                    
+                       
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-5">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+         <!-- DevExtreme JS -->
+  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jquery.min.js"></script>
+  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jszip.min.js"></script>
+  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/dx.all.js"></script>
+   
+  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
+  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+  <script>
+    // Arreglo para almacenar los datos del presupuesto
+    let repairData = [
+        {
+            customerName: 'Juan Pérez',
+            customerPhone: '555-1234',
+            deviceBrand: 'Samsung',
+            deviceModel: 'Galaxy S21',
+            repairType: { id: 1, text: 'Reemplazo de pantalla' },
+            repairCost: 150.00,
+            laborCost: 50.00,
+            repairStatus: { id: 1, text: 'Aprobado' },
+            technician: { id: 3, text: 'Carlos Ruiz' },
+            reportDate: '2024-11-25',
+            deliveryDate: '2024-11-30',
+            totalCost: 200.00,
+            issue: 'La pantalla está completamente dañada tras una caída'
+        },
+        {
+            customerName: 'Ana García',
+            customerPhone: '555-5678',
+            deviceBrand: 'Apple',
+            deviceModel: 'iPhone 12',
+            repairType: { id: 2, text: 'Cambio de batería' },
+            repairCost: 80.00,
+            laborCost: 20.00,
+            repairStatus: { id: 1, text: 'Aprobado' },
+            technician: { id: 2, text: 'María Gómez' },
+            reportDate: '2024-11-20',
+            deliveryDate: '2024-11-22',
+            totalCost: 100.00,
+            issue: 'La batería no carga correctamente y se descarga rápidamente'
+        }
+    ];
+
+    // Método para limpiar el formulario
+    function clearForm() {
+        $('#customerName, #customerPhone, #deviceBrand, #deviceModel, #repairCost, #laborCost, #reportDate, #deliveryDate, #issue').val('');
+        $('#repairType, #repairStatus, #technician').val('').change();
+        $('#generateBudget').removeData('editIndex').text('Generar Presupuesto');
+    }
+
+    // Validar campos obligatorios
+    function validateForm(budget) {
+        return budget.customerName && budget.repairType && budget.repairCost && 
+               budget.repairStatus && budget.technician && budget.reportDate && budget.deliveryDate;
+    }
+
+    // Función para generar o actualizar el presupuesto
+    $('#generateBudget').on('click', function () {
+        const editIndex = $(this).data('editIndex'); // Índice del presupuesto a editar
+        const budget = {
+            customerName: $('#customerName').val(),
+            customerPhone: $('#customerPhone').val(),
+            deviceBrand: $('#deviceBrand').val(),
+            deviceModel: $('#deviceModel').val(),
+            repairType: { 
+                id: $('#repairType').val(), 
+                text: $('#repairType option:selected').text() 
+            },
+            repairCost: parseFloat($('#repairCost').val()),
+            laborCost: parseFloat($('#laborCost').val()) || 0,
+            repairStatus: { 
+                id: $('#repairStatus').val(), 
+                text: $('#repairStatus option:selected').text() 
+            },
+            technician: { 
+                id: $('#technician').val(), 
+                text: $('#technician option:selected').text() 
+            },
+            reportDate: $('#reportDate').val(),
+            deliveryDate: $('#deliveryDate').val(),
+            totalCost: parseFloat($('#repairCost').val()) + (parseFloat($('#laborCost').val()) || 0),
+            issue: $('#issue').val()
+        };
+
+        if (!validateForm(budget)) {
+            alert('Por favor, completa todos los campos obligatorios.');
+            return;
+        }
+
+        if (editIndex !== undefined) {
+            repairData[editIndex] = budget;
+        } else {
+            repairData.push(budget);
+        }
+
+        $('#repairGrid').dxDataGrid('instance').option('dataSource', repairData);
+        alert('Presupuesto procesado exitosamente.');
+        clearForm();
+    });
+
+    // Función para editar un presupuesto
+    function editBudget(index) {
+        const budget = repairData[index];
+        $('#customerName').val(budget.customerName);
+          $('#customerPhone').val(budget.customerPhone);
+        $('#deviceBrand').val(budget.deviceBrand);
+        $('#deviceModel').val(budget.deviceModel);
+        $('#repairType').val(budget.repairType.id);
+        $('#repairCost').val(budget.repairCost);
+        $('#laborCost').val(budget.laborCost);
+        $('#repairStatus').val(budget.repairStatus.id);
+        $('#technician').val(budget.technician.id);
+        $('#reportDate').val(budget.reportDate);
+        $('#deliveryDate').val(budget.deliveryDate);
+        $('#issue').val(budget.issue);
+
+        $('#generateBudget').data('editIndex', index).text('Actualizar Presupuesto');
+    }
+
+
+    
+    // Función para eliminar un presupuesto
+    function deleteBudget(index) {
+        if (confirm('¿Estás seguro de que deseas eliminar este presupuesto?')) {
+            repairData.splice(index, 1);
+            $('#repairGrid').dxDataGrid('instance').option('dataSource', repairData);
+            alert('Presupuesto eliminado.');
+        }
+    }
+
+    // Inicialización del DataGrid
+    $('#repairGrid').dxDataGrid({
+    dataSource: repairData,
+    columns: [
+        { dataField: 'customerName', caption: 'Nombre del Cliente' },
+        { dataField: 'deviceBrand', caption: 'Marca' },
+        { dataField: 'deviceModel', caption: 'Modelo' },
+        { dataField: 'repairType.text', caption: 'Tipo de Reparación' },
+        { dataField: 'totalCost', caption: 'Valor Total', format: { type: 'currency', currency: 'USD' } },
+        { 
+            dataField: 'repairStatus.text', 
+            caption: 'Estado',
+            width: 150, // Asigna un ancho fijo de 150px
+
+            cellTemplate: function(container, options) {
+                container.addClass('status-class'); // Agrega la clase personalizada
+                container.text(options.value); // Inserta el texto del estado
+            }
+        },     { 
+            type: 'buttons',
+            buttons: [
+                {
+                    icon: 'edit',  // Ícono de "editar"
+                    onClick: function(e) {
+                        const rowData = e.row.data;
+                        const rowIndex = e.component.getRowIndexByKey(e.row.key);
+                        console.log('Row Data:', rowData);
+                        console.log('Row Index:', rowIndex);
+                        editBudget(rowIndex);
+                    }
+                },
+                {
+                    icon: 'trash',  // Ícono de "eliminar"
+                    onClick: function(e) {
+                        deleteBudget(e.rowIndex);
+                    }
+                },
+                {
+                    icon: 'print',  // Ícono de "imprimir"
+                    onClick: function(e) {
+                      //  printGrid(e.row.data);  // Llama a la función de impresión
+                    }
+                }
+            ],
+        
+        }
+    ],    searchPanel: {
+      visible: true,
+      width: 240,
+      placeholder: 'Search...',
+    },  headerFilter: {
+      visible: true,
+    },
+    pager: {
+      visible: true,
+    },
+    showBorders: true,
+    masterDetail: {
+        enabled: true,
+        template: function(container, options) {
+            const detailData = options.data;
+            container.append(`
+                <div>
+                    <h4>Detalles de la Reparación</h4>
+                    <p><strong>Problema Reportado:</strong> ${detailData.issue}</p>
+                    <p><strong>Fecha de Reporte:</strong> ${detailData.reportDate}</p>
+                    <p><strong>Fecha Estimada de Entrega:</strong> ${detailData.deliveryDate}</p>
+                    <p><strong>Costo Estimado:</strong> $${detailData.repairCost.toFixed(2)}</p>
+                    <p><strong>Mano de Obra:</strong> $${detailData.laborCost.toFixed(2)}</p>
+                    <p><strong>Total:</strong> $${detailData.totalCost.toFixed(2)}</p>
+                </div>
+            `);
+        }
+    }
+});
+
+
+
+</script>
+
+
+
+
+
+
+    </body>
+</html>
