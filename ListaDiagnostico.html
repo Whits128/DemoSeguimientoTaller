@@ -15,91 +15,10 @@
 <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
 
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f7fc;
-        padding-top: 50px;
-    }
-    .container {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        margin-top: 20px;
-    }
-    .todo-header h2 {
-        font-size: 1.8rem;
-        color: #3f6f8e;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .form-select {
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 1rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .task-list-container {
-        max-height: 400px;
-    overflow-y: auto;
-        padding-right: 10px;
-    }
-    .task-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s ease;
-    }
-    .task-item:hover {
-        transform: translateY(-5px);
-    }
-    .task-item div {
-        flex: 1;
-        font-size: 1rem;
-    }
-    .task-item button {
-        border-radius: 5px;
-        padding: 8px 15px;
-        font-size: 0.875rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .badge {
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-    .btn-info {
-        background-color: #17a2b8;
-        border-color: #17a2b8;
-    }
-    .btn-info:hover {
-        background-color: #138496;
-        border-color: #117a8b;
-    }
-    .btn-success {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
-    .btn-success:hover {
-        background-color: #218838;
-        border-color: #1e7e34;
-    }
-    .badge-success {
-        background-color: #28a745;
-    }
-    .badge-warning {
-        background-color: #ffc107;
-    }
-    .badge-secondary {
-        background-color: #6c757d;
+    .card-header i {
+        margin-right: 10px;
     }
 </style>
-
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -162,6 +81,10 @@
                                                 Lista Diagnostico
 
                                             </a>
+                                            <a class="nav-link" href="CambioEstado.html">
+                                                CambioEstado
+
+                                            </a>
                                         </nav>
                                     </div>
                                 </div>
@@ -173,44 +96,39 @@
                         </nav>
                         
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
+                   
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Lista de Diagnóstico y Presupuesto                   </h1>
+                        <h1 class="mt-4">Lista de Diagnóstico                      </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Lista de Diagnóstico y Presupuesto  </li>
+                            <li class="breadcrumb-item active">Lista de Diagnóstico   </li>
                         </ol>
                         <div class="row mt-5">
-
-
-                            <div class="container">
-                                
-                        
-                                <!-- Filtros -->
-                                <div class="row mb-4">
-                                    <div class="col-md-4">
-                                        <label for="estadoFilter">Filtrar por Estado</label>
-                                        <select id="estadoFilter" class="form-select">
-                                            <option value="">Todos</option>
-                                            <option value="Pendiente">Pendiente</option>
-                                            <option value="En revisión">En revisión</option>
-                                            <option value="Aprobado">Aprobado</option>
-                                        </select>
+                            
+                            <div class="container mt-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Marca</th>
+                                                    <th>Modelo</th>
+                                                    <th>Serie</th>
+                                                    <th>Valor de Reparación (USD)</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="diagnosticoTableBody">
+                                                <!-- Las filas se generarán dinámicamente con JavaScript -->
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                        
-                                <!-- Lista de Tareas -->
-                                <div class="task-list-container" id="taskList"></div>
-                            </div> 
-  
-                            
+                            </div>    
                         </div>
                     
                        
@@ -219,7 +137,7 @@
                 <footer class="py-4 bg-light mt-5">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; 2024</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
@@ -242,81 +160,51 @@
    
   <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
   <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+  
   <script>
-    // Datos de ejemplo (más diagnósticos para comprobar el scroll)
-    const sampleData = [
-        { id: 1, cliente: 'Juan Pérez', telefono: '123456789', problema: 'Falla en el sistema', estado: 'Pendiente', presupuesto: 200 },
-        { id: 2, cliente: 'Ana Gómez', telefono: '987654321', problema: 'Revisión de equipo', estado: 'En revisión', presupuesto: 350 },
-        { id: 3, cliente: 'Carlos Rodríguez', telefono: '112233445', problema: 'Problema de software', estado: 'Aprobado', presupuesto: 450 },
-        { id: 4, cliente: 'María Fernández', telefono: '556677889', problema: 'Mantenimiento preventivo', estado: 'Pendiente', presupuesto: 150 },
-        { id: 5, cliente: 'Luis Morales', telefono: '998877665', problema: 'Problema de conexión', estado: 'En revisión', presupuesto: 500 },
-        { id: 6, cliente: 'Pedro Fernández', telefono: '333222111', problema: 'Instalación de software', estado: 'Pendiente', presupuesto: 600 },
-        { id: 7, cliente: 'Lucía García', telefono: '111222333', problema: 'Reemplazo de piezas', estado: 'Aprobado', presupuesto: 700 },
-        { id: 8, cliente: 'Andrés Martínez', telefono: '444555666', problema: 'Falla en la red', estado: 'Pendiente', presupuesto: 100 },
-        { id: 9, cliente: 'Sofia Pérez', telefono: '777888999', problema: 'Revisión general', estado: 'En revisión', presupuesto: 200 },
-        { id: 10, cliente: 'Carlos Sánchez', telefono: '666777888', problema: 'Ajustes en el equipo', estado: 'Aprobado', presupuesto: 300 }
+    const celulares = [
+        { marca: 'Samsung', modelo: 'Galaxy A15 4G' },
+        { marca: 'Samsung', modelo: 'Galaxy A05' },
+        { marca: 'Motorola', modelo: 'Razr V3' },
+        { marca: 'Motorola', modelo: 'Moto G100' },
+        { marca: 'Xiaomi', modelo: 'Redmi 13C' },
+        { marca: 'Xiaomi', modelo: 'Redmi Note 13' },
+        { marca: 'Apple', modelo: 'iPhone 13' },
+        { marca: 'Samsung', modelo: 'Galaxy A04e' },
+        { marca: 'Motorola', modelo: 'Moto E7i Power' },
+        { marca: 'Xiaomi', modelo: 'Poco X3 Pro' }
     ];
 
-    // Almacenar datos en una variable
-    let diagnosticos = [...sampleData]; // Copiar los datos de ejemplo a la variable
-
-    // Función para cargar la lista de tareas
-    function loadData() {
-        renderTaskList(diagnosticos);
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // Función para renderizar la lista de tareas
-    function renderTaskList(data) {
-        const taskListContainer = $('#taskList');
-        taskListContainer.empty(); // Limpiar contenido
-
-        data.forEach(task => {
-            const taskItem = `
-                <div class="task-item">
-                    <div>
-                        <strong>${task.cliente}</strong><br>
-                        Teléfono: ${task.telefono}<br>
-                        Problema: ${task.problema}<br>
-                        Estado: <span class="badge bg-${task.estado === 'Aprobado' ? 'success' : task.estado === 'En revisión' ? 'warning' : 'secondary'}">${task.estado}</span>
-                    </div>
-                    <div>
-                        <button class="btn btn-info btn-sm" onclick="viewDetails(${task.id})">Ver Detalles</button>
-                        ${task.estado !== 'Aprobado' ? `<button class="btn btn-success btn-sm" onclick="approveBudget(${task.id})">Aprobar</button>` : ''}
-                    </div>
-                </div>
+    function generateTable() {
+        const tableBody = document.getElementById('diagnosticoTableBody');
+        celulares.forEach(celular => {
+            const serie = getRandomNumber(10001, 99999);
+            const valorReparacion = getRandomNumber(50, 150);
+            const row = `
+                <tr>
+                    <td>${celular.marca}</td>
+                    <td>${celular.modelo}</td>
+                    <td>${serie}</td>
+                    <td>$${valorReparacion}</td>
+                    <td>
+                        <button class="btn btn-success btn-sm">INGRESAR</button>
+                        <button class="btn btn-primary btn-sm">Ver</button>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                    </td>
+                </tr>
             `;
-            taskListContainer.append(taskItem);
+            tableBody.innerHTML += row;
         });
     }
 
-    // Ver detalles de la tarea
-    function viewDetails(taskId) {
-        const task = diagnosticos.find(t => t.id === taskId);
-        if (task) {
-            alert(`Detalles del diagnóstico: \nCliente: ${task.cliente}\nProblema: ${task.problema}\nPresupuesto: $${task.presupuesto}`);
-        }
-    }
-
-    // Aprobar presupuesto
-    function approveBudget(taskId) {
-        const task = diagnosticos.find(t => t.id === taskId);
-        if (task && task.estado !== 'Aprobado') {
-            task.estado = 'Aprobado';
-            loadData();  // Recargar los datos después de aprobar
-            alert('Presupuesto aprobado correctamente.');
-        }
-    }
-
-    // Filtrar por estado
-    $('#estadoFilter').on('change', function() {
-        const selectedState = $(this).val();
-        const filteredData = diagnosticos.filter(d => !selectedState || d.estado === selectedState);
-        renderTaskList(filteredData);
-    });
-
-    // Cargar datos iniciales
-    loadData();
+    window.onload = generateTable;
 </script>
+
+
 
 
 

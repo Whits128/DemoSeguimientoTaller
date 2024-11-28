@@ -55,36 +55,54 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Dashboard</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Panel
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Interfaz</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Páginas
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="Recepcion_de_Reparaciones.html">
-                                        Diagnóstico y Presupuesto
+                        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                            <div class="sb-sidenav-menu">
+                                <div class="nav">
+                                    <div class="sb-sidenav-menu-heading">Dashboard</div>
+                                    <a class="nav-link" href="Dashboard.html">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        Dashboard
                                     </a>
-                                    <a class="nav-link" href="Aprobar_el_presupuesto.html">
-                                        Aprobar el presupuesto
+                                    <div class="sb-sidenav-menu-heading">Interfaz</div>
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                        Páginas
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
-                                </nav>
+                                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                            <a class="nav-link" href="Recepcion_de_Reparaciones.html">
+                                                Diagnóstico y Presupuesto
+                                            </a>
+                                            <a class="nav-link" href="Aprobar_el_presupuesto.html">
+                                                Aprobar el presupuesto
+
+                                            </a>
+                                            <a class="nav-link" href="TrazaMantenimiento.html">
+                                                Traza Mantenimiento
+
+                                            </a>
+                                            <a class="nav-link" href="ListaDiagnostico.html">
+                                                Lista Diagnostico
+
+                                            </a>
+                                            <a class="nav-link" href="CambioEstado.html">
+                                                CambioEstado
+
+                                            </a>
+                                        </nav>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="sb-sidenav-footer">
+                                <div class="small">Logged in as:</div>
+                                Start Bootstrap
+                            </div>
+                        </nav>
+                        
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
+                  
                 </nav>
-                
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -255,7 +273,7 @@
   <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
   <script>
     // Arreglo para almacenar los datos del presupuesto
-    let repairData = [
+    let repairData = JSON.parse(localStorage.getItem('repairData')) || [
         {
             customerName: 'Juan Pérez',
             customerPhone: '555-1234',
@@ -275,7 +293,7 @@
             customerName: 'Ana García',
             customerPhone: '555-5678',
             deviceBrand: 'Apple',
-            deviceModel: 'iPhone 12',
+            deviceModel: 'iPhone 122',
             repairType: { id: 2, text: 'Cambio de batería' },
             repairCost: 80.00,
             laborCost: 20.00,
@@ -287,8 +305,8 @@
             issue: 'La batería no carga correctamente y se descarga rápidamente'
         }
     ];
-// Almacenar los datos en localStorage
-localStorage.setItem('repairData', JSON.stringify(formData));
+    // Almacenar los datos en localStorage
+    localStorage.setItem('repairData', JSON.stringify(repairData));
 
     // Método para limpiar el formulario
     function clearForm() {
@@ -337,10 +355,13 @@ localStorage.setItem('repairData', JSON.stringify(formData));
         }
 
         if (editIndex !== undefined) {
-            repairData[editIndex] = budget;
+            repairData[editIndex] = budget; // Actualizar presupuesto existente
         } else {
-            repairData.push(budget);
+            repairData.push(budget); // Añadir nuevo presupuesto
         }
+
+        // Guardar los datos actualizados en localStorage
+        localStorage.setItem('repairData', JSON.stringify(repairData));
 
         $('#repairGrid').dxDataGrid('instance').option('dataSource', repairData);
         alert('Presupuesto procesado exitosamente.');
@@ -351,7 +372,7 @@ localStorage.setItem('repairData', JSON.stringify(formData));
     function editBudget(index) {
         const budget = repairData[index];
         $('#customerName').val(budget.customerName);
-          $('#customerPhone').val(budget.customerPhone);
+        $('#customerPhone').val(budget.customerPhone);
         $('#deviceBrand').val(budget.deviceBrand);
         $('#deviceModel').val(budget.deviceModel);
         $('#repairType').val(budget.repairType.id);
@@ -366,12 +387,13 @@ localStorage.setItem('repairData', JSON.stringify(formData));
         $('#generateBudget').data('editIndex', index).text('Actualizar Presupuesto');
     }
 
-
-    
     // Función para eliminar un presupuesto
     function deleteBudget(index) {
         if (confirm('¿Estás seguro de que deseas eliminar este presupuesto?')) {
-            repairData.splice(index, 1);
+            repairData.splice(index, 1); // Eliminar presupuesto del arreglo
+            // Guardar los datos actualizados en localStorage después de la eliminación
+            localStorage.setItem('repairData', JSON.stringify(repairData));
+
             $('#repairGrid').dxDataGrid('instance').option('dataSource', repairData);
             alert('Presupuesto eliminado.');
         }
@@ -379,81 +401,80 @@ localStorage.setItem('repairData', JSON.stringify(formData));
 
     // Inicialización del DataGrid
     $('#repairGrid').dxDataGrid({
-    dataSource: repairData,
-    columns: [
-        { dataField: 'customerName', caption: 'Nombre del Cliente' },
-        { dataField: 'deviceBrand', caption: 'Marca' },
-        { dataField: 'deviceModel', caption: 'Modelo' },
-        { dataField: 'repairType.text', caption: 'Tipo de Reparación' },
-        { dataField: 'totalCost', caption: 'Valor Total', format: { type: 'currency', currency: 'USD' } },
-        { 
-            dataField: 'repairStatus.text', 
-            caption: 'Estado',
-            width: 150, // Asigna un ancho fijo de 150px
-
-            cellTemplate: function(container, options) {
-                container.addClass('status-class'); // Agrega la clase personalizada
-                container.text(options.value); // Inserta el texto del estado
-            }
-        },     { 
-            type: 'buttons',
-            buttons: [
-                {
-                    icon: 'edit',  // Ícono de "editar"
-                    onClick: function(e) {
-                        const rowData = e.row.data;
-                        const rowIndex = e.component.getRowIndexByKey(e.row.key);
-                        console.log('Row Data:', rowData);
-                        console.log('Row Index:', rowIndex);
-                        editBudget(rowIndex);
-                    }
-                },
-                {
-                    icon: 'trash',  // Ícono de "eliminar"
-                    onClick: function(e) {
-                        deleteBudget(e.rowIndex);
-                    }
-                },
-                {
-                    icon: 'print',  // Ícono de "imprimir"
-                    onClick: function(e) {
-                      //  printGrid(e.row.data);  // Llama a la función de impresión
-                    }
+        dataSource: repairData,
+        columns: [
+            { dataField: 'customerName', caption: 'Nombre del Cliente' },
+            { dataField: 'deviceBrand', caption: 'Marca' },
+            { dataField: 'deviceModel', caption: 'Modelo' },
+            { dataField: 'repairType.text', caption: 'Tipo de Reparación' },
+            { dataField: 'totalCost', caption: 'Valor Total', format: { type: 'currency', currency: 'USD' } },
+            { 
+                dataField: 'repairStatus.text', 
+                caption: 'Estado',
+                width: 150, // Asigna un ancho fijo de 150px
+                cellTemplate: function(container, options) {
+                    container.addClass('status-class'); // Agrega la clase personalizada
+                    container.text(options.value); // Inserta el texto del estado
                 }
-            ],
-        
+            }, 
+            { 
+                type: 'buttons',
+                buttons: [
+                    {
+                        icon: 'edit',  // Ícono de "editar"
+                        onClick: function(e) {
+                            const rowData = e.row.data;
+                            const rowIndex = e.component.getRowIndexByKey(e.row.key);
+                            console.log('Row Data:', rowData);
+                            console.log('Row Index:', rowIndex);
+                            editBudget(rowIndex);
+                        }
+                    },
+                    {
+                        icon: 'trash',  // Ícono de "eliminar"
+                        onClick: function(e) {
+                            deleteBudget(e.rowIndex);
+                        }
+                    },
+                    {
+                        icon: 'print',  // Ícono de "imprimir"
+                        onClick: function(e) {
+                            // printGrid(e.row.data);  // Llama a la función de impresión
+                        }
+                    }
+                ],
+            }
+        ],    
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: 'Search...',
+        },  
+        headerFilter: {
+            visible: true,
+        },
+        pager: {
+            visible: true,
+        },
+        showBorders: true,
+        masterDetail: {
+            enabled: true,
+            template: function(container, options) {
+                const detailData = options.data;
+                container.append(`
+                    <div>
+                        <h4>Detalles de la Reparación</h4>
+                        <p><strong>Problema Reportado:</strong> ${detailData.issue}</p>
+                        <p><strong>Fecha de Reporte:</strong> ${detailData.reportDate}</p>
+                        <p><strong>Fecha Estimada de Entrega:</strong> ${detailData.deliveryDate}</p>
+                        <p><strong>Costo Estimado:</strong> $${detailData.repairCost.toFixed(2)}</p>
+                        <p><strong>Mano de Obra:</strong> $${detailData.laborCost.toFixed(2)}</p>
+                        <p><strong>Total:</strong> $${detailData.totalCost.toFixed(2)}</p>
+                    </div>
+                `);
+            }
         }
-    ],    searchPanel: {
-      visible: true,
-      width: 240,
-      placeholder: 'Search...',
-    },  headerFilter: {
-      visible: true,
-    },
-    pager: {
-      visible: true,
-    },
-    showBorders: true,
-    masterDetail: {
-        enabled: true,
-        template: function(container, options) {
-            const detailData = options.data;
-            container.append(`
-                <div>
-                    <h4>Detalles de la Reparación</h4>
-                    <p><strong>Problema Reportado:</strong> ${detailData.issue}</p>
-                    <p><strong>Fecha de Reporte:</strong> ${detailData.reportDate}</p>
-                    <p><strong>Fecha Estimada de Entrega:</strong> ${detailData.deliveryDate}</p>
-                    <p><strong>Costo Estimado:</strong> $${detailData.repairCost.toFixed(2)}</p>
-                    <p><strong>Mano de Obra:</strong> $${detailData.laborCost.toFixed(2)}</p>
-                    <p><strong>Total:</strong> $${detailData.totalCost.toFixed(2)}</p>
-                </div>
-            `);
-        }
-    }
-});
-
-
+    });
 
 </script>
 

@@ -9,7 +9,8 @@
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -45,9 +46,9 @@
                             <div class="sb-sidenav-menu">
                                 <div class="nav">
                                     <div class="sb-sidenav-menu-heading">Dashboard</div>
-                                    <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="Dashboard.html">
                                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                        Panel
+                                        Dashboard
                                     </a>
                                     <div class="sb-sidenav-menu-heading">Interfaz</div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -62,6 +63,18 @@
                                             </a>
                                             <a class="nav-link" href="Aprobar_el_presupuesto.html">
                                                 Aprobar el presupuesto
+
+                                            </a>
+                                            <a class="nav-link" href="TrazaMantenimiento.html">
+                                                Traza Mantenimiento
+
+                                            </a>
+                                            <a class="nav-link" href="ListaDiagnostico.html">
+                                                Lista Diagnostico
+
+                                            </a>
+                                            <a class="nav-link" href="CambioEstado.html">
+                                                CambioEstado
 
                                             </a>
                                         </nav>
@@ -84,14 +97,52 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Dashboard de Reparaciones </h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                         <div class="row">
                             
                         <!--Seccion de las card-->
-                           
+                        <div class="container mt-5">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <i class="fas fa-tasks"></i> Estados
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="estadosChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning text-white">
+                                            <i class="fas fa-shield-alt"></i> Resumen Garantías
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="garantiasChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <i class="fas fa-users-cog"></i> Desempeño de Técnicos
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="tecnicosChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-info text-white">
+                                            <i class="fas fa-chart-line"></i> Estadísticas
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="estadisticasChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             
                         </div>
                     
@@ -117,5 +168,102 @@
      
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+
+        <script>
+            // Datos para los gráficos
+            const estadosData = {
+                labels: ['INGRESADO', 'EJECUTANDO', 'EN ESPERA', 'TERMINADOS', 'CANCELADOS'],
+                datasets: [{
+                    label: 'Dispositivos',
+                    data: [50, 5, 3, 38, 4],
+                    backgroundColor: ['#007bff', '#ffc107', '#17a2b8', '#28a745', '#dc3545'],
+                }]
+            };
+    
+            const garantiasData = {
+                labels: ['Reclamo de Garantías', 'Garantías Vencidas del Mes', 'Garantías Nuevas', 'Garantías que Vencen Próximo Mes'],
+                datasets: [{
+                    label: 'Cantidad',
+                    data: [5, 9, 70, 15],
+                    backgroundColor: ['#ffc107', '#dc3545', '#28a745', '#17a2b8'],
+                }]
+            };
+    
+            const tecnicosData = {
+                labels: ['PEDRO MORALES', 'CARLOS SOSA', 'OMAR PEREZ', 'KENNTE ROMERO', 'ROBERTO RUIZ'],
+                datasets: [{
+                    label: 'Dispositivos',
+                    data: [8, 12, 10, 8, 20],
+                    backgroundColor: ['#007bff', '#28a745', '#17a2b8', '#ffc107', '#dc3545'],
+                }]
+            };
+    
+            const estadisticasData = {
+                labels: ['Horas Promedio Atención Celular', 'Dispositivos Promedio por Técnico', 'Reclamos por Servicios'],
+                datasets: [{
+                    label: 'Estadísticas',
+                    data: [4.56, 12.5, 10],
+                    backgroundColor: ['#17a2b8', '#28a745', '#dc3545'],
+                }]
+            };
+    
+            // Configuración de los gráficos
+            const estadosConfig = {
+                type: 'bar',
+                data: estadosData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+    
+            const garantiasConfig = {
+                type: 'pie',
+                data: garantiasData,
+                options: {
+                    responsive: true
+                }
+            };
+    
+            const tecnicosConfig = {
+                type: 'bar',
+                data: tecnicosData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+    
+            const estadisticasConfig = {
+                type: 'doughnut',
+                data: estadisticasData,
+                options: {
+                    responsive: true
+                }
+            };
+    
+            // Renderización de los gráficos
+            window.onload = function() {
+                const estadosCtx = document.getElementById('estadosChart').getContext('2d');
+                new Chart(estadosCtx, estadosConfig);
+    
+                const garantiasCtx = document.getElementById('garantiasChart').getContext('2d');
+                new Chart(garantiasCtx, garantiasConfig);
+    
+                const tecnicosCtx = document.getElementById('tecnicosChart').getContext('2d');
+                new Chart(tecnicosCtx, tecnicosConfig);
+    
+                const estadisticasCtx = document.getElementById('estadisticasChart').getContext('2d');
+                new Chart(estadisticasCtx, estadisticasConfig);
+            };
+        </script>
     </body>
 </html>

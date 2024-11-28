@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Diagnóstico y Presupuesto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Registro de Diagnóstico y Presupuesto</h2>
+        <form>
+            <div class="form-group">
+                <label for="tecnico">Técnico que Diagnostica</label>
+                <select class="form-control" id="tecnico" required>
+                    <option value="tecnico1">PEDRO MORALES</option>
+                    <option value="tecnico2">CARLOS SOSA</option>
+                    <option value="tecnico3">OMAR PEREZ</option>
+                    <option value="tecnico4">KENNTE ROMERO</option>
+                    <option value="tecnico5">ROBERTO RUIZ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="marcaSerie">Marca y Serie del Dispositivo</label>
+                <input type="text" class="form-control" id="marcaSerie" required>
+            </div>
+            <div class="form-group">
+                <label for="resultado">Resultado del Diagnóstico</label>
+                <textarea class="form-control" id="resultado" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="recomendaciones">Recomendaciones</label>
+                <textarea class="form-control" id="recomendaciones" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="fechaInicio">Fecha Inicio</label>
+                <input type="date" class="form-control" id="fechaInicio" value="<?php echo date('Y-m-d'); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaFin">Fecha Fin</label>
+                <input type="date" class="form-control" id="fechaFin" value="<?php echo date('Y-m-d'); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="tiempoEstimado">Tiempo Estimado (en horas)</label>
+                <input type="number" class="form-control" id="tiempoEstimado" required>
+            </div>
+
+            <h3 class="mb-4">Presupuesto del Mantenimiento</h3>
+
+            <div class="form-group">
+                <label for="repuesto">Buscar Repuesto</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="repuesto" placeholder="Buscar en inventario" required>
+                    <input type="number" class="form-control" id="cantidad" placeholder="Cantidad" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-3">Repuestos</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Repuesto</th>                        
+                        <th>Cantidad</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bateria</td>                        
+                        <td>1</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Pantalla</td>
+                        
+                        <td>2</td>
+                        <td>$200</td>
+                    </tr>
+                    <tr>
+                        <td>Carcasa trasera</td>                        
+                        <td>1</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>Adhesivo para pantallas</td>                        
+                        <td>3</td>
+                        <td>$300</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <label for="manoObra">Valor de Mano de Obra</label>
+                <input type="number" class="form-control" id="manoObra" required>
+            </div>
+
+            <div class="form-group">
+                <label for="totalPresupuesto">Valor Total del Presupuesto + Mano de Obra</label>
+                <input type="number" class="form-control" id="totalPresupuesto" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-success">Registrar</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
