@@ -15,15 +15,140 @@
 <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
 
 <style>
-    .card-header i {
-        margin-right: 10px;
-    }
+  body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f5f9;
+      color: #212529;
+  }
+
+  .table-container {
+      margin: 20px auto;
+      max-width: 90%;
+  }
+
+  /* Estilos de la tabla */
+  .custom-table {
+      border-radius: 10px;
+      overflow: visible;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-table th {
+      background-color: #343a40;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-align: center;
+  }
+
+  .custom-table td {
+      padding: 10px;
+      text-align: center;
+  }
+
+  /* Dropdown personalizado */
+  .dropdown-container {
+    position: relative; /* Asegura que el dropdown se posicione relativo a este contenedor */
+
+      display: inline-block;
+  }
+
+  .dropdown-selected {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #ced4da;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      min-width: 180px;
+  }
+
+  .dropdown-selected:hover {
+      border-color: #6c757d;
+  }
+
+  .dropdown-selected .color-box {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+  }
+
+  .dropdown-options {
+      position: absolute;
+      z-index: 5555;
+      top: 100%; /* Colócalo justo debajo del .dropdown-selected */
+      margin-top: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 5px 0;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 220px;
+      max-height: 280px;
+      overflow-y: auto;
+      display: none;
+  }
+
+  .dropdown-options li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+  }
+
+  .dropdown-options li:hover {
+      background-color: #f1f3f5;
+  }
+
+  .dropdown-options li .color-box {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+  }
+
+  /* Colores de estado */
+  .color-assign {
+      background-color: #ff6b6b;
+  }
+
+  .color-process {
+      background-color: #38d9a9;
+  }
+
+  .color-deliver {
+      background-color: #74c0fc;
+  }
+
+  .color-completed {
+      background-color: #1c7ed6;
+  }
+
+  .color-rejected {
+      background-color: #212529;
+  }
+
+  .color-no-solution {
+      background-color: #adb5bd;
+  }
+
+  .color-warranty {
+      background-color: #fd7e14;
+  }
 </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand ps-3" href="Dashboard.html">BARATTO</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -91,8 +216,8 @@
                             </div>
                             <div class="sb-sidenav-footer">
                                 <div class="small">Logged in as:</div>
-                                Start Bootstrap
-                            </div>
+                                BARATTO 
+                                                        </div>
                         </nav>
                         
                     </div>
@@ -109,26 +234,24 @@
                         </ol>
                         <div class="row mt-5">
                             
-                            <div class="container mt-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Marca</th>
-                                                    <th>Modelo</th>
-                                                    <th>Serie</th>
-                                                    <th>Valor de Reparación (USD)</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="diagnosticoTableBody">
-                                                <!-- Las filas se generarán dinámicamente con JavaScript -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>    
+                          <div class="container table-container">
+                    
+                            <!-- Tabla -->
+                            <table class="table custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Orden</th>
+                                        <th>Fecha</th>
+                                        <th>Cliente</th>
+                                        <th>Modelo</th>
+                                        <th>Status</th>
+                                        <th>Prioridad</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                         </div>
                     
                        
@@ -153,58 +276,91 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-         <!-- DevExtreme JS -->
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jquery.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jszip.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/dx.all.js"></script>
-   
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
-  
-  <script>
-    const celulares = [
-        { marca: 'Samsung', modelo: 'Galaxy A15 4G' },
-        { marca: 'Samsung', modelo: 'Galaxy A05' },
-        { marca: 'Motorola', modelo: 'Razr V3' },
-        { marca: 'Motorola', modelo: 'Moto G100' },
-        { marca: 'Xiaomi', modelo: 'Redmi 13C' },
-        { marca: 'Xiaomi', modelo: 'Redmi Note 13' },
-        { marca: 'Apple', modelo: 'iPhone 13' },
-        { marca: 'Samsung', modelo: 'Galaxy A04e' },
-        { marca: 'Motorola', modelo: 'Moto E7i Power' },
-        { marca: 'Xiaomi', modelo: 'Poco X3 Pro' }
-    ];
-
-    function getRandomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function generateTable() {
-        const tableBody = document.getElementById('diagnosticoTableBody');
-        celulares.forEach(celular => {
-            const serie = getRandomNumber(10001, 99999);
-            const valorReparacion = getRandomNumber(50, 150);
-            const row = `
-                <tr>
-                    <td>${celular.marca}</td>
-                    <td>${celular.modelo}</td>
-                    <td>${serie}</td>
-                    <td>$${valorReparacion}</td>
-                    <td>
-                        <button class="btn btn-success btn-sm">INGRESAR</button>
-                        <button class="btn btn-primary btn-sm">Ver</button>
-                        <button class="btn btn-warning btn-sm">Editar</button>
-                    </td>
-                </tr>
-            `;
-            tableBody.innerHTML += row;
-        });
-    }
-
-    window.onload = generateTable;
-</script>
 
 
+
+        <script>
+          $(document).ready(function () {
+            const repairData = JSON.parse(localStorage.getItem('presupuestoCompleto')) || [];
+            console.log('repairData',repairData)
+              function cargarTablaPresupuesto() {
+                  const tableBody = $(".custom-table tbody");
+                  tableBody.empty();
+      
+                  const { cliente, presupuesto, resumen, detalles } = repairData;
+      
+                  presupuesto.forEach((item, index) => {
+                      const row = `
+                          <tr>
+                              <td>${item.ticketId}</td>
+                              <td>${detalles.fechaCompromiso}</td>
+                              <td>${cliente.nombre}</td>
+                              <td>${item.deviceModel}</td>
+                              <td>
+                                  <div class="dropdown-container" data-index="${index}">
+                                      <div class="dropdown-selected">
+                                          <div class="color-box color-assign"></div> Por asignar
+                                      </div>
+                                      <ul class="dropdown-options">
+                                          <li><div class="color-box color-assign"></div>Por asignar</li>
+                                          <li><div class="color-box color-process"></div>En proceso</li>
+                                          <li><div class="color-box color-deliver"></div>Por entregar</li>
+                                          <li><div class="color-box color-completed"></div>Entregado</li>
+                                          <li><div class="color-box color-rejected"></div>Rechazado</li>
+                                          <li><div class="color-box color-no-solution"></div>Sin solución</li>
+                                          <li><div class="color-box color-warranty"></div>Garantía</li>
+                                      </ul>
+                                  </div>
+                              </td>
+                              <td>${detalles.prioridad}</td>
+                              <td>${resumen.total}</td>
+                          </tr>`;
+                      tableBody.append(row);
+                  });
+              }
+      
+              cargarTablaPresupuesto();
+      
+              // Abrir/cerrar dropdown al hacer clic
+              $(".custom-table").on("click", ".dropdown-container", function (e) {
+                  e.stopPropagation();
+      
+                  const dropdownOptions = $(this).find(".dropdown-options");
+      
+                  // Cierra otros dropdowns abiertos
+                  $(".dropdown-options").not(dropdownOptions).slideUp();
+                  $(".dropdown-container").not(this).removeClass("open");
+      
+                  // Alternar el estado del dropdown actual
+                  $(this).toggleClass("open");
+                  dropdownOptions.slideToggle();
+              });
+      
+              // Seleccionar una opción dentro del dropdown
+              $(".custom-table").on("click", ".dropdown-options li", function (e) {
+                  e.stopPropagation();
+      
+                  const selectedText = $(this).text(); // Texto del estado seleccionado
+                  const selectedColor = $(this).find(".color-box").attr("class").split(' ')[1]; // Clase del color
+                  const parentDropdown = $(this).closest(".dropdown-container");
+      
+                  // Actualiza el texto y el color del seleccionado
+                  parentDropdown.find(".dropdown-selected").html(`
+                      <div class="color-box ${selectedColor}"></div>${selectedText}
+                  `);
+      
+                  // Oculta las opciones
+                  parentDropdown.find(".dropdown-options").slideUp();
+                  parentDropdown.removeClass("open");
+              });
+      
+              // Cerrar todos los dropdowns al hacer clic fuera
+              $(document).on("click", function () {
+                  $(".dropdown-container").removeClass("open");
+                  $(".dropdown-options").slideUp();
+              });
+          });
+      </script>
 
 
 

@@ -1,51 +1,1024 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>404 Error - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div id="layoutError">
-            <div id="layoutError_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
-                                <div class="text-center mt-4">
-                                    <img class="mb-4 img-error" src="assets/img/error-404-monochrome.svg" />
-                                    <p class="lead">This requested URL was not found on this server.</p>
-                                    <a href="index.html">
-                                        <i class="fas fa-arrow-left me-1"></i>
-                                        Return to Dashboard
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-            <div id="layoutError_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de reparación</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .tab-content {
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+    }
+
+    .summary-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+
+    #pattern-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      margin: auto;
+    }
+    .pattern-node {
+      width: 50px;
+      height: 50px;
+      background-color: #f0f0f0;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .pattern-node.active {
+      background-color: #007bff;
+    }
+    /* Estilo opcional para mejorar el diseño de las casillas de verificación */
+
+
+.service-item {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    .service-item h6 {
+        font-weight: bold;
+        color: #333;
+    }
+    .service-item .form-control {
+        font-size: 0.875rem;
+    }
+    .service-item .btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
+    .service-item .btn-danger:hover {
+        background-color: #c82333;
+    }
+    .service-item .form-label {
+        font-size: 0.875rem;
+        color: #555;
+    }
+    .service-item textarea {
+        font-size: 0.875rem;
+        height: 30px;
+    }
+    .service-item input[type="number"] {
+        font-size: 0.875rem;
+    }
+    .service-item .remove-service {
+        padding: 0.3rem 0.5rem;
+        font-size:1.2;
+    }
+
+    .pieza-item{
+       background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+
+    #modalServicios .modal-dialog {
+  max-width: 400px; /* Ajusta el tamaño del modal */
+}
+
+#modalServicios .modal-header {
+  background-color: #007bff;
+  border-bottom: 2px solid #0056b3;
+}
+
+#modalServicios .modal-body {
+  padding: 1rem; /* Reduce el espacio de padding en el cuerpo del modal */
+}
+
+#modalServicios .modal-footer {
+  padding: 0.5rem 1rem; /* Reduce el padding en el pie del modal */
+}
+
+#modalServicios .list-group-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  margin-bottom: 8px; /* Reduce el espacio entre los elementos */
+  padding: 0.75rem 1rem; /* Reduce el padding */
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  transition: background-color 0.3s ease;
+}
+
+#modalServicios .list-group-item:hover {
+  background-color: #e9ecef;
+}
+
+#modalServicios .btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+#modalServicios .btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.ocultarCliente {
+  display: block;
+}
+
+.box-shadow-garantia{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 10px;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h3>Sistema de reparación de teléfonos</h3>
+    <ul class="nav nav-tabs mt-4" id="repairTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="repair-tab" data-bs-toggle="tab" data-bs-target="#repair" type="button" role="tab" aria-controls="repair" aria-selected="true">Reparación</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="false">Historial</button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="repairTabContent">
+      <!-- Pestaña Reparación -->
+      <div class="tab-pane fade show active" id="repair" role="tabpanel" aria-labelledby="repair-tab">
+        <div class="row">
+          <!-- Agregar Dispositivo -->
+          <div class="col-md-8">
+            <button class="btn btn-outline-primary mb-3" id="addDeviceBtn">+ Agregar Dispositivo</button>  
+            <button class="btn btn-success mb-3" id="saveBudgetBtn">Guardar Presupuesto</button>
+
+            <div id="deviceInfoContainer"></div>
+          </div>
+
+
+
+          <!-- Panel Resumen -->
+
+<div class="col-md-4">
+  <div class="summary-card p-3 rounded shadow-sm bg-white">
+    <!-- Sección 1: Buscar Cliente -->
+    <div class="mb-4 border-bottom pb-3">
+      <div class="ocultarCliente">
+        <div class="d-flex justify-content-between align-items-center">
+          <h6 class="mb-0">Buscar Cliente</h6>
+          <button
+            class="btn btn-link text-black p-0"
+            data-bs-toggle="modal"
+            data-bs-target="#clienteModal"
+            style="width: auto;"
+          >
+            <i class="bi bi-clipboard2-plus-fill"></i>
+          </button>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+        <div class="input-group mt-2">
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Teclea email, nombre o apellido"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <ul class="list-group position-absolute mt-1 d-none" id="resultList"></ul>
+      <div id="clienteSeleccionado" class="mt-3 d-none">
+        <div class="d-flex justify-content-between align-items-center">
+          <h6>Cliente</h6>
+          <button id="eliminarCliente" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+        <p><strong>Nombre:</strong> <span id="nombreCliente">--</span></p>
+        <p><strong>Email:</strong> <span id="emailCliente">--</span></p>
+        <p><strong>Teléfono:</strong> <span id="telefonoCliente">--</span></p>
+      </div>
+    </div>
+
+    <!-- Sección 2: Resumen de Orden -->
+    <div class="mb-4 border-bottom pb-3">
+      <h6>Resumen de Orden</h6>
+      <div class="d-flex justify-content-between">
+        <span>Servicios:</span>
+        <span id="resumenServicios">C$ 0.00</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>Impuestos:</span>
+        <span id="resumenImpuestos">C$ 0.00</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>Anticipos:</span>
+        <span id="resumenAnticipo">C$ 0.00</span>
+      </div>
+      <hr />
+      <div class="d-flex justify-content-between">
+        <strong>Total:</strong>
+        <strong id="resumenTotal">C$ 0.00</strong>
+      </div>
+    </div>
+
+    <!-- Sección 3: Detalles -->
+    <div>
+      <h6>Detalles</h6>
+      <div class="mb-3">
+        <label for="prioridadSelect" class="form-label">Prioridad</label>
+        <select id="prioridadSelect" class="form-select">
+          <option value="">Seleccionar Prioridad</option>
+          <option value="alta">Alta</option>
+          <option value="media">Media</option>
+          <option value="baja">Baja</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="fechaCompromiso" class="form-label">Fecha Compromiso</label>
+        <input
+          type="date"
+          id="fechaCompromiso"
+          class="form-control"
+          placeholder="Fecha Compromiso"
+        />
+      </div>
+      <div>
+        <label for="responsableSelect" class="form-label">Asignar Responsable</label>
+        <select id="responsableSelect" class="form-select">
+          <option value="">Seleccionar Responsable</option>
+          <option value="tecnico1">Técnico 1</option>
+          <option value="tecnico2">Técnico 2</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+        </div>
+      </div>
+
+      <!-- Pestaña Historial -->
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <h6>Historial de reparaciones</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fecha</th>
+              <th>Dispositivo</th>
+              <th>Estado</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2024-11-30</td>
+              <td>iPhone 13</td>
+              <td>Completado</td>
+              <td>C$ 1500.00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>2024-10-15</td>
+              <td>Galaxy S21</td>
+              <td>Pendiente</td>
+              <td>C$ 800.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Agregar dispositivo -->
+  <div class="modal fade" id="deviceModal" tabindex="-1" aria-labelledby="deviceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deviceModalLabel">Agregar dispositivo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="deviceModel" class="form-label">Modelo del dispositivo</label>
+          <input type="text" id="deviceModel" class="form-control" placeholder="Buscar dispositivo">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="saveDevice">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="patternModal" tabindex="-1" aria-labelledby="patternModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="patternModalLabel">Dibujar Patrón de Desbloqueo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="pattern-container">
+            <div class="pattern-node" data-node="1"></div>
+            <div class="pattern-node" data-node="2"></div>
+            <div class="pattern-node" data-node="3"></div>
+            <div class="pattern-node" data-node="4"></div>
+            <div class="pattern-node" data-node="5"></div>
+            <div class="pattern-node" data-node="6"></div>
+            <div class="pattern-node" data-node="7"></div>
+            <div class="pattern-node" data-node="8"></div>
+            <div class="pattern-node" data-node="9"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="savePattern" class="btn btn-success">Guardar Patrón</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal para seleccionar servicios -->
+<div class="modal fade" id="modalServicios" tabindex="-1" aria-labelledby="modalServiciosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="modalServiciosLabel">Seleccionar Servicios</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group" id="listaServicios">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" class="form-check-input me-2" data-servicio="Instalación de Pantalla">
+            <span>Instalación de Pantalla</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" class="form-check-input me-2" data-servicio="Pin de Carga">
+            <span>Pin de Carga</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" class="form-check-input me-2" data-servicio="Microsoldadura">
+            <span>Microsoldadura</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" class="form-check-input me-2" data-servicio="Revisión de Equipo">
+            <span>Revisión de Equipo</span>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" id="guardarServicios">Guardar Selección</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal para seleccionar piezas -->
+<div class="modal fade" id="modalPiezas" tabindex="-1" aria-labelledby="modalPiezasLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPiezasLabel">Seleccionar Piezas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group" id="listaPiezas">
+          <li class="list-group-item">
+            <input type="checkbox" class="form-check-input me-2" data-pieza="Pantalla LCD">
+            Pantalla LCD
+          </li>
+          <li class="list-group-item">
+            <input type="checkbox" class="form-check-input me-2" data-pieza="Batería">
+            Batería
+          </li>
+          <li class="list-group-item">
+            <input type="checkbox" class="form-check-input me-2" data-pieza="Placa Base">
+            Placa Base
+          </li>
+          <li class="list-group-item">
+            <input type="checkbox" class="form-check-input me-2" data-pieza="Cargador">
+            Cargador
+          </li>
+          <li class="list-group-item">
+            <input type="checkbox" class="form-check-input me-2" data-pieza="Botones">
+            Botones
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="guardarPiezas">Guardar Selección</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Modal para crear cliente -->
+  <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="clienteModalLabel">Crear Cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="crearClienteForm">
+            <div class="mb-3">
+              <label for="nombreClienteNuevo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombreClienteNuevo" required />
+            </div>
+            <div class="mb-3">
+              <label for="emailClienteNuevo" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailClienteNuevo" required />
+            </div>
+            <div class="mb-3">
+              <label for="telefonoClienteNuevo" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" id="telefonoClienteNuevo" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/busquedaClienteVObservacionPr.js"></script>
+
+
+
+  <script>
+    $(document).ready(function () {
+
+     
+        const pattern = [];
+        const $nodes = $(".pattern-node");
+        let isDrawing = false;
+
+
+
+        // Eventos del patrón
+        $("#pattern-container").on("mousedown touchstart", function () {
+            isDrawing = true;
+            pattern.length = 0;
+            $nodes.removeClass("active");
+        });
+
+        $("#pattern-container").on("mousemove touchmove", function (e) {
+            if (!isDrawing) return;
+
+            const elementUnderCursor = document.elementFromPoint(
+                e.type === "mousemove" ? e.clientX : e.originalEvent.touches[0].clientX,
+                e.type === "mousemove" ? e.clientY : e.originalEvent.touches[0].clientY
+            );
+
+            const $node = $(elementUnderCursor).closest(".pattern-node");
+            if ($node.length && !$node.hasClass("active")) {
+                $node.addClass("active");
+                pattern.push($node.data("node"));
+            }
+        });
+
+        $(document).on("mouseup touchend", function () {
+            isDrawing = false;
+        });
+
+        
+
+        $('#patternModal').on('hidden.bs.modal', function () {
+            $nodes.removeClass("active");
+            pattern.length = 0;
+        });
+
+        // Mostrar modal para agregar dispositivo
+        document.getElementById("addDeviceBtn").addEventListener("click", () => {
+            const modal = new bootstrap.Modal(document.getElementById("deviceModal"));
+            modal.show();
+        });
+
+ // Evento para mostrar el modal de servicios
+ $(document).on('click', '.btn-explorar-servicios', function () {
+    // Muestra el modal
+    $('#modalServicios').modal('show');
+
+    // Acción para guardar los servicios seleccionados
+    $('#guardarServicios').off('click').on('click', function () {
+        const selectedServices = [];
+        $('#listaServicios input[type="checkbox"]:checked').each(function () {
+            selectedServices.push($(this).closest('li').text().trim());
+        });
+
+        // Contenedor de servicios seleccionados
+        const serviciosContainer = $('#servicios');
+
+        // Limpiar contenido previo
+        serviciosContainer.empty();
+
+        selectedServices.forEach(function (servicio, index) {
+          const serviceDiv = `
+    <div class="row align-items-center service-item position-relative mt-5" id="service-${index}">
+        <div class="col-12 col-md-6">
+            <h6 class="m-0">${servicio}</h6>
+            <textarea class="form-control mt-2" placeholder="Descripción..." rows="1"></textarea>
+        </div>
+        <div class="col-6 col-md-3 text-center">
+            <label class="form-label">Costo</label>
+            <input type="number" class="form-control" value="0" min="0">
+        </div>
+        <div class="col-6 col-md-3 text-center">
+            <label class="form-label">Precio</label>
+            <input type="number" class="form-control" value="0" min="0">
+        </div>
+       
+        <button class="btn btn-link text-black p-0 position-absolute top-0 end-0 remove-service" data-service-id="service-${index}" style="transform: translate(-50%, 15%); width:auto; ">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+`;
+
+
+            serviciosContainer.append(serviceDiv);
+        });
+
+        // Cerrar el modal
+        $('#modalServicios').modal('hide');
+
+          // Limpiar los checkboxes seleccionados
+          $('#listaServicios input[type="checkbox"]').prop('checked', false);
+    });
+
+    // Evento para eliminar servicios seleccionados
+    $(document).on('click', '.remove-service', function () {
+        const serviceId = $(this).data('service-id');
+        $(`#${serviceId}`).remove();
+    });
+});
+
+
+$(document).on('click', '.btn-explorar-piezas', function () {
+    // Muestra el modal
+    $('#modalPiezas').modal('show');
+
+    // Acción para guardar las piezas seleccionadas
+    $('#guardarPiezas').off('click').on('click', function () {
+        const selectedPieces = [];
+        $('#listaPiezas input[type="checkbox"]:checked').each(function () {
+            selectedPieces.push($(this).closest('li').text().trim());
+        });
+
+        // Contenedor de piezas seleccionadas
+        const piezasContainer = $('#piezasSeleccionadas');
+
+        selectedPieces.forEach(function (pieza, index) {
+            // Verificar que el elemento no haya sido añadido ya
+            if (!piezasContainer.find(`#pieza-${pieza}`).length) {
+                const piezaDiv = `
+                    <div class="row align-items-center pieza-item position-relative mt-3" id="pieza-${pieza}">
+                        <div class="col-12 col-md-6">
+                            <h6 class="m-0">${pieza}</h6>
+                            <textarea class="form-control mt-2" placeholder="Descripción..." rows="1"></textarea>
+                        </div>
+                        <div class="col-6 col-md-3 text-center">
+                            <label class="form-label">Costo</label>
+                            <input type="number" class="form-control" value="0" min="0">
+                        </div>
+                        <div class="col-6 col-md-3 text-center">
+                            <label class="form-label">Precio</label>
+                            <input type="number" class="form-control" value="0" min="0">
+                        </div>
+                        <button class="btn btn-link text-black p-0 position-absolute top-0 end-0 remove-pieza" data-pieza-id="pieza-${pieza}" style="transform: translate(-50%, 15%); width:auto;">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                `;
+
+                // Agregar la nueva pieza seleccionada
+                piezasContainer.append(piezaDiv);
+            }
+        });
+
+        // Cerrar el modal
+        $('#modalPiezas').modal('hide');
+    });
+
+    // Limpiar los checkboxes al cerrar el modal
+    $('#modalPiezas').on('hidden.bs.modal', function () {
+        $('#listaPiezas input[type="checkbox"]').prop('checked', false);
+    });
+});
+
+  // Evento para eliminar servicios seleccionados
+  $(document).on('click', '.remove-pieza', function () {
+        const serviceId = $(this).data('pieza-id');
+        $(`#${serviceId}`).remove();
+    });
+
+
+
+// Función para capturar los datos de los servicios
+function obtenerDatosServicios() {
+    const servicios = [];
+    
+    // Iteramos sobre cada item de servicio
+    document.querySelectorAll('.service-item').forEach(serviceDiv => {
+        const servicioId = serviceDiv.id.split('-')[1]; // Obtener ID del servicio
+        const descripcion = serviceDiv.querySelector('textarea').value; // Descripción del servicio
+        const costo = parseFloat(serviceDiv.querySelector('input[type="number"]').value); // Costo
+        const precio = parseFloat(serviceDiv.querySelectorAll('input[type="number"]')[1].value); // Precio
+        
+        // Añadir el servicio a la lista
+        servicios.push({
+            servicioId,
+            descripcion,
+            costo,
+            precio
+        });
+    });
+    
+    return servicios;
+}
+
+
+// Función para capturar los datos de los productos
+function obtenerDatosProductos() {
+    const productos = [];
+    
+    // Iteramos sobre cada item de producto
+    document.querySelectorAll('.pieza-item').forEach(piezaDiv => {
+        const piezaId = piezaDiv.id.split('-')[1]; // Obtener ID de la pieza
+        const descripcion = piezaDiv.querySelector('textarea').value; // Descripción del producto
+        const costo = parseFloat(piezaDiv.querySelector('input[type="number"]').value); // Costo
+        const precio = parseFloat(piezaDiv.querySelectorAll('input[type="number"]')[1].value); // Precio
+        
+        // Añadir el producto a la lista
+        productos.push({
+            piezaId,
+            descripcion,
+            costo,
+            precio
+        });
+    });
+    
+    return productos;
+}
+
+
+
+
+const dataNodePatter = [];
+
+        const maxSelections = 2;
+        let selected = [];
+        // Guardar dispositivo en la lista
+        document.getElementById("saveDevice").addEventListener("click", () => {
+
+          function generateUniqueTicketId() {
+            let ticketIds = JSON.parse(localStorage.getItem('ticketIds')) || [];
+            let newTicketId;
+
+            do {
+                newTicketId = 'TICKET-' + Date.now().toString().slice(-6);
+            } while (ticketIds.includes(newTicketId));
+
+            ticketIds.push(newTicketId);
+            localStorage.setItem('ticketIds', JSON.stringify(ticketIds));
+
+            return newTicketId;
+        }
+
+     
+
+            const deviceModel = document.getElementById("deviceModel").value;
+            const deviceContainer = document.getElementById("deviceInfoContainer");
+
+            if (deviceModel) {
+                const ticketId = generateUniqueTicketId();
+
+                $("#savePattern").on("click", function () {
+    if (pattern.length > 0) {
+   // Verificar si ya existe un patrón con el mismo idTikePatron
+   const existingPatternIndex = dataNodePatter.findIndex(item => item.idTikePatron === ticketId);
+
+if (existingPatternIndex !== -1) {
+    // Si ya existe, eliminar el patrón anterior
+    dataNodePatter.splice(existingPatternIndex, 1);
+}
+
+// Agregar el nuevo patrón
+dataNodePatter.push({
+    idTikePatron: ticketId,
+    pattern: pattern,  // Guardar el patrón
+});
+
+localStorage.setItem('dataNodePatter', JSON.stringify(dataNodePatter));
+
+        // Mostrar los detalles del patrón correctamente
+        alert("Patrón guardado: " + JSON.stringify(dataNodePatter));
+    } else {
+        alert("No se ha dibujado ningún patrón.");
+    }
+});
+                const deviceCard = document.createElement("div");
+                deviceCard.className = "card mb-3";
+
+    deviceCard.innerHTML = ""; // Limpiar todo el contenido del contenedor
+                deviceCard.innerHTML = `
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">${deviceModel} - Samsung</h5>
+            <span class="badge bg-primary">${ticketId}</span>
+            <button class="btn btn-sm btn-outline-secondary toggle-button d-flex align-items-center" type="button">
+                <span class="me-1 d-none">Contraer</span>
+                <i class="bi bi-chevron-up"></i>
+            </button>
+        </div>
+        <div class="card-body">
+ <div class="d-flex align-items-center mb-3">
+    <div class="form-check me-3">
+        <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="serial" id="serial-${ticketId}" checked>
+        <label class="form-check-label" for="serial-${ticketId}">Número de serie</label>
+    </div>
+    <div class="form-check me-3">
+        <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="imei" id="imei-${ticketId}">
+        <label class="form-check-label" for="imei-${ticketId}">IMEI</label>
+    </div>
+    <div class="form-check me-3">
+        <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="passcode" id="passcode-${ticketId}">
+        <label class="form-check-label" for="passcode-${ticketId}">Passcode</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="pattern" id="pattern-${ticketId}">
+        <label class="form-check-label" for="pattern-${ticketId}">Patrón</label>
+    </div>
+</div>
+
+
+            <div class="row mb-3 gap-2">
+                <input type="text" class="form-control w-auto"  placeholder="Ingrese un número de serie" id="serial-input-${ticketId}" style="display: none; ">
+                <input type="text" class="form-control w-auto" placeholder="Ingrese un IMEI" id="imei-input-${ticketId}" style="display: none;">
+                <input type="text" class="form-control w-auto" placeholder="Ingrese un passcode" id="passcode-input-${ticketId}" style="display: none;">
+                <button  class="w-25 form-control btn-pattern-${ticketId}" data-bs-toggle="modal" data-bs-target="#patternModal" style="display: none;">Dibujar Patrón</button>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" placeholder="Descripción del Problema" rows="1"></textarea>
+            </div>
+            <div class="mb-3">
+                <h6>Servicios de reparación</h6>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar servicios">
+                    <button class="btn btn-outline-secondary btn-explorar-servicios" type="button" data-ticket-id="${ticketId}">Explorar</button>
+                </div>
+                <div class="servicios-seleccionados" id="servicios">
+                    <!-- Los servicios seleccionados aparecerán aquí -->
+                </div>
+            </div>
+            <div class="mb-3">
+                <h6>Productos</h6>
+                <div class="input-group class="mb-3"">
+                    <input type="text" class="form-control" placeholder="Buscar productos">
+                    <button class="btn btn-outline-secondary btn-explorar-piezas" type="button">Explorar</button>
+                </div>
+                <div class="piezas-seleccionados" id="piezasSeleccionadas">
+                    <!-- Los piezasSeleccionadas seleccionados aparecerán aquí -->
+                </div>
+            </div>
+            <div class= 'box-shadow-garantia'>
+              
+              <div class="mb-3">
+                 <p class="text-primary" id="link-garantia-${ticketId}" style="cursor: pointer;">Agregar garantía</p>
+             </div>
+              
+              
+             <!-- Campos de garantía -->
+             <div id="garantia-fields-${ticketId}" class="row mb-3 gap-5  justify-content-center align-items-center" style="display: none;">
+                 <input type="number" class="form-control w-25" id="dias-garantia-${ticketId}" placeholder="Días de garantía">
+                 <textarea class="form-control w-50" id="comentarios-garantia-${ticketId}" placeholder="Comentarios de la garantía" rows="1"></textarea>
+             </div>
+              </div>
+
+        </div>
+    </div>
+`;
+ // Agregar al DOM
+ deviceContainer.appendChild(deviceCard);
+
+// Ahora buscar los checkboxes
+const checkboxes = document.querySelectorAll(`[name="identification-${ticketId}"]`);
+
+       
+checkboxes.forEach((checkbox) => {
+  // Limpiar la lista de seleccionados
+  selected = [];
+            checkbox.addEventListener("change", function () {
+            
+            
+              if (this.checked) {
+                    // Agregar el checkbox actual a la lista de seleccionados
+                    selected.push(this);
+
+                    // Si excede el máximo permitido, deseleccionar el más antiguo
+                    if (selected.length > maxSelections) {
+                        const oldest = selected.shift();
+                        oldest.checked = false;
+                    }
+                } else {
+                    // Remover el checkbox de la lista si se deselecciona
+                    selected = selected.filter((item) => item !== this);
+                }
+
+                // Ocultar y mostrar inputs en función de los seleccionados
+                document.getElementById(`serial-input-${ticketId}`).style.display = selected.some((item) => item.value === "serial") ? "block" : "none";
+                document.getElementById(`imei-input-${ticketId}`).style.display = selected.some((item) => item.value === "imei") ? "block" : "none";
+                document.getElementById(`passcode-input-${ticketId}`).style.display = selected.some((item) => item.value === "passcode") ? "block" : "none";
+                document.querySelector(`.btn-pattern-${ticketId}`).style.display = selected.some((item) => item.value === "pattern") ? "block" : "none";
+            });
+        });
+
+       
+        // Inicializar con el primer checkbox seleccionado
+        checkboxes[0].dispatchEvent(new Event("change"));
+    
+
+
+
+
+        document.getElementById(`link-garantia-${ticketId}`).addEventListener("click", function () {
+    const garantiaFields = document.getElementById(`garantia-fields-${ticketId}`);
+    if (garantiaFields.style.display === "none") {
+        garantiaFields.style.display = "flex"; // Mostrar campos
+        this.textContent = "Quitar garantía"; // Cambiar el texto del enlace
+    } else {
+        garantiaFields.style.display = "none"; // Ocultar campos
+        this.textContent = "Agregar garantía"; // Cambiar el texto del enlace
+        // Opcional: limpiar los campos al ocultarlos
+        document.getElementById(`dias-garantia-${ticketId}`).value = "";
+        document.getElementById(`comentarios-garantia-${ticketId}`).value = "";
+    }
+});
+
+
+                const toggleButton = deviceCard.querySelector('.toggle-button');
+                const cardBody = deviceCard.querySelector('.card-body');
+                const toggleIcon = toggleButton.querySelector('i');
+
+                toggleButton.addEventListener('click', () => {
+                    cardBody.classList.toggle('collapse');
+                    toggleIcon.classList.toggle('bi-chevron-up');
+                    toggleIcon.classList.toggle('bi-chevron-down');
+                });
+
+                deviceContainer.appendChild(deviceCard);
+                document.getElementById("deviceModel").value = "";
+
+                const modal = bootstrap.Modal.getInstance(document.getElementById("deviceModal"));
+                modal.hide();
+            }
+        });
+
+        // Acción para botón "Explorar Servicios"
+        $(document).on('click', '.btn-explorar-servicios', function () {
+            const ticketId = $(this).data('ticket-id');
+            const serviciosSeleccionados = $(`#servicios-${ticketId}`);
+            serviciosSeleccionados.append(`<div>Servicio añadido al ticket ${ticketId}</div>`);
+        });
+
+        // Función para obtener los valores de los inputs de un ticket
+function getInputValues(ticketId) {
+    const serial = document.getElementById(`serial-input-${ticketId}`).value;
+    const imei = document.getElementById(`imei-input-${ticketId}`).value;
+    const passcode = document.getElementById(`passcode-input-${ticketId}`).value;
+    const retrievedData = JSON.parse(localStorage.getItem('dataNodePatter')) || [];
+console.log(retrievedData); // Ahora puedes usar 'retrievedData' como una variable con los datos.
+
+    return {
+        serial,
+        imei,
+        passcode,
+        pattern:retrievedData,
+    };
+}
+
+
+
+        document.getElementById('saveBudgetBtn').addEventListener('click', () => {
+    const devices = document.querySelectorAll('#deviceInfoContainer .card');
+    const presupuesto = [];
+
+    devices.forEach(device => {
+        const ticketId = device.querySelector('.badge').innerText;
+        
+        // Recopilar datos de la garantía
+        const diasGarantia = device.querySelector(`#dias-garantia-${ticketId}`)?.value || '';
+        const comentariosGarantia = device.querySelector(`#comentarios-garantia-${ticketId}`)?.value || '';
+
+        // Recopilar datos de identificación (checkboxes)
+        const identificaciones = {
+            serial: device.querySelector(`#serial-${ticketId}`).checked,
+            imei: device.querySelector(`#imei-${ticketId}`).checked,
+            passcode: device.querySelector(`#passcode-${ticketId}`).checked,
+            pattern: device.querySelector(`#pattern-${ticketId}`).checked,
+        };
+
+        // Recopilar los servicios y productos
+        const servicios = obtenerDatosServicios();
+        const productos = obtenerDatosProductos();
+     const datas = selected.map(item => item.id);
+
+console.log(datas)
+
+const selecra = getInputValues(ticketId)
+
+console.log('selecra',selecra)
+        presupuesto.push({
+            ticketId,
+            diasGarantia,
+            comentariosGarantia,
+            identificaciones,
+            servicios,
+            productos,
+        });
+    });
+
+    // Recopilar información del cliente
+    const cliente = {
+        nombre: document.getElementById('nombreCliente').innerText || '--',
+        email: document.getElementById('emailCliente').innerText || '--',
+        telefono: document.getElementById('telefonoCliente').innerText || '--',
+    };
+
+    // Resumen de la orden
+    const resumen = {
+        servicios: document.getElementById('resumenServicios').innerText,
+        impuestos: document.getElementById('resumenImpuestos').innerText,
+        anticipo: document.getElementById('resumenAnticipo').innerText,
+        total: document.getElementById('resumenTotal').innerText,
+    };
+
+    // Detalles adicionales
+    const detalles = {
+        prioridad: document.getElementById('prioridadSelect').value,
+        fechaCompromiso: document.getElementById('fechaCompromiso').value,
+        responsable: document.getElementById('responsableSelect').value,
+    };
+
+    // Crear el objeto final del presupuesto
+    const presupuestoCompleto = {
+        cliente,
+        presupuesto,
+        resumen,
+        detalles,
+    };
+
+    console.log('Presupuesto Completo:', presupuestoCompleto);
+    localStorage.setItem('presupuestoCompleto', JSON.stringify(presupuestoCompleto));
+
+    // Aquí puedes enviar `presupuestoCompleto` a tu backend
+    alert('Presupuesto guardado con éxito');
+});
+
+
+
+    });
+
+
+</script>
+
+    
+
+
+</body>
+
 </html>

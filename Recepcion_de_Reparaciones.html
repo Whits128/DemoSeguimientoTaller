@@ -7,28 +7,283 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <!-- DevExtreme CSS -->
-      <!-- Hojas de estilo de DevExtreme -->
-<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
-<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-<style>
-    .status-class{
-        background-color: green;
-        color: #ffff;
-        border-radius: 50px;
-        text-align: center !important;
-        height: 20px;
+        <style>
+            /* Estilo general para el modo oscuro */
+          body {
+            background-color: #343a40; /* Fondo de contenedor oscuro */
+
+            color: #e9ecef; /* Texto claro */
+          }
+       
+          
+          h3 {
+            color: #ffffff; /* Título en blanco */
+          }
+          
+          /* Pestañas */
+          .nav-tabs .nav-link {
+            color: #e9ecef; /* Color del texto en las pestañas */
+            background-color: #495057; /* Fondo de las pestañas */
+            border-color: #6c757d; /* Borde de las pestañas */
+          }
+          
+          .nav-tabs .nav-link.active {
+            color: #ffffff; /* Texto blanco para pestañas activas */
+            background-color: #007bff; /* Fondo azul para pestañas activas */
+            border-color: #007bff;
+          }
+          
+          /* Fondo de la pestaña activa */
+          .tab-content {
+            background-color: #102b46; /* Fondo gris oscuro para el contenido */
+            border-radius: 5px;
+            color: #e9ecef; /* Texto claro */
+            padding: 20px;
+          }
+          
+          /* Panel Resumen */
+          
+          .summary-card {
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+          
+          }
+          
+          
+          
+          
+          
+          /* Estilo de los inputs y selectores */
+          .form-control, .form-select {
+            background-color: #495057; /* Fondo oscuro de los inputs */
+            color: #e9ecef; /* Texto claro */
+            border-color: #6c757d; /* Borde gris oscuro */
+          }
+          
+          .form-control:focus, .form-select:focus {
+            background-color: #6c757d; /* Fondo oscuro con resalte */
+            border-color: #007bff; /* Borde azul al enfocarse */
+          }
+          
+          /* Botones */
+          .btn-outline-primary {
+            color: #ffffff;
+            border-color: #007bff;
+          }
+          
+          .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: #ffffff;
+          }
+          
+          .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+          }
+          
+          .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+          }
+          
+          .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+          }
+          
+          .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+          }
+          
+          /* Table */
+          .table {
+            color: #e9ecef; /* Texto claro en la tabla */
+            background-color: #343a40; /* Fondo oscuro */
+          }
+          
+          .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #495057; /* Fondo de filas impares */
+          }
+          
+          .table thead th {
+            color: #e9ecef; /* Texto claro en el encabezado */
+          }
+          
+          .table tbody td {
+            color: #e9ecef; /* Texto claro en las celdas */
+          }
+          
+          .table td, .table th {
+            border-color: #6c757d; /* Borde gris oscuro */
+          }
+          
+          /* Modal Servicios */
+          #modalServicios .modal-dialog {
+            max-width: 400px;
+          }
+         
+          
+        
+          #modalServicios .list-group-item {
+            background-color: #495057; /* Fondo oscuro en las opciones */
+            color: #e9ecef; /* Texto claro */
+            border: 1px solid #6c757d; /* Borde gris oscuro */
+          }
+          
+          #modalServicios .list-group-item:hover {
+            background-color: #6c757d; /* Resalte de la opción */
+          }
+          
+          #modalServicios .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+          }
+          
+          #modalServicios .btn-primary:hover {
+            background-color: #218838;
+          }
+          
+          /* Estilo para los elementos de servicio */
+          .service-item, .pieza-item {
+            background-color: #495057; /* Fondo oscuro para las tarjetas de servicio */
+            border: 1px solid #6c757d; /* Borde gris oscuro */
+            color: #e9ecef; /* Texto claro */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+          }
+          
+          .service-item h6, .pieza-item h6 {
+            font-weight: bold;
+          }
+          
+          .service-item .remove-service {
+            background-color: #fff;
+            color: #bd2130;
+          }
+          
+          /* Inputs de los servicios */
+          .service-item .form-control, .service-item .form-select {
+            background-color: #495057;
+            color: #e9ecef;
+            border-color: #6c757d;
+          }
+          
+          .service-item .form-control:focus, .service-item .form-select:focus {
+            background-color: #6c757d;
+            border-color: #007bff;
+          }
+          
+          /* Otros elementos */
+          .ocultarCliente {
+            display: block;
+          }
+          .input-group>.form-control:focus, .input-group>.form-select:focus{
+            color: #ffffff;
+          }
+          
+          .box-shadow-garantia {
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding: 10px;
+          }
+          
+          
+          /*css modal cliente*/
+          #clienteModal .modal-content{
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+          }
+          
+
+          /*css seleccionar modelo*/
+#deviceModal .modal-content{
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+          }
+
+          /*css model patron*/
+#patternModal .modal-content{
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+          }
+
+
+          #pattern-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      margin: auto;
     }
-</style>
+    .pattern-node {
+      width: 50px;
+      height: 50px;
+      background-color: #f0f0f0;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .pattern-node.active {
+      background-color: #007bff !important;
+    }
 
+/*css model seleccion de servicios */
+#modalServicios  .modal-content{
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+          }
+
+/*modal seleccionar piezas */
+#modalPiezas .modal-content{
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+          }
+
+
+          /*css del div que se hace al seleccionar un modelo*/
+          .transpare {
+            backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(52, 58, 64, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+
+            </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand ps-3" href="Dashboard.html">BARATTO</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -96,150 +351,334 @@
                             </div>
                             <div class="sb-sidenav-footer">
                                 <div class="small">Logged in as:</div>
-                                Start Bootstrap
+                                BARATTO 
                             </div>
                         </nav>
                         
                     </div>
-                  
+                   
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Diagnóstico y Presupuesto                        </h1>
+                        <h1 class="mt-4">Observacion y Presupuesto                     </h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Diagnóstico y Presupuesto   </li>
+                            <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Observacion y Presupuesto    </li>
                         </ol>
                         <div class="row mt-5">
                             
-<!-- Formulario Completo -->
-<form id="diagnosticBudgetForm" class="border p-3 rounded bg-white">
-    <div class="row gap-1 justify-content-center">
-
-        <!-- Información del Cliente -->
-        <div  class="col-6 " style="width: 450px;" >
-             <h3>Información del Cliente</h3>
-             <div class="mb-3 ">
-                 <label for="customerName" class="form-label">Nombre del Cliente</label>
-                 <input type="text" class="form-control" id="customerName" placeholder="Ingresa el nombre del cliente" required />
-             </div>
-             <div class="mb-3 ">
-                 <label for="customerPhone" class="form-label">Teléfono</label>
-                 <input type="text" class="form-control" id="customerPhone" placeholder="Ingresa el teléfono del cliente" required />
-             </div>
-         </div>
-    
-        <!-- Información del Teléfono -->
-         <div class=" col-6" >
-    
-             <h3>Información del Teléfono</h3>
-             <div class="row">
-  <div class="col-6 ">
-
-      <div class="mb-3">
-          <label for="deviceBrand" class="form-label">Marca del Teléfono</label>
-          <input type="text" class="form-control" id="deviceBrand" placeholder="Ingresa la marca del dispositivo" required />
-      </div>
-</div>
-<div class="col-6 ">
-
-    <div class="mb-3">
-        <label for="deviceModel" class="form-label">Modelo del Teléfono</label>
-        <input type="text" class="form-control" id="deviceModel" placeholder="Ingresa el modelo del dispositivo" required />
-    </div>
-             </div>
-
-             </div>
-             <div class="">
-                 <label for="issue" class="form-label">Problema Reportado</label>
-                 <textarea class="form-control" id="issue" rows="1" placeholder="Describe el problema reportado" required></textarea>
-             </div>
-         </div>
-        <!-- Información del Teléfono fin -->
-
-
-    </div>
-
-
-    <div class="row justify-content-center">
-
-        <!-- Presupuesto -->
-        <h3 class="text-center">Presupuesto</h3>
-        <div class="col-6 " style="width: 400px;">
-
-            <div class="mb-3">
-                <label for="repairType" class="form-label">Tipo de Reparación</label>
-                <select class="form-select" id="repairType" required>
-                    <option value="" selected disabled>Selecciona el tipo de reparación</option>
-                    <option value="1">Reemplazo de pantalla</option>
-                    <option value="2">Cambio de batería</option>
-                    <option value="3">Reparación de placa base</option>
-                    <option value="4">Reparación de puerto de carga</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="repairCost" class="form-label">Costo Estimado</label>
-                <input type="number" class="form-control" id="repairCost" placeholder="Ingresa el costo estimado de la reparación" required />
-            </div>
-            <div class="mb-3">
-                <label for="laborCost" class="form-label">Costo de Mano de Obra</label>
-                <input type="number" class="form-control" id="laborCost" placeholder="Ingresa el costo de mano de obra" />
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="mb-3">
-                <label for="repairStatus" class="form-label">Estado de la Reparación</label>
-                <select class="form-select" id="repairStatus">
-                    <option value="1">Aprobado</option>
-                   
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="technician" class="form-label">Técnico Asignado</label>
-                <select class="form-select" id="technician" required>
-                    <option value="" selected disabled>Selecciona un técnico</option>
-                    <option value="1">Juan Pérez</option>
-                    <option value="2">María Gómez</option>
-                    <option value="3">Carlos Ruiz</option>
-                </select>
-            </div>
-        
-            <!-- Fila para las fechas -->
-            <div class="row">
-                <div class="col-6 mb-3">
-                    <label for="reportDate" class="form-label">Fecha de Reporte</label>
-                    <input type="date" class="form-control" id="reportDate" required />
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="deliveryDate" class="form-label">Fecha Estimada de Entrega</label>
-                    <input type="date" class="form-control" id="deliveryDate" required />
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <!-- Botones de Acción -->
-    <div class="d-flex justify-content-end">
-        <button type="button" id="generateBudget" class="btn btn-success w-48">Generar Presupuesto</button>
-    </div>
-</form>
-
+                          
+                               <ul class="nav nav-tabs mt-4 gap-1" id="repairTab" role="tablist">
+                                  <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="repair-tab" data-bs-toggle="tab" data-bs-target="#repair" type="button" role="tab" aria-controls="repair" aria-selected="true">Reparación</button>
+                                  </li>
+                                  <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="false">Historial</button>
+                                  </li>
+                                </ul>
+                              
+                                <div class="tab-content " id="repairTabContent">
+                                  <!-- Pestaña Reparación -->
+                                  <div class="tab-pane fade show active" id="repair" role="tabpanel" aria-labelledby="repair-tab">
+                                    <div class="row">
+                                      <!-- Agregar Dispositivo -->
+                                      <div class="col-md-8">
+                                        <button class="btn btn-outline-primary mb-3" id="addDeviceBtn">+ Agregar Dispositivo</button>  
+                                        <button class="btn btn-success mb-3" id="saveBudgetBtn">Guardar Presupuesto</button>
+                              
+                                        <div id="deviceInfoContainer"></div>
+                                      </div>
+                              
+                                      <!-- Panel Resumen -->
+                                      <div class="col-md-4">
+                                        <div class="summary-card p-3   text-white">
+                                          <!-- Sección 1: Buscar Cliente -->
+                                          <div class="mb-4 border-bottom pb-3">
+                                            <div class="ocultarCliente">
+                                              <div class="d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0">Buscar Cliente</h6>
+                                                <button class="btn btn-link text-white p-0" data-bs-toggle="modal" data-bs-target="#clienteModal" style="width: auto;">
+                                                  <i class="bi bi-clipboard2-plus-fill"></i>
+                                                </button>
+                                              </div>
+                                              <div class="input-group mt-2">
+                                                <input type="text" id="searchInput" class="form-control" placeholder="Teclea email, nombre o apellido" autocomplete="off"/>
+                                              </div>
+                                            </div>
+                                            <ul class="list-group position-absolute mt-1 d-none" id="resultList"></ul>
+                                            <div id="clienteSeleccionado" class="mt-3 d-none">
+                                              <div class="d-flex justify-content-between align-items-center">
+                                                <h6>Cliente</h6>
+                                                <button id="eliminarCliente" class="btn btn-danger btn-sm">
+                                                  <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                              </div>
+                                              <p><strong>Nombre:</strong> <span id="nombreCliente">--</span></p>
+                                              <p><strong>Email:</strong> <span id="emailCliente">--</span></p>
+                                              <p><strong>Teléfono:</strong> <span id="telefonoCliente">--</span></p>
+                                            </div>
+                                          </div>
+                              
+                                          <!-- Sección 2: Resumen de Orden -->
+                                          <div class="mb-4 border-bottom pb-3">
+                                            <h6>Resumen de Orden</h6>
+                                            <div class="d-flex justify-content-between">
+                                              <span>Servicios:</span>
+                                              <span id="resumenServicios">C$ 500.00</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                              <span>Impuestos:</span>
+                                              <span id="resumenImpuestos">C$ 75.00</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                              <span>Anticipos:</span>
+                                              <span id="resumenAnticipo">C$ 100.00</span>
+                                            </div>
+                                            <hr />
+                                            <div class="d-flex justify-content-between">
+                                              <strong>Total:</strong>
+                                              <strong id="resumenTotal">C$ 475.00</strong>
+                                            </div>
+                                          </div>
+                                          
+                              
+                                          <!-- Sección 3: Detalles -->
+                                          <div>
+                                            <h6>Detalles</h6>
+                                            <div class="mb-3">
+                                              <label for="prioridadSelect" class="form-label">Prioridad</label>
+                                              <select id="prioridadSelect" class="form-select">
+                                                <option value="">Seleccionar Prioridad</option>
+                                                <option value="alta">Alta</option>
+                                                <option value="media">Media</option>
+                                                <option value="baja">Baja</option>
+                                              </select>
+                                            </div>
+                                            <div class="mb-3">
+                                              <label for="fechaCompromiso" class="form-label">Fecha Compromiso</label>
+                                              <input type="date" id="fechaCompromiso" class="form-control" placeholder="Fecha Compromiso" />
+                                            </div>
+                                            <div>
+                                              <label for="responsableSelect" class="form-label">Asignar Responsable</label>
+                                              <select id="responsableSelect" class="form-select">
+                                                <option value="">Seleccionar Responsable</option>
+                                                <option value="tecnico1">Técnico 1</option>
+                                                <option value="tecnico2">Técnico 2</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              
+                                  <!-- Pestaña Historial -->
+                                  <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                    <h6>Historial de reparaciones</h6>
+                                    <table class="table table-dark table-striped">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Dispositivo</th>
+                                          <th>Estado</th>
+                                          <th>Total</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>1</td>
+                                          <td>2024-11-30</td>
+                                          <td>iPhone 13</td>
+                                          <td>Completado</td>
+                                          <td>C$ 1500.00</td>
+                                        </tr>
+                                        <tr>
+                                          <td>2</td>
+                                          <td>2024-10-15</td>
+                                          <td>Galaxy S21</td>
+                                          <td>Pendiente</td>
+                                          <td>C$ 800.00</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
                              
-  
-<!-- Encabezado para el DataGrid -->
-<div class="container mt-5">
-    <h3 class="text-center mb-4">Listado de Reparaciones</h3>
-
-    <!-- DataGrid para mostrar los datos -->
-    <div id="repairGrid" class="mt-3"></div>
-</div>
-
- 
-  
                             
+                            
+                                
+<!-- Modal Agregar dispositivo -->
+<div class="modal fade" id="deviceModal" tabindex="-1" aria-labelledby="deviceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deviceModalLabel">Agregar dispositivo</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="deviceModel" class="form-label">Modelo del dispositivo</label>
+          <input type="text" id="deviceModel" class="form-control bg-dark text-white" placeholder="Buscar dispositivo">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="saveDevice">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Modal -->
+<div class="modal fade" id="patternModal" tabindex="-1" aria-labelledby="patternModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content  text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="patternModalLabel">Dibujar Patrón de Desbloqueo</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="pattern-container" class="d-flex flex-wrap justify-content-center">
+            <div class="pattern-node bg-secondary border border-light" data-node="1"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="2"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="3"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="4"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="5"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="6"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="7"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="8"></div>
+            <div class="pattern-node bg-secondary border border-light" data-node="9"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="savePattern" class="btn btn-success">Guardar Patrón</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Modal para seleccionar servicios -->
+  <div class="modal fade" id="modalServicios" tabindex="-1" aria-labelledby="modalServiciosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content  text-white border-0 shadow-lg">
+        <div class="modal-header  text-white">
+          <h5 class="modal-title" id="modalServiciosLabel">Seleccionar Servicios</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group" id="listaServicios">
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-servicio="Instalación de Pantalla">
+              <span>Instalación de Pantalla</span>
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-servicio="Pin de Carga">
+              <span>Pin de Carga</span>
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-servicio="Microsoldadura">
+              <span>Microsoldadura</span>
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-servicio="Revisión de Equipo">
+              <span>Revisión de Equipo</span>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-success" id="guardarServicios">Guardar Selección</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Modal para seleccionar piezas -->
+  <div class="modal fade" id="modalPiezas" tabindex="-1" aria-labelledby="modalPiezasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content text-white ">
+        <div class="modal-header  text-white">
+          <h5 class="modal-title" id="modalPiezasLabel">Seleccionar Piezas</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group" id="listaPiezas">
+            <li class="list-group-item bg-dark text-white d-flex align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-pieza="Pantalla LCD">
+              Pantalla LCD
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-pieza="Batería">
+              Batería
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-pieza="Placa Base">
+              Placa Base
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-pieza="Cargador">
+              Cargador
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex align-items-center">
+              <input type="checkbox" class="form-check-input me-2" data-pieza="Botones">
+              Botones
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="guardarPiezas">Guardar Selección</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Modal para crear cliente -->
+  <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content border-0 ">
+        <div class="modal-header  text-white">
+          <h5 class="modal-title" id="clienteModalLabel">Crear Cliente</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="crearClienteForm" novalidate>
+            <div class="mb-3">
+              <label for="nombreClienteNuevo" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombreClienteNuevo" placeholder="Ingrese el nombre completo" required>
+              <div class="invalid-feedback">El nombre es obligatorio.</div>
+            </div>
+            <div class="mb-3">
+              <label for="emailClienteNuevo" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailClienteNuevo" placeholder="Ingrese el correo electrónico" required>
+              <div class="invalid-feedback">Ingrese un correo válido.</div>
+            </div>
+            <div class="mb-3">
+              <label for="telefonoClienteNuevo" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" id="telefonoClienteNuevo" placeholder="Ingrese el número de teléfono" required>
+              <div class="invalid-feedback">El número de teléfono es obligatorio.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Guardar Cliente</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+                              
+
+
+
+
+
+
                         </div>
                     
                        
@@ -248,7 +687,7 @@
                 <footer class="py-4 bg-light mt-5">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; 2024</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
@@ -262,221 +701,555 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-         <!-- DevExtreme JS -->
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jquery.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jszip.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/dx.all.js"></script>
-   
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
-  <script>
-    // Arreglo para almacenar los datos del presupuesto
-    let repairData = JSON.parse(localStorage.getItem('repairData')) || [
-        {
-            customerName: 'Juan Pérez',
-            customerPhone: '555-1234',
-            deviceBrand: 'Samsung',
-            deviceModel: 'Galaxy S21',
-            repairType: { id: 1, text: 'Reemplazo de pantalla' },
-            repairCost: 150.00,
-            laborCost: 50.00,
-            repairStatus: { id: 1, text: 'Aprobado' },
-            technician: { id: 3, text: 'Carlos Ruiz' },
-            reportDate: '2024-11-25',
-            deliveryDate: '2024-11-30',
-            totalCost: 200.00,
-            issue: 'La pantalla está completamente dañada tras una caída'
-        },
-        {
-            customerName: 'Ana García',
-            customerPhone: '555-5678',
-            deviceBrand: 'Apple',
-            deviceModel: 'iPhone 122',
-            repairType: { id: 2, text: 'Cambio de batería' },
-            repairCost: 80.00,
-            laborCost: 20.00,
-            repairStatus: { id: 1, text: 'Aprobado' },
-            technician: { id: 2, text: 'María Gómez' },
-            reportDate: '2024-11-20',
-            deliveryDate: '2024-11-22',
-            totalCost: 100.00,
-            issue: 'La batería no carga correctamente y se descarga rápidamente'
+
+        <script src="/js/busquedaClienteVObservacionPr.js"></script>
+
+
+
+        <script>
+          $(document).ready(function () {
+      
+           
+              const pattern = [];
+              const $nodes = $(".pattern-node");
+              let isDrawing = false;
+      
+      
+      
+              // Eventos del patrón
+              $("#pattern-container").on("mousedown touchstart", function () {
+                  isDrawing = true;
+                  pattern.length = 0;
+                  $nodes.removeClass("active");
+              });
+      
+              $("#pattern-container").on("mousemove touchmove", function (e) {
+                  if (!isDrawing) return;
+      
+                  const elementUnderCursor = document.elementFromPoint(
+                      e.type === "mousemove" ? e.clientX : e.originalEvent.touches[0].clientX,
+                      e.type === "mousemove" ? e.clientY : e.originalEvent.touches[0].clientY
+                  );
+      
+                  const $node = $(elementUnderCursor).closest(".pattern-node");
+                  if ($node.length && !$node.hasClass("active")) {
+                      $node.addClass("active");
+                      pattern.push($node.data("node"));
+                  }
+              });
+      
+              $(document).on("mouseup touchend", function () {
+                  isDrawing = false;
+              });
+      
+              
+      
+              $('#patternModal').on('hidden.bs.modal', function () {
+                  $nodes.removeClass("active");
+                  pattern.length = 0;
+              });
+      
+              // Mostrar modal para agregar dispositivo
+              document.getElementById("addDeviceBtn").addEventListener("click", () => {
+                  const modal = new bootstrap.Modal(document.getElementById("deviceModal"));
+                  modal.show();
+              });
+      
+       // Evento para mostrar el modal de servicios
+       $(document).on('click', '.btn-explorar-servicios', function () {
+          // Muestra el modal
+          $('#modalServicios').modal('show');
+      
+          // Acción para guardar los servicios seleccionados
+          $('#guardarServicios').off('click').on('click', function () {
+              const selectedServices = [];
+              $('#listaServicios input[type="checkbox"]:checked').each(function () {
+                  selectedServices.push($(this).closest('li').text().trim());
+              });
+      
+              // Contenedor de servicios seleccionados
+              const serviciosContainer = $('#servicios');
+      
+              // Limpiar contenido previo
+              serviciosContainer.empty();
+      
+              selectedServices.forEach(function (servicio, index) {
+                const serviceDiv = `
+          <div class="row align-items-center service-item position-relative mt-5" id="service-${index}">
+              <div class="col-12 col-md-6">
+                  <h6 class="m-0">${servicio}</h6>
+                  <textarea class="form-control mt-2 text-white" placeholder="Descripción..." rows="1"></textarea>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                  <label class="form-label">Costo</label>
+                  <input type="number" class="form-control" value="0" min="0">
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                  <label class="form-label">Precio</label>
+                  <input type="number" class="form-control" value="0" min="0">
+              </div>
+             
+              <button class="btn btn-link text-black p-0 position-absolute top-0 end-0 remove-service" data-service-id="service-${index}" style="transform: translate(-50%, 15%); width:auto; ">
+                  <i class="bi bi-trash"></i>
+              </button>
+          </div>
+      `;
+      
+      
+                  serviciosContainer.append(serviceDiv);
+              });
+      
+              // Cerrar el modal
+              $('#modalServicios').modal('hide');
+      
+                // Limpiar los checkboxes seleccionados
+                $('#listaServicios input[type="checkbox"]').prop('checked', false);
+          });
+      
+          // Evento para eliminar servicios seleccionados
+          $(document).on('click', '.remove-service', function () {
+              const serviceId = $(this).data('service-id');
+              $(`#${serviceId}`).remove();
+          });
+      });
+      
+      
+      $(document).on('click', '.btn-explorar-piezas', function () {
+          // Muestra el modal
+          $('#modalPiezas').modal('show');
+      
+          // Acción para guardar las piezas seleccionadas
+          $('#guardarPiezas').off('click').on('click', function () {
+              const selectedPieces = [];
+              $('#listaPiezas input[type="checkbox"]:checked').each(function () {
+                  selectedPieces.push($(this).closest('li').text().trim());
+              });
+      
+              // Contenedor de piezas seleccionadas
+              const piezasContainer = $('#piezasSeleccionadas');
+      
+              selectedPieces.forEach(function (pieza, index) {
+                  // Verificar que el elemento no haya sido añadido ya
+                  if (!piezasContainer.find(`#pieza-${pieza}`).length) {
+                      const piezaDiv = `
+                          <div class="row align-items-center pieza-item position-relative mt-3" id="pieza-${pieza}">
+                              <div class="col-12 col-md-6">
+                                  <h6 class="m-0">${pieza}</h6>
+                                  <textarea class="form-control mt-2 text-white" placeholder="Descripción..." rows="1"></textarea>
+                              </div>
+                              <div class="col-6 col-md-3 text-center">
+                                  <label class="form-label">Costo</label>
+                                  <input type="number" class="form-control" value="0" min="0">
+                              </div>
+                              <div class="col-6 col-md-3 text-center">
+                                  <label class="form-label">Precio</label>
+                                  <input type="number" class="form-control" value="0" min="0">
+                              </div>
+                              <button class="btn btn-link text-black p-0 position-absolute top-0 end-0 remove-pieza" data-pieza-id="pieza-${pieza}" style="transform: translate(-50%, 15%); width:auto;">
+                                  <i class="bi bi-trash"></i>
+                              </button>
+                          </div>
+                      `;
+      
+                      // Agregar la nueva pieza seleccionada
+                      piezasContainer.append(piezaDiv);
+                  }
+              });
+      
+              // Cerrar el modal
+              $('#modalPiezas').modal('hide');
+          });
+      
+          // Limpiar los checkboxes al cerrar el modal
+          $('#modalPiezas').on('hidden.bs.modal', function () {
+              $('#listaPiezas input[type="checkbox"]').prop('checked', false);
+          });
+      });
+      
+        // Evento para eliminar servicios seleccionados
+        $(document).on('click', '.remove-pieza', function () {
+              const serviceId = $(this).data('pieza-id');
+              $(`#${serviceId}`).remove();
+          });
+      
+      
+      
+      // Función para capturar los datos de los servicios
+      function obtenerDatosServicios() {
+          const servicios = [];
+          
+          // Iteramos sobre cada item de servicio
+          document.querySelectorAll('.service-item').forEach(serviceDiv => {
+              const servicioId = serviceDiv.id.split('-')[1]; // Obtener ID del servicio
+              const descripcion = serviceDiv.querySelector('textarea').value; // Descripción del servicio
+              const costo = parseFloat(serviceDiv.querySelector('input[type="number"]').value); // Costo
+              const precio = parseFloat(serviceDiv.querySelectorAll('input[type="number"]')[1].value); // Precio
+              
+              // Añadir el servicio a la lista
+              servicios.push({
+                  servicioId,
+                  descripcion,
+                  costo,
+                  precio
+              });
+          });
+          
+          return servicios;
+      }
+      
+      
+      // Función para capturar los datos de los productos
+      function obtenerDatosProductos() {
+          const productos = [];
+          
+          // Iteramos sobre cada item de producto
+          document.querySelectorAll('.pieza-item').forEach(piezaDiv => {
+              const piezaId = piezaDiv.id.split('-')[1]; // Obtener ID de la pieza
+              const descripcion = piezaDiv.querySelector('textarea').value; // Descripción del producto
+              const costo = parseFloat(piezaDiv.querySelector('input[type="number"]').value); // Costo
+              const precio = parseFloat(piezaDiv.querySelectorAll('input[type="number"]')[1].value); // Precio
+              
+              // Añadir el producto a la lista
+              productos.push({
+                  piezaId,
+                  descripcion,
+                  costo,
+                  precio
+              });
+          });
+          
+          return productos;
+      }
+      
+      
+      
+      
+      const dataNodePatter = [];
+      
+              const maxSelections = 2;
+              let selected = [];
+              // Guardar dispositivo en la lista
+              document.getElementById("saveDevice").addEventListener("click", () => {
+      
+                function generateUniqueTicketId() {
+                  let ticketIds = JSON.parse(localStorage.getItem('ticketIds')) || [];
+                  let newTicketId;
+      
+                  do {
+                      newTicketId = 'TICKET-' + Date.now().toString().slice(-6);
+                  } while (ticketIds.includes(newTicketId));
+      
+                  ticketIds.push(newTicketId);
+                  localStorage.setItem('ticketIds', JSON.stringify(ticketIds));
+      
+                  return newTicketId;
+              }
+      
+           
+      
+                  const deviceModel = document.getElementById("deviceModel").value;
+                  const deviceContainer = document.getElementById("deviceInfoContainer");
+      
+                  if (deviceModel) {
+                      const ticketId = generateUniqueTicketId();
+      
+                      $("#savePattern").on("click", function () {
+          if (pattern.length > 0) {
+         // Verificar si ya existe un patrón con el mismo idTikePatron
+         const existingPatternIndex = dataNodePatter.findIndex(item => item.idTikePatron === ticketId);
+      
+      if (existingPatternIndex !== -1) {
+          // Si ya existe, eliminar el patrón anterior
+          dataNodePatter.splice(existingPatternIndex, 1);
+      }
+      
+      // Agregar el nuevo patrón
+      dataNodePatter.push({
+          idTikePatron: ticketId,
+          pattern: pattern,  // Guardar el patrón
+      });
+      
+      localStorage.setItem('dataNodePatter', JSON.stringify(dataNodePatter));
+      
+              // Mostrar los detalles del patrón correctamente
+              alert("Patrón guardado: " + JSON.stringify(dataNodePatter));
+          } else {
+              alert("No se ha dibujado ningún patrón.");
+          }
+      });
+                      const deviceCard = document.createElement("div");
+                      deviceCard.className = "card mb-3";
+      
+          deviceCard.innerHTML = ""; // Limpiar todo el contenido del contenedor
+                      deviceCard.innerHTML = `
+      <div    class="card shadow-sm border-0 bg-dark text-light">
+        <div class=" transpare card-header d-flex justify-content-between align-items-center   text-white">
+          <h5 class="card-title mb-0 text-truncate">${deviceModel} - Samsung</h5>
+          <span class="badge bg-primary">${ticketId}</span>
+          <button class="btn btn-sm btn-light toggle-button d-flex align-items-center" type="button">
+            <span class="me-1 d-none">Contraer</span>
+            <i class="bi bi-chevron-up"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <!-- Opciones de Identificación -->
+          <div class="d-flex align-items-center mb-3 flex-wrap">
+            <div class="form-check me-3">
+              <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="serial" id="serial-${ticketId}" checked>
+              <label class="form-check-label text-light" for="serial-${ticketId}">Número de serie</label>
+            </div>
+            <div class="form-check me-3">
+              <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="imei" id="imei-${ticketId}">
+              <label class="form-check-label text-light" for="imei-${ticketId}">IMEI</label>
+            </div>
+            <div class="form-check me-3">
+              <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="passcode" id="passcode-${ticketId}">
+              <label class="form-check-label text-light" for="passcode-${ticketId}">Passcode</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="identification-${ticketId}" value="pattern" id="pattern-${ticketId}">
+              <label class="form-check-label text-light" for="pattern-${ticketId}">Patrón</label>
+            </div>
+          </div>
+      
+          <!-- Inputs dinámicos -->
+          <div class="row mb-3 gap-2">
+            <input type="text" class="form-control w-auto bg-dark text-light border-secondary" placeholder="Ingrese un número de serie" id="serial-input-${ticketId}" style="display: none;">
+            <input type="text" class="form-control w-auto bg-dark text-light border-secondary" placeholder="Ingrese un IMEI" id="imei-input-${ticketId}" style="display: none;">
+            <input type="text" class="form-control w-auto bg-dark text-light border-secondary" placeholder="Ingrese un passcode" id="passcode-input-${ticketId}" style="display: none;">
+            <button class="btn btn-primary w-auto btn-pattern-${ticketId}" data-bs-toggle="modal" data-bs-target="#patternModal" style="display: none;">Dibujar Patrón</button>
+          </div>
+      
+          <!-- Descripción del problema -->
+          <div class="mb-3">
+            <textarea class="form-control bg-dark text-light border-secondary" placeholder="Descripción del Problema" rows="2"></textarea>
+          </div>
+      
+          <!-- Servicios -->
+          <div class="mb-3">
+            <h6 class="text-light">Servicios de reparación</h6>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control bg-dark text-light border-secondary" placeholder="Buscar servicios">
+              <button class="btn btn-outline-primary btn-explorar-servicios" type="button" data-ticket-id="${ticketId}">Explorar</button>
+            </div>
+            <div class="servicios-seleccionados" id="servicios">
+              <!-- Los servicios seleccionados aparecerán aquí -->
+            </div>
+          </div>
+      
+          <!-- Productos -->
+          <div class="mb-3">
+            <h6 class="text-light">Productos</h6>
+            <div class="input-group">
+              <input type="text" class="form-control bg-dark text-light border-secondary" placeholder="Buscar productos">
+              <button class="btn btn-outline-primary btn-explorar-piezas" type="button">Explorar</button>
+            </div>
+            <div class="piezas-seleccionados" id="piezasSeleccionadas">
+              <!-- Los productos seleccionados aparecerán aquí -->
+            </div>
+          </div>
+      
+          <!-- Garantía -->
+          <div class="p-3  rounded  mb-3">
+            <p class="text-white mb-2" id="link-garantia-${ticketId}" style="cursor: pointer;">Agregar garantía?</p>
+            <div id="garantia-fields-${ticketId}" class="row gap-3 align-items-center" style="display: none;">
+              <input type="number" class="form-control bg-dark text-light border-secondary w-25" id="dias-garantia-${ticketId}" placeholder="Días de garantía">
+              <textarea class="form-control bg-dark text-light border-secondary w-50" id="comentarios-garantia-${ticketId}" placeholder="Comentarios de la garantía" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      `;
+       // Agregar al DOM
+       deviceContainer.appendChild(deviceCard);
+      
+      // Ahora buscar los checkboxes
+      const checkboxes = document.querySelectorAll(`[name="identification-${ticketId}"]`);
+      
+             
+      checkboxes.forEach((checkbox) => {
+        // Limpiar la lista de seleccionados
+        selected = [];
+                  checkbox.addEventListener("change", function () {
+                  
+                  
+                    if (this.checked) {
+                          // Agregar el checkbox actual a la lista de seleccionados
+                          selected.push(this);
+      
+                          // Si excede el máximo permitido, deseleccionar el más antiguo
+                          if (selected.length > maxSelections) {
+                              const oldest = selected.shift();
+                              oldest.checked = false;
+                          }
+                      } else {
+                          // Remover el checkbox de la lista si se deselecciona
+                          selected = selected.filter((item) => item !== this);
+                      }
+      
+                      // Ocultar y mostrar inputs en función de los seleccionados
+                      document.getElementById(`serial-input-${ticketId}`).style.display = selected.some((item) => item.value === "serial") ? "block" : "none";
+                      document.getElementById(`imei-input-${ticketId}`).style.display = selected.some((item) => item.value === "imei") ? "block" : "none";
+                      document.getElementById(`passcode-input-${ticketId}`).style.display = selected.some((item) => item.value === "passcode") ? "block" : "none";
+                      document.querySelector(`.btn-pattern-${ticketId}`).style.display = selected.some((item) => item.value === "pattern") ? "block" : "none";
+                  });
+              });
+      
+             
+              // Inicializar con el primer checkbox seleccionado
+              checkboxes[0].dispatchEvent(new Event("change"));
+          
+      
+      
+      
+      
+              document.getElementById(`link-garantia-${ticketId}`).addEventListener("click", function () {
+          const garantiaFields = document.getElementById(`garantia-fields-${ticketId}`);
+          if (garantiaFields.style.display === "none") {
+              garantiaFields.style.display = "flex"; // Mostrar campos
+              this.textContent = "Quitar garantía"; // Cambiar el texto del enlace
+          } else {
+              garantiaFields.style.display = "none"; // Ocultar campos
+              this.textContent = "Agregar garantía"; // Cambiar el texto del enlace
+              // Opcional: limpiar los campos al ocultarlos
+              document.getElementById(`dias-garantia-${ticketId}`).value = "";
+              document.getElementById(`comentarios-garantia-${ticketId}`).value = "";
+          }
+      });
+      
+      
+                      const toggleButton = deviceCard.querySelector('.toggle-button');
+                      const cardBody = deviceCard.querySelector('.card-body');
+                      const toggleIcon = toggleButton.querySelector('i');
+      
+                      toggleButton.addEventListener('click', () => {
+                          cardBody.classList.toggle('collapse');
+                          toggleIcon.classList.toggle('bi-chevron-up');
+                          toggleIcon.classList.toggle('bi-chevron-down');
+                      });
+      
+                      deviceContainer.appendChild(deviceCard);
+                      document.getElementById("deviceModel").value = "";
+      
+                      const modal = bootstrap.Modal.getInstance(document.getElementById("deviceModal"));
+                      modal.hide();
+                  }
+              });
+      
+              // Acción para botón "Explorar Servicios"
+              $(document).on('click', '.btn-explorar-servicios', function () {
+                  const ticketId = $(this).data('ticket-id');
+                  const serviciosSeleccionados = $(`#servicios-${ticketId}`);
+                  serviciosSeleccionados.append(`<div>Servicio añadido al ticket ${ticketId}</div>`);
+              });
+      
+              // Función para obtener los valores de los inputs de un ticket
+      function getInputValues(ticketId) {
+          const serial = document.getElementById(`serial-input-${ticketId}`).value;
+          const imei = document.getElementById(`imei-input-${ticketId}`).value;
+          const passcode = document.getElementById(`passcode-input-${ticketId}`).value;
+          const retrievedData = JSON.parse(localStorage.getItem('dataNodePatter')) || [];
+      console.log(retrievedData); // Ahora puedes usar 'retrievedData' como una variable con los datos.
+      
+          return {
+              serial,
+              imei,
+              passcode,
+              pattern:retrievedData,
+          };
+      }
+      
+      
+      
+      document.getElementById('saveBudgetBtn').addEventListener('click', () => {
+    const devices = document.querySelectorAll('#deviceInfoContainer .card');
+    const presupuesto = [];
+    
+    devices.forEach(device => {
+        const ticketId = device.querySelector('.badge').innerText;
+        
+        // Verificar si el ticketId ya existe en el presupuesto
+        const existe = presupuesto.some(item => item.ticketId === ticketId);
+        if (existe) {
+            console.warn(`El ticket con ID ${ticketId} ya existe. Se omitirá.`);
+            return; // No agregar el ticket duplicado
         }
-    ];
-    // Almacenar los datos en localStorage
-    localStorage.setItem('repairData', JSON.stringify(repairData));
+        
+        // Capturar el modelo del dispositivo
+        const deviceModel = device.querySelector('.card-title').innerText;
 
-    // Método para limpiar el formulario
-    function clearForm() {
-        $('#customerName, #customerPhone, #deviceBrand, #deviceModel, #repairCost, #laborCost, #reportDate, #deliveryDate, #issue').val('');
-        $('#repairType, #repairStatus, #technician').val('').change();
-        $('#generateBudget').removeData('editIndex').text('Generar Presupuesto');
-    }
+        // Recopilar datos de la garantía
+        const diasGarantia = device.querySelector(`#dias-garantia-${ticketId}`)?.value || '';
+        const comentariosGarantia = device.querySelector(`#comentarios-garantia-${ticketId}`)?.value || '';
 
-    // Validar campos obligatorios
-    function validateForm(budget) {
-        return budget.customerName && budget.repairType && budget.repairCost && 
-               budget.repairStatus && budget.technician && budget.reportDate && budget.deliveryDate;
-    }
-
-    // Función para generar o actualizar el presupuesto
-    $('#generateBudget').on('click', function () {
-        const editIndex = $(this).data('editIndex'); // Índice del presupuesto a editar
-        const budget = {
-            customerName: $('#customerName').val(),
-            customerPhone: $('#customerPhone').val(),
-            deviceBrand: $('#deviceBrand').val(),
-            deviceModel: $('#deviceModel').val(),
-            repairType: { 
-                id: $('#repairType').val(), 
-                text: $('#repairType option:selected').text() 
-            },
-            repairCost: parseFloat($('#repairCost').val()),
-            laborCost: parseFloat($('#laborCost').val()) || 0,
-            repairStatus: { 
-                id: $('#repairStatus').val(), 
-                text: $('#repairStatus option:selected').text() 
-            },
-            technician: { 
-                id: $('#technician').val(), 
-                text: $('#technician option:selected').text() 
-            },
-            reportDate: $('#reportDate').val(),
-            deliveryDate: $('#deliveryDate').val(),
-            totalCost: parseFloat($('#repairCost').val()) + (parseFloat($('#laborCost').val()) || 0),
-            issue: $('#issue').val()
+        // Recopilar datos de identificación (checkboxes)
+        const identificaciones = {
+            serial: device.querySelector(`#serial-${ticketId}`).checked,
+            imei: device.querySelector(`#imei-${ticketId}`).checked,
+            passcode: device.querySelector(`#passcode-${ticketId}`).checked,
+            pattern: device.querySelector(`#pattern-${ticketId}`).checked,
         };
 
-        if (!validateForm(budget)) {
-            alert('Por favor, completa todos los campos obligatorios.');
-            return;
-        }
-
-        if (editIndex !== undefined) {
-            repairData[editIndex] = budget; // Actualizar presupuesto existente
-        } else {
-            repairData.push(budget); // Añadir nuevo presupuesto
-        }
-
-        // Guardar los datos actualizados en localStorage
-        localStorage.setItem('repairData', JSON.stringify(repairData));
-
-        $('#repairGrid').dxDataGrid('instance').option('dataSource', repairData);
-        alert('Presupuesto procesado exitosamente.');
-        clearForm();
+        // Recopilar los servicios y productos
+        const servicios = obtenerDatosServicios();
+        const productos = obtenerDatosProductos();
+        
+        presupuesto.push({
+            ticketId,
+            diasGarantia,
+            deviceModel,
+            comentariosGarantia,
+            identificaciones,
+            servicios,
+            productos,
+        });
     });
 
-    // Función para editar un presupuesto
-    function editBudget(index) {
-        const budget = repairData[index];
-        $('#customerName').val(budget.customerName);
-        $('#customerPhone').val(budget.customerPhone);
-        $('#deviceBrand').val(budget.deviceBrand);
-        $('#deviceModel').val(budget.deviceModel);
-        $('#repairType').val(budget.repairType.id);
-        $('#repairCost').val(budget.repairCost);
-        $('#laborCost').val(budget.laborCost);
-        $('#repairStatus').val(budget.repairStatus.id);
-        $('#technician').val(budget.technician.id);
-        $('#reportDate').val(budget.reportDate);
-        $('#deliveryDate').val(budget.deliveryDate);
-        $('#issue').val(budget.issue);
+    // Recopilar información del cliente
+    const cliente = {
+        nombre: document.getElementById('nombreCliente').innerText || '--',
+        email: document.getElementById('emailCliente').innerText || '--',
+        telefono: document.getElementById('telefonoCliente').innerText || '--',
+    };
 
-        $('#generateBudget').data('editIndex', index).text('Actualizar Presupuesto');
-    }
+    // Resumen de la orden
+    const resumen = {
+        servicios: document.getElementById('resumenServicios').innerText,
+        impuestos: document.getElementById('resumenImpuestos').innerText,
+        anticipo: document.getElementById('resumenAnticipo').innerText,
+        total: document.getElementById('resumenTotal').innerText,
+    };
 
-    // Función para eliminar un presupuesto
-    function deleteBudget(index) {
-        if (confirm('¿Estás seguro de que deseas eliminar este presupuesto?')) {
-            repairData.splice(index, 1); // Eliminar presupuesto del arreglo
-            // Guardar los datos actualizados en localStorage después de la eliminación
-            localStorage.setItem('repairData', JSON.stringify(repairData));
+    // Detalles adicionales
+    const detalles = {
+        prioridad: document.getElementById('prioridadSelect').value,
+        fechaCompromiso: document.getElementById('fechaCompromiso').value,
+        responsable: document.getElementById('responsableSelect').value,
+    };
 
-            $('#repairGrid').dxDataGrid('instance').option('dataSource', repairData);
-            alert('Presupuesto eliminado.');
-        }
-    }
+    // Crear el objeto final del presupuesto
+    const presupuestoCompleto = {
+        cliente,
+        presupuesto,
+        resumen,
+        detalles,
+    };
+    console.log('Presupuesto Completo:', presupuestoCompleto);
+    localStorage.setItem('presupuestoCompleto', JSON.stringify(presupuestoCompleto));
 
-    // Inicialización del DataGrid
-    $('#repairGrid').dxDataGrid({
-        dataSource: repairData,
-        columns: [
-            { dataField: 'customerName', caption: 'Nombre del Cliente' },
-            { dataField: 'deviceBrand', caption: 'Marca' },
-            { dataField: 'deviceModel', caption: 'Modelo' },
-            { dataField: 'repairType.text', caption: 'Tipo de Reparación' },
-            { dataField: 'totalCost', caption: 'Valor Total', format: { type: 'currency', currency: 'USD' } },
-            { 
-                dataField: 'repairStatus.text', 
-                caption: 'Estado',
-                width: 150, // Asigna un ancho fijo de 150px
-                cellTemplate: function(container, options) {
-                    container.addClass('status-class'); // Agrega la clase personalizada
-                    container.text(options.value); // Inserta el texto del estado
-                }
-            }, 
-            { 
-                type: 'buttons',
-                buttons: [
-                    {
-                        icon: 'edit',  // Ícono de "editar"
-                        onClick: function(e) {
-                            const rowData = e.row.data;
-                            const rowIndex = e.component.getRowIndexByKey(e.row.key);
-                            console.log('Row Data:', rowData);
-                            console.log('Row Index:', rowIndex);
-                            editBudget(rowIndex);
-                        }
-                    },
-                    {
-                        icon: 'trash',  // Ícono de "eliminar"
-                        onClick: function(e) {
-                            deleteBudget(e.rowIndex);
-                        }
-                    },
-                    {
-                        icon: 'print',  // Ícono de "imprimir"
-                        onClick: function(e) {
-                            // printGrid(e.row.data);  // Llama a la función de impresión
-                        }
-                    }
-                ],
-            }
-        ],    
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: 'Search...',
-        },  
-        headerFilter: {
-            visible: true,
-        },
-        pager: {
-            visible: true,
-        },
-        showBorders: true,
-        masterDetail: {
-            enabled: true,
-            template: function(container, options) {
-                const detailData = options.data;
-                container.append(`
-                    <div>
-                        <h4>Detalles de la Reparación</h4>
-                        <p><strong>Problema Reportado:</strong> ${detailData.issue}</p>
-                        <p><strong>Fecha de Reporte:</strong> ${detailData.reportDate}</p>
-                        <p><strong>Fecha Estimada de Entrega:</strong> ${detailData.deliveryDate}</p>
-                        <p><strong>Costo Estimado:</strong> $${detailData.repairCost.toFixed(2)}</p>
-                        <p><strong>Mano de Obra:</strong> $${detailData.laborCost.toFixed(2)}</p>
-                        <p><strong>Total:</strong> $${detailData.totalCost.toFixed(2)}</p>
-                    </div>
-                `);
-            }
-        }
-    });
+    // Aquí puedes enviar `presupuestoCompleto` a tu backend
+    alert('Presupuesto guardado con éxito');
+});
+});
+      
+      
+      </script>
+      
 
-</script>
+
 
 
 
