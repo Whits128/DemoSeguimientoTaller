@@ -326,25 +326,22 @@
                                     </a>
                                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                            <a class="nav-link" href="Recepcion_de_Reparaciones.html">
-                                                Diagnóstico y Presupuesto
-                                            </a>
-                                            <a class="nav-link" href="Aprobar_el_presupuesto.html">
-                                                Aprobar el presupuesto
+                                          <a class="nav-link" href="ListaDiagnostico.html">
+                                            Lista Diagnostico
 
-                                            </a>
-                                            <a class="nav-link" href="TrazaMantenimiento.html">
-                                                Traza Mantenimiento
+                                        </a>
+                                        <a class="nav-link" href="Recepcion_de_Reparaciones.html">
+                                            Diagnóstico y Presupuesto
+                                        </a>
+                                        <a class="nav-link" href="Aprobar_el_presupuesto.html">
+                                            Aprobar el presupuesto
 
-                                            </a>
-                                            <a class="nav-link" href="ListaDiagnostico.html">
-                                                Lista Diagnostico
+                                        </a>
+                                      
+                                        <a class="nav-link" href="CambioEstado.html">
+                                            CambioEstado
 
-                                            </a>
-                                            <a class="nav-link" href="CambioEstado.html">
-                                                CambioEstado
-
-                                            </a>
+                                        </a>
                                         </nav>
                                     </div>
                                 </div>
@@ -362,10 +359,10 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Observacion y Presupuesto                     </h1>
+                        <h1 class="mt-4">Diagnostico y Presupuesto                     </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Observacion y Presupuesto    </li>
+                            <li class="breadcrumb-item active">Diagnostico y Presupuesto    </li>
                         </ol>
                         <div class="row mt-5">
                             
@@ -512,22 +509,72 @@
                                 
 <!-- Modal Agregar dispositivo -->
 <div class="modal fade" id="deviceModal" tabindex="-1" aria-labelledby="deviceModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content text-white">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deviceModalLabel">Agregar dispositivo</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deviceModalLabel">Agregar Smartphone</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Filtros -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="brandFilter" class="form-label">Marca</label>
+            <select id="brandFilter" class="form-select bg-dark text-white">
+              <option value="">Todas</option>
+              <option value="Apple">Apple</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Xiaomi">Xiaomi</option>
+              <option value="Huawei">Huawei</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="modelSearch" class="form-label">Modelo</label>
+            <input type="text" id="modelSearch" class="form-control bg-dark text-white" placeholder="Buscar modelo">
+          </div>
         </div>
-        <div class="modal-body">
-          <label for="deviceModel" class="form-label">Modelo del dispositivo</label>
-          <input type="text" id="deviceModel" class="form-control bg-dark text-white" placeholder="Buscar dispositivo">
+        <!-- Tabla de smartphones -->
+        <div class="table-responsive">
+          <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Seleccionar</th>
+              </tr>
+            </thead>
+            <tbody id="smartphoneTable">
+              <!-- Ejemplo de datos -->
+              <tr>
+                <td>1</td>
+                <td>Apple</td>
+                <td>iPhone 13</td>
+                <td><input type="radio" name="selectedSmartphone" value="iPhone 13"></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Samsung</td>
+                <td>Galaxy S21</td>
+                <td><input type="radio" name="selectedSmartphone" value="Galaxy S21"></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Xiaomi</td>
+                <td>Redmi Note 11</td>
+                <td><input type="radio" name="selectedSmartphone" value="Redmi Note 11"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="saveDevice">Guardar</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="saveDevice">Guardar Selección</button>
       </div>
     </div>
   </div>
+</div>
+
   
   
   <!-- Modal -->
@@ -704,13 +751,44 @@
 
 
         <script src="/js/busquedaClienteVObservacionPr.js"></script>
-
+        <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
 
 
         <script>
           $(document).ready(function () {
       
-           
+            const brandFilter = document.getElementById('brandFilter');
+    const modelSearch = document.getElementById('modelSearch');
+    const smartphoneTable = document.getElementById('smartphoneTable');
+
+    // Filtrar datos en base a los filtros seleccionados
+    function filterTable() {
+      const brand = brandFilter.value.toLowerCase();
+      const model = modelSearch.value.toLowerCase();
+
+      // Obtener todas las filas de la tabla
+      const rows = smartphoneTable.querySelectorAll('tr');
+      rows.forEach(row => {
+        const brandCell = row.cells[1].textContent.toLowerCase();
+        const modelCell = row.cells[2].textContent.toLowerCase();
+
+        // Mostrar u ocultar la fila en base a los filtros
+        if (
+          (brand === '' || brandCell.includes(brand)) &&
+          (model === '' || modelCell.includes(model))
+        ) {
+          row.style.display = ''; // Mostrar la fila
+        } else {
+          row.style.display = 'none'; // Ocultar la fila
+        }
+      });
+    }
+
+    // Escuchar cambios en los filtros
+    brandFilter.addEventListener('change', filterTable);
+    modelSearch.addEventListener('input', filterTable);
               const pattern = [];
               const $nodes = $(".pattern-node");
               let isDrawing = false;
@@ -931,7 +1009,7 @@
               let selected = [];
               // Guardar dispositivo en la lista
               document.getElementById("saveDevice").addEventListener("click", () => {
-      
+
                 function generateUniqueTicketId() {
                   let ticketIds = JSON.parse(localStorage.getItem('ticketIds')) || [];
                   let newTicketId;
@@ -947,11 +1025,14 @@
               }
       
            
-      
-                  const deviceModel = document.getElementById("deviceModel").value;
+              const selectedDevice = document.querySelector('input[name="selectedSmartphone"]:checked');
+              const selectedValue = selectedDevice.value;
+             
+            
+
                   const deviceContainer = document.getElementById("deviceInfoContainer");
       
-                  if (deviceModel) {
+                  if (selectedValue) {
                       const ticketId = generateUniqueTicketId();
       
                       $("#savePattern").on("click", function () {
@@ -985,7 +1066,7 @@
                       deviceCard.innerHTML = `
       <div    class="card shadow-sm border-0 bg-dark text-light">
         <div class=" transpare card-header d-flex justify-content-between align-items-center   text-white">
-          <h5 class="card-title mb-0 text-truncate">${deviceModel} - Samsung</h5>
+          <h5 class="card-title mb-0 text-truncate">${selectedValue} </h5>
           <span class="badge bg-primary">${ticketId}</span>
           <button class="btn btn-sm btn-light toggle-button d-flex align-items-center" type="button">
             <span class="me-1 d-none">Contraer</span>
@@ -1023,7 +1104,7 @@
       
           <!-- Descripción del problema -->
           <div class="mb-3">
-            <textarea class="form-control bg-dark text-light border-secondary" placeholder="Descripción del Problema" rows="2"></textarea>
+            <textarea  id="problematelefono-input-${ticketId}" class="form-control bg-dark text-light border-secondary" placeholder="Descripción del Problema" rows="2"></textarea>
           </div>
       
           <!-- Servicios -->
@@ -1132,8 +1213,10 @@
                       });
       
                       deviceContainer.appendChild(deviceCard);
-                      document.getElementById("deviceModel").value = "";
-      
+                      const radios = document.querySelectorAll('input[name="selectedSmartphone"]');
+    radios.forEach(radio => {
+      radio.checked = false;
+    });      
                       const modal = bootstrap.Modal.getInstance(document.getElementById("deviceModal"));
                       modal.hide();
                   }
@@ -1162,12 +1245,13 @@
           };
       }
       
-      
-      
+ 
+
       document.getElementById('saveBudgetBtn').addEventListener('click', () => {
     const devices = document.querySelectorAll('#deviceInfoContainer .card');
     const presupuesto = [];
-    
+    const presupuestoCompleto = JSON.parse(localStorage.getItem('presupuestoCompleto')) || []; // Cargar presupuesto existente, si lo hay
+
     devices.forEach(device => {
         const ticketId = device.querySelector('.badge').innerText;
         
@@ -1185,13 +1269,11 @@
         const diasGarantia = device.querySelector(`#dias-garantia-${ticketId}`)?.value || '';
         const comentariosGarantia = device.querySelector(`#comentarios-garantia-${ticketId}`)?.value || '';
 
+        //problema del telefonon 
+        const comentarioProblema = device.querySelector(`#problematelefono-input-${ticketId}`)?.value || '';
+console.log(comentarioProblema)
         // Recopilar datos de identificación (checkboxes)
-        const identificaciones = {
-            serial: device.querySelector(`#serial-${ticketId}`).checked,
-            imei: device.querySelector(`#imei-${ticketId}`).checked,
-            passcode: device.querySelector(`#passcode-${ticketId}`).checked,
-            pattern: device.querySelector(`#pattern-${ticketId}`).checked,
-        };
+        const identificaciones = getInputValues(ticketId)
 
         // Recopilar los servicios y productos
         const servicios = obtenerDatosServicios();
@@ -1205,6 +1287,7 @@
             identificaciones,
             servicios,
             productos,
+            comentarioProblema
         });
     });
 
@@ -1230,19 +1313,111 @@
         responsable: document.getElementById('responsableSelect').value,
     };
 
+    const historial = [];
+    historial.push({
+      status:'Aprovado',
+notetext:"Presumuesto Aprovado por el cliente ",
+user:"Diego",
+role:"Admin",
+fecha: new Date()
+    })
     // Crear el objeto final del presupuesto
-    const presupuestoCompleto = {
+    const nuevoPresupuesto = {
         cliente,
         presupuesto,
         resumen,
         detalles,
+        historial,
     };
-    console.log('Presupuesto Completo:', presupuestoCompleto);
-    localStorage.setItem('presupuestoCompleto', JSON.stringify(presupuestoCompleto));
 
-    // Aquí puedes enviar `presupuestoCompleto` a tu backend
+    // Agregar el nuevo presupuesto al arreglo completo (evitar duplicados)
+    presupuestoCompleto.push(nuevoPresupuesto);
+
+    // Actualizar 'localStorage' con los datos completos
+    localStorage.setItem('presupuestoCompleto', JSON.stringify(presupuestoCompleto));
+     // Inicializar EmailJS con tu clave pública
+
+
+     (function () {
+       emailjs.init({
+         publicKey: "DEkqe_ofMWObIMdfG",
+        });
+      })();
+      
+      
+      
+   // Lista de destinatarios
+   const destinatarios = [
+     { nombre: "Navas", email: "cabreranavas43@gmail.com" },
+  { nombre: "Salome", email: "salome33hernandes@gmail.com" },
+];
+
+if (nuevoPresupuesto && nuevoPresupuesto.cliente) {
+  destinatarios.push({
+    nombre: nuevoPresupuesto.cliente.nombre,
+    email: nuevoPresupuesto.cliente.email,
+  });
+}
+console.log(destinatarios);
+
+// Función para enviar correos
+function enviarCorreos(mensaje) {
+  const envios = destinatarios.map((destinatario) => {
+    const params = {
+      from_name: 'BARATTO',
+      to_name: destinatario.nombre,
+      to_email: destinatario.email,
+      message_html: mensaje,
+    };
+
+    return emailjs
+      .send('service_y96c0us', 'template_f3rru9k', params)
+      .then(() => {
+        console.log(`Correo enviado correctamente a ${destinatario.email}`);
+      })
+      .catch((error) => {
+        console.error(`Error al enviar correo a ${destinatario.email}:`, error);
+        throw error; // Propaga el error para manejo centralizado
+      });
+  });
+
+  // Maneja el final de todos los envíos
+  Promise.allSettled(envios).then((resultados) => {
+    const enviados = resultados.filter((res) => res.status === 'fulfilled');
+    const fallidos = resultados.filter((res) => res.status === 'rejected');
+
+    console.log(`Envíos completados. Éxitos: ${enviados.length}, Fallos: ${fallidos.length}`);
+  });
+}
+console.log('Hola',nuevoPresupuesto.cliente.nombre)
+
+console.log('Hola',)
+// Llamada a la función para enviar correos
+// Generar contenido del mensaje dinámico
+
+// Generar contenido del mensaje dinámico
+// Generar contenido del mensaje dinámico
+const mensajeHTML = `
+  
+    <p>¿Apruebas el presupuesto? Haz clic en el enlace correspondiente para responder:</p>
+  <a href="https://tusitio.com/aprobar-presupuesto?id=123" style="display: inline-block; background-color: green; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold;">Aprobar</a>
+  <a href="https://tusitio.com/rechazar-presupuesto?id=123" style="display: inline-block; background-color: red; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-left: 10px;">Rechazar</a>
+  <p>Si necesitas más información, no dudes en contactarnos.</p>
+  <p>Saludos,<br>Equipo BARATTO</p>
+`;
+
+
+enviarCorreos(mensajeHTML);
+
+
+    // Mostrar mensaje de éxito
     alert('Presupuesto guardado con éxito');
+    console.log('Presupuesto Completo:', presupuestoCompleto);
 });
+
+
+
+
 });
       
       
