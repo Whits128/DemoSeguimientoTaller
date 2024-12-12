@@ -336,7 +336,7 @@
                                 <a class="nav-link" href="ReporteRecibosEmitidos.html">Recibos Emitidos</a>
                                 <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
 
-                                <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+                                <a class="nav-link" href="RegistroInventario.html">Registro Inventario</a>
 
 
                             </nav>
@@ -648,37 +648,6 @@
     
     
     
-     function actualizarEstadoPresupuesto(ticketId, nuevoEstado) {
-     
-         // Recuperar el arreglo desde localStorage
-         let presupuestoCompleto = JSON.parse(localStorage.getItem("DianosticoCompleto")) || [];
-     
-      
-     
-         // Buscar el objeto con el ticketId correspondiente y actualizar su estado si es necesario
-         let estadoActualizado = false;  // Variable para saber si el estado fue realmente actualizado
-         presupuestoCompleto = presupuestoCompleto.map(item => {
-          console.log("item",item)
-             if (item.ticketId === ticketId) {  // Comparamos con el ticketId dentro de RecepcionData
-                 // Si el estado es diferente al nuevo estado, lo actualizamos
-                 if (item.estado !== nuevoEstado) {
-                     item.estado = nuevoEstado;  // Actualizamos el estado
-                     estadoActualizado = true;  // Marcamos que el estado fue actualizado
-                 } else {
-                 }
-             }
-             return item;
-         });
-     
-         // Guardamos el presupuesto actualizado en localStorage solo si hubo un cambio
-         if (estadoActualizado) {
-             localStorage.setItem("DianosticoCompleto", JSON.stringify(presupuestoCompleto));
-             
-         
-         } else {
-             console.log("El estado no se actualizó, no es necesario renderizar la lista.");
-         }
-     }
     // Vincular la función a los botones de "Generar Presupuesto"
 document.querySelectorAll('.btn-details').forEach(button => {
   button.addEventListener('click', function() {

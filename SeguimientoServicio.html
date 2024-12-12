@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de tu Servicio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f9f9f9, #e8e8e8);
+      color: #333;
+    }
+
+    .service-tracking {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .service-tracking:hover {
+      transform: translateY(-5px);
+    }
+
+    header {
+      text-align: center;
+    }
+
+    header img {
+      max-width: 160px;
+      margin-bottom: 15px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin: 10px 0;
+      color: #082858;
+      transition: color 0.3s ease;
+    }
+
+    header h1:hover {
+      color: #f8a025;
+    }
+
+    header p {
+      color: #555;
+      font-size: 16px;
+    }
+
+    .progress-timeline ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .progress-timeline ul:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #ddd;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .progress-timeline li {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .progress-timeline li span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: #ddd;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .progress-timeline li.completed span {
+      background: #4caf50;
+    }
+
+    .progress-timeline li.active span {
+      background: #f8a025;
+    }
+
+    .progress-timeline li p {
+      margin: 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .status-details {
+      margin-top: 25px;
+    }
+
+    .status-details h2 {
+      font-size: 22px;
+      color: #082858;
+      margin-bottom: 15px;
+    }
+
+    .status-details p {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .contact {
+      margin-top: 30px;
+      text-align: center;
+      background: #f8f8f8;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .contact h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #082858;
+    }
+
+    .contact button {
+      background: linear-gradient(to right, #082858, #0a64a4);
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact button:hover {
+      background: linear-gradient(to right, #061d43, #083e72);
+      transform: translateY(-3px);
+    }
+
+    .contact button:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <section class="service-tracking">
+    <header>
+      <img src="logo.png" alt="Logo Empresa">
+      <h1>Seguimiento de tu Servicio</h1>
+      <p>Cliente: Juan López | Pedido: #12345 | Fecha: 10 de diciembre de 2024</p>
+    </header>
+
+    <div class="progress-timeline">
+      <ul>
+        <li class="completed">
+          <span></span>
+          <p>Recibido</p>
+        </li>
+        <li class="active">
+          <span></span>
+          <p>En proceso</p>
+        </li>
+        <li>
+          <span></span>
+          <p>Pendiente de revisión</p>
+        </li>
+        <li>
+          <span></span>
+          <p>Completado</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="status-details">
+      <h2>Estado Actual</h2>
+      <p><strong>Estado:</strong> En proceso</p>
+      <p><strong>Técnico Asignado:</strong> Juan Pérez</p>
+      <p><strong>Fecha Estimada de Finalización:</strong> 15 de diciembre de 2024</p>
+    </div>
+
+    <div class="contact">
+      <h3>¿Dudas?</h3>
+      <p>Si necesitas más información, contáctanos.</p>
+      <button onclick="alert('Enlace a soporte o formulario de contacto')">Contactar Soporte</button>
+    </div>
+  </section>
+</body>
+</html>

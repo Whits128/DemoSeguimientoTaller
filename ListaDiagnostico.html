@@ -99,7 +99,7 @@
                                     <a class="nav-link" href="ReporteRecibosEmitidos.html">Recibos Emitidos</a>
                                     <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
 
-                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+                                    <a class="nav-link" href="RegistroInventario.html">Registro Inventario</a>
 
 
                                 </nav>
@@ -368,17 +368,25 @@ window.location.href = `TrazaMantenimiento.html`;  // Redirige a detalles.html c
     
     // Obtener el ticketId desde la segunda celda (el índice de las celdas comienza en 0)
     const ticketId = row.find("td").eq(1).text().trim(); 
+    var dataOrden = repairData.find(item => {
+    return item.RecepcionData && item.ticketId === ticketId;
+});
 
-     // Variables con datos dinámicos
-     const phoneNumbers = ["50577293254"]; // Lista de números de teléfono
-    const customerName = row.find("td").eq(4).text().trim(); ; // Ejemplo de nombre del cliente
-    const orderNumber = "Escogernos"; // Ejemplo de número de pedido
-    const estimatedDeliveryDate = "Jan 1, 2024"; // Ejemplo de fecha de entrega estimada
+console.log(dataOrden)
+const customerName = dataOrden.cliente.nombre;
+const Marcat = dataOrden.RecepcionData[0].deviceBrand; 
+const modelot = dataOrden.RecepcionData[0].deviceModel;
+const serie = dataOrden.RecepcionData[0].identificaciones.serial;
+const Estado = dataOrden.RecepcionData[0].comentarioProblema;
+ 
+    // Variables con datos dinámicos 50577293254        const phoneNumbers = ["50576898612","50577293254"]; // Lista de números de teléfono
+
+    const phoneNumbers = ["50576898612"]; // Lista de números de teléfono
 
 
     // Datos que deseas enviar
     const template = {
-        name: "plantilla2 ",
+        name: "shipment_confirmation_1",
         language: {
             code: "es"
         },
@@ -387,10 +395,10 @@ window.location.href = `TrazaMantenimiento.html`;  // Redirige a detalles.html c
                 type: "body",
                 parameters: [
                     { type: "text", text: `${customerName}` },
-                    { type: "text", text: `${orderNumber}` },
-                    { type: "text", text:  `${ticketId}` },
-                    { type: "text", text: "El Dianostico" },
-                    { type: "text", text: "Jan 1, 2024" }
+                    { type: "text", text: `${Marcat}` },
+                    { type: "text", text:  `${modelot}` },
+                    { type: "text", text: `${serie}`  },
+                    { type: "text", text: `${Estado}`  }
                 ]
             }
         ]
