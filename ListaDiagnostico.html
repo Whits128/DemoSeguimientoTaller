@@ -24,8 +24,10 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="Dashboard.html">BARATTO</a>
-            <!-- Sidebar Toggle-->
+ <!-- Navbar Brand -->
+ <a class="navbar-brand ps-3" href="Dashboard.html">
+    <img src="/Imagen de WhatsApp 2024-12-12 a las 07.04.55_8640fc26.jpg" alt="Logo" style="height: 30px; margin-right: 10px;"> BARATTO
+  </a>            <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -51,59 +53,74 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                            <div class="sb-sidenav-menu">
-                                <div class="nav">
-                                    <div class="sb-sidenav-menu-heading">Dashboard</div>
-                                    <a class="nav-link" href="Dashboard.html">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                        Dashboard
-                                    </a>
-                                    <div class="sb-sidenav-menu-heading">Interfaz</div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                        Páginas
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                            <a class="nav-link" href="ListaDiagnostico.html">
-                                                Lista Diagnostico
-    
-                                            </a>
-                                            <a class="nav-link" href="Recepcion_de_Reparaciones.html">
-                                                Diagnóstico y Presupuesto
-                                            </a>
-                                            <a class="nav-link" href="Aprobar_el_presupuesto.html">
-                                                Aprobar el presupuesto
+                        <div class="nav">
+                            <!-- Dashboard -->
+                            <div class="sb-sidenav-menu-heading">Dashboard</div>
+                            <a class="nav-link" href="Dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            
+                            <!-- Interfaz -->
+                            <div class="sb-sidenav-menu-heading">Interfaz</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Páginas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="Recepcion.html">Recepcion</a>
+                                    <a class="nav-link" href="Lista_de_Recepcion.html">Lista de Recepcion</a>
 
-                                            </a>
-                                          
-                                            <a class="nav-link" href="CambioEstado.html">
-                                                CambioEstado
+                                    <a class="nav-link" href="Recepcion_de_Reparaciones.html">Crear Dianostico</a>
+                                    <a class="nav-link" href="ListaDiagnostico.html">Lista Diagnóstico</a>
+                                    <a class="nav-link" href="Aprobar_el_presupuesto.html">Aprobar el Presupuesto</a>
+                                    <a class="nav-link" href="CambioEstado.html">Cambio Estado</a>
+                                    <a class="nav-link" href="RegistroInventario.html">Registro Inventario</a>
 
-                                            </a>
-                                        </nav>
-                                    </div>
-                                </div>
+                                </nav>
                             </div>
-                            <div class="sb-sidenav-footer">
-                                <div class="small">Logged in as:</div>
-                                BARATTO 
-                                                        </div>
-                        </nav>
-                        
+                            
+                            <!-- Informe -->
+                            <div class="sb-sidenav-menu-heading">Informe</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInforme" aria-expanded="false" aria-controls="collapseInforme">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                                Informe
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseInforme" aria-labelledby="headingInforme" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link" href="ReporteConsolidadoTecnico.html">Consolidado Tecnico</a>
+                                    <a class="nav-link" href="ReporteDetalleGarantia.html">Detalle Garantia</a>
+                                    <a class="nav-link" href="ReporteDetalleInventario.html">Detalle Inventario</a>
+                                    <a class="nav-link" href="ReporteDetalleServicio.html">Detalle Servicio</a>
+                                    <a class="nav-link" href="ReporteKardex.html">Kardex</a>
+                                    <a class="nav-link" href="ReporteRecibosEmitidos.html">Recibos Emitidos</a>
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+
+                                </nav>
+                            </div>
+                        </div>
                     </div>
-                   
+                    
+                    <!-- Footer -->
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        BARATTO
+                    </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Lista de Diagnóstico                      </h1>
+                        <h1 class="mt-4">Lista de Recepcio                    </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Lista de Diagnóstico   </li>
+                            <li class="breadcrumb-item active">Lista de Recepcio   </li>
                         </ol>
                         <div class="row mt-5">
 
@@ -146,13 +163,13 @@
                                     <tr>
                                       <th></th>
                                       <th>Orden</th>
-                                      <th>Tecnico AS</th>
                                       <th>Fecha</th>
+                                      <th>Revisado Por</th>
                                       <th>Cliente</th>
                                       <th>Modelo</th>
+                                      <th>Serie</th>
                                       <th>Status</th>
-                                      <th>Prioridad</th>
-                                      <th>Total</th>
+                                     
                                     </tr>
                                   </thead>
                                   <tbody id="tableBody">
@@ -213,94 +230,92 @@
         <script>
           $(document).ready(function () {
     const repairData =
-      JSON.parse(localStorage.getItem("presupuestoCompleto")) || [];
+      JSON.parse(localStorage.getItem("DianosticoCompleto")) || [];
+      console.log(repairData)
 const notes = [];
 const cambiosEstados = [];
-console.log(repairData)
-    function cargarTablaPresupuesto() {
-        const tableBody = $(".custom-table tbody");
-        tableBody.empty();
 
-        if (repairData.length === 0) {
-            console.error("No se encontraron datos en 'presupuestoCompleto'.");
-            return;
-        }
+function cargarTablaPresupuesto() {
+    const tableBody = $(".custom-table tbody");
+    tableBody.empty();
 
-        repairData.forEach((data) => {
-            const { cliente, presupuesto, resumen, detalles } = data;
-            presupuesto.forEach((item, index) => {
-                const row = `
-                    <tr class="table-row" data-cliente="${cliente.nombre}" data-modelo="${item.deviceModel}" data-status="${item.status}">
-                        <td>
-                            <div class="dropdown-container" data-index="${index}">
-                                <div class="">
-                                    <button id="btoOptions-${index}" class="triangle-btn">
-                                        <i class="bi bi-play-fill"></i>
-                                    </button>
-                                </div>
-                                <ul class="dropdown-options-icon">
-    <li>
-        <i class="bi bi-eye action-view" data-id="${index}"></i> Ver
-    </li>
-    <li>
-        <i class="bi bi-download action-download" data-id="${index}"></i> Descargar
-    </li>
-    <li>
-        <i class="bi bi-file-earmark-pdf action-pdf" data-id="${index}"></i> PDF
-    </li>
-    <li>
-        <i class="bi bi-file-earmark-excel action-excel" data-id="${index}"></i> Excel
-    </li>
-    <li>
-        <i class="bi bi-file-earmark-text action-note"   data-id="${index}"></i> Agregar Nota
-    </li>
-</ul>
-
-                            </div>
-                        </td>
-                        <td>${item.ticketId || "N/A"}</td>4
-<td>
-    <div class="dropdown-container dropdown-responsables"  data-index="${index}">
-        <div class="dropdown-selected-responsable gap-5">
-            <span class="current-responsable">${detalles.responsable || "Por asignar"}</span>
-            <i  class="btn-dropdown-toggle  bi bi-caret-down-fill"></i>
-        </div>
-        <ul class="tecnicos dropdown-options ">
-            <li class="dropdown-tecnico" data-value="Por asignar">Por asignar</li>
-            <li class="dropdown-tecnico" data-value="Técnico 1">Técnico 1</li>
-            <li class="dropdown-tecnico" data-value="Técnico 2">Técnico 2</li>
-            <li class="dropdown-tecnico" data-value="Técnico 3">Técnico 3</li>
-            <li class="dropdown-tecnico" data-value="Técnico 4">Técnico 4</li>
-        </ul>
-    </div>
-</td>
-
-                        <td>${detalles.fechaCompromiso || "N/A"}</td>
-                        <td>${cliente.nombre || "N/A"}</td>
-                        <td>${item.deviceModel || "N/A"}</td>
-                        <td>
-                            <div class="dropdown-container dropdown-estados" data-index="${index}">
-                                <div class="estado dropdown-selected">
-                                    <div class="color-box color-assign"></div> Por asignar
-                                </div>
-                                <ul class=" dropdown-options-estados  dropdown-options">
-                                    <li><div class="color-box color-assign"></div>Por asignar</li>
-                                    <li><div class="color-box color-process"></div>En proceso</li>
-                                    <li><div class="color-box color-deliver"></div>Por entregar</li>
-                                    <li><div class="color-box color-completed"></div>Entregado</li>
-                                    <li><div class="color-box color-rejected"></div>Rechazado</li>
-                                    <li><div class="color-box color-no-solution"></div>Sin solución</li>
-                                    <li><div class="color-box color-warranty"></div>Garantía</li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td>${detalles.prioridad || "N/A"}</td>
-                        <td>${resumen.total || "N/A"}</td>
-                    </tr>`;
-                tableBody.append(row);
-            });
-        });
+    if (repairData.length === 0) {
+        console.error("No se encontraron datos en 'presupuestoCompleto'.");
+        return;
     }
+
+    // Mapeo de estados a colores
+    const estadoColores = {
+        "Diagnóstico completado": "color-assign",
+        "Presupuestado": "color-process",
+        "Por entregar": "color-deliver",
+        "Entregado": "color-completed",
+        "Rechazado": "color-rejected",
+        "Sin solución": "color-no-solution",
+        "Garantía": "color-warranty"
+    };
+
+    repairData.forEach((data) => {
+        console.log("data",data)
+        const { ticketId,cliente, RecepcionData, fecha, historial,estado } = data;
+        
+        RecepcionData.forEach((item, index) => {
+            console.log('estado array', item.identificaciones.serial)
+        // Obtener el estado y color desde el mapeo
+        const estados = estado || "Por asignar";
+        const colorEstado = estadoColores[estados] ;  
+
+            const row = `
+                <tr class="table-row" data-cliente="${cliente.nombre}" data-modelo="${item.deviceModel}" data-status="${item.status}">
+                    <td>
+                        <div class="dropdown-container" data-index="${index}">
+                            <div class="">
+                                <button id="btoOptions-${index}" class="triangle-btn">
+                                    <i class="bi bi-play-fill"></i>
+                                </button>
+                            </div>
+                            <ul class="dropdown-options-icon">
+                                <li>
+                                    <i class="bi bi-eye action-view" data-id="${index}"></i> Ver
+                                </li>
+                               <li>
+  <i class="bi bi-download action-download-orden" data-id="${index}" style="margin-right: 8px;"></i>Reporte Orden
+</li>
+
+                                <li>
+  <i class="bi bi-download action-download-recibo" data-id="${index}" style="margin-right: 8px;"></i>Reporte Recibo
+                                </li>
+                                <li>
+  <i class="bi bi-whatsapp action-whatsapp" data-id="${index}" style="margin-right: 8px;"></i> Notificar
+                                </li>
+                                <li>
+                                    <i class="bi bi-file-earmark-text action-note" data-id="${index}"></i> Agregar Nota
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>${ticketId|| "N/A"}</td>
+                    <td>${fecha || "N/A"}</td>
+                                        <td>${historial[0].user || "N/A"}</td>
+
+                    <td>${cliente.nombre || "N/A"}</td>
+                    <td>${item.deviceModel || "N/A"}</td>
+                                        <td>${item.identificaciones.serial || "N/A"}</td>
+
+                    <td>
+                        <div class="dropdown-container dropdown-estados" data-index="${index}">
+                            <div class="estado dropdown-selected">
+                                <div class="color-box ${colorEstado}"></div> ${estados}
+                            </div>
+                            
+                        </div>
+                    </td>
+                </tr>`;
+            tableBody.append(row);
+        });
+    });
+}
+
 
     cargarTablaPresupuesto();
 
@@ -331,20 +346,75 @@ window.location.href = `TrazaMantenimiento.html`;  // Redirige a detalles.html c
 
 
     // Acción para 'Descargar'
-    $(".custom-table").on("click", ".action-download", function (e) {
+    $(".custom-table").on("click", ".action-download-orden", function (e) {
         e.stopPropagation();
         const id = $(this).data("id");
         console.log(`Descargando el elemento en la fila: ${id}`);
-        alert(`Descargando el elemento en la fila: ${id}`);
+        window.location.href = `ReporteOrden.html`;
     });
 
-    // Acción para 'PDF'
-    $(".custom-table").on("click", ".action-pdf", function (e) {
+    $(".custom-table").on("click", ".action-download-recibo", function (e) {
         e.stopPropagation();
         const id = $(this).data("id");
-        console.log(`Generando PDF para la fila: ${id}`);
-        alert(`Generando PDF para la fila: ${id}`);
+        console.log(`Descargando el elemento en la fila: ${id}`);
+        window.location.href = `ReporteRecibo.html`;
     });
+    // Acción para 'PDF'
+    $(".custom-table").on("click", ".action-whatsapp", function (e) {
+    e.stopPropagation();
+    
+    // Obtener el índice de la fila
+    const row = $(this).closest("tr");
+    
+    // Obtener el ticketId desde la segunda celda (el índice de las celdas comienza en 0)
+    const ticketId = row.find("td").eq(1).text().trim(); 
+
+     // Variables con datos dinámicos
+     const phoneNumbers = ["50577293254"]; // Lista de números de teléfono
+    const customerName = row.find("td").eq(4).text().trim(); ; // Ejemplo de nombre del cliente
+    const orderNumber = "Escogernos"; // Ejemplo de número de pedido
+    const estimatedDeliveryDate = "Jan 1, 2024"; // Ejemplo de fecha de entrega estimada
+
+
+    // Datos que deseas enviar
+    const template = {
+        name: "plantilla2 ",
+        language: {
+            code: "es"
+        },
+        components: [
+            {
+                type: "body",
+                parameters: [
+                    { type: "text", text: `${customerName}` },
+                    { type: "text", text: `${orderNumber}` },
+                    { type: "text", text:  `${ticketId}` },
+                    { type: "text", text: "El Dianostico" },
+                    { type: "text", text: "Jan 1, 2024" }
+                ]
+            }
+        ]
+    };
+
+    // Hacer la solicitud POST a la URL
+    fetch('http://localhost:3000/send-message', {
+        method: 'POST', // Tipo de solicitud (POST)
+        headers: {
+            'Content-Type': 'application/json', // Indica que el cuerpo es JSON
+        },
+        body: JSON.stringify({
+            phoneNumbers: phoneNumbers, // Enviar la lista de números de teléfono
+            template: template, // Enviar el objeto plantilla
+        }), // Convertir los datos a formato JSON
+    })
+    .then(response => response.json()) // Procesar la respuesta como JSON
+    .then(data => {
+        console.log('Respuesta exitosa:', data); // Mostrar la respuesta exitosa
+    })
+    .catch(error => {
+        console.error('Error:', error); // Mostrar errores si los hay
+    });
+});
 
     // Acción para 'Excel'
     $(".custom-table").on("click", ".action-excel", function (e) {
@@ -400,59 +470,12 @@ window.location.href = `TrazaMantenimiento.html`;  // Redirige a detalles.html c
     // Seleccionar una opción dentro del dropdown
 
 
-// Escuchar el evento de selección en el dropdown
-$(".custom-table").on("click", ".dropdown-options-estados li", function (e) {
-    e.stopPropagation();
-
-    const selectedText = $(this).text();
-    const selectedColor = $(this).find(".color-box").attr("class").split(" ")[1];
-    const parentDropdown = $(this).closest(".dropdown-container");
-
-    const rowId = parentDropdown.data("row-id");
-// Actualiza el texto y el color del seleccionado
-parentDropdown.find(".estado ").html(`
-            <div class="color-box ${selectedColor}"></div>${selectedText}
-        `);
-    // Acceso al ticketId en la segunda columna
-    const ticketId = $(this).closest("tr").find("td").eq(1).text().trim(); 
-
-    // Buscar el registro con el ticketId correcto
-    const registro = repairData.find(item => {
-        return item.presupuesto && item.presupuesto[0] && item.presupuesto[0].ticketId === ticketId;
-    });
-
-    if (registro) {
-        // Agregar el historial
-        if (!registro.historial) {
-            registro.historial = [];
-        }
-        registro.historial.push({
-            status: selectedText,
-            notetext:"Se asigno una cambio de estado",
-user:"Juan",
-role:"Tecnico",
-fecha: new Date()
-        });
-
-        // Guardar cambios en localStorage
-        localStorage.setItem("presupuestoCompleto", JSON.stringify(repairData));
-        console.log("Historial agregado exitosamente:", registro);
-    } else {
-        console.error("No se encontró un registro con el idTicket:", ticketId);
-    }
-
-    parentDropdown.find(".dropdown-options").slideUp();
-    parentDropdown.removeClass("open");
-});
-    // Cerrar todos los dropdowns al hacer clic fuera
+// Cerrar todos los dropdowns al hacer clic fuera
     $(document).on("click", function () {
         $(".dropdown-container").removeClass("open");
         $(".dropdown-options-icon").slideUp();
     });
-    $(document).on("click", function () {
-        $(".dropdown-container").removeClass("open");
-        $(".dropdown-options").slideUp();
-    });
+  
 
     var selectedStatusNote;
     $('.action-note').click(function() {
@@ -496,9 +519,10 @@ fecha: new Date()
 
 
 // Buscar el registro con el ticketId correcto
-const registro = repairData.find(item => {
-        return item.presupuesto && item.presupuesto[0] && item.presupuesto[0].ticketId === ticketId;
-    });
+const registro =  repairData.find(item => {
+    return item.RecepcionData && item.ticketId === ticketId;
+});
+
 
     if (registro) {
         // Agregar el historial
@@ -514,17 +538,16 @@ fecha: new Date()
         });
 
         // Guardar cambios en localStorage
-        localStorage.setItem("presupuestoCompleto", JSON.stringify(repairData));
-        console.log("Historial agregado exitosamente:", registro);
+        localStorage.setItem("DianosticoCompleto", JSON.stringify(repairData));  // Guardar todo el arreglo
     } else {
         console.error("No se encontró un registro con el idTicket:", ticketId);
     }
 
-      
-        localStorage.setItem("notes", JSON.stringify(notes)); // Guardar en localStorage
-        alert("Nota guardada con éxito.");
+  
+        $('#exampleModal').modal('hide'); // Cerrar el modal
 
-        $('#noteModal').modal('hide'); // Cerrar el modal
+        $("#noteText").val('');
+
     });
 
 

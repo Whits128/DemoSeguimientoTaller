@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Presupuesto</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Incluir jsPDF y html2pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+
+    
+</head>
+<body>
+
+    <div class="row justify-content-center mt-2 gap-5">
+        <button id="generarPDF" class="btn btn-primary " style="width: 150px;">Generar PDF</button>
+        <button id="volverPagina" class="btn btn-secondary "  style="width: 230px;">Volver a la página anterior</button>
+    </div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12 budget-container">
+                <div class="card shadow rounded border-0">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4 class="mb-0 font-weight-bold" id="presupuestoNumero">Presupuesto #12345</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Información del Cliente -->
+                        <div class="mb-4">
+                            <h5 class="font-weight-bold text-secondary">Información del Cliente</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Cliente:</strong> <span id="clienteNombre" class="text-dark">Nombre del Cliente</span></p>
+                                    <p><strong>Teléfono:</strong> <span id="clienteTelefono" class="text-dark">+505 1234-5678</span></p>
+                                    <p><strong>Correo:</strong> <span id="clienteCorreo" class="text-dark">correo@ejemplo.com</span></p>
+                                </div>
+                                <div id="qrcode" class="col-md-6 d-flex align-items-center justify-content-center">
+                                    <!-- QR Code here -->
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Información del Presupuesto -->
+                        <div class="mb-4">
+                            <h5 class="font-weight-bold text-secondary">Información del Presupuesto</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Fecha de emisión:</strong> <span id="fechaEmision" class="text-dark">12/12/2024</span></p>
+                                    <p><strong>Válido hasta:</strong> <span id="validoHasta" class="text-dark">12/01/2025</span></p>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Productos -->
+                        <div class="mb-4">
+                            <h5 class="font-weight-bold text-secondary">Productos</h5>
+                            <table class="table table-bordered">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Costo</th>
+                                        <th>Precio Unitario</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productosTabla">
+                                    <!-- Productos aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+    
+                        <!-- Servicios -->
+                        <div class="mb-4">
+                            <h5 class="font-weight-bold text-secondary">Servicios</h5>
+                            <table class="table table-bordered">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Descripción</th>
+                                        <th>Costo</th>
+                                        <th>Precio Unitario</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="serviciosTabla">
+                                    <!-- Servicios aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+    
+                        <!-- Resumen y Total -->
+                        <div class="total-section mb-4 p-4 border rounded bg-light">
+                            <h5 class="font-weight-bold text-secondary">Resumen</h5>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Mano de obra:</strong> <span class="mano-obra text-dark">C$ 00.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Productos o repuestos:</strong> <span class="productos text-dark">C$ 0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Externos:</strong> <span class="externos text-dark">C$ 0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Subtotal:</strong> <span class="subtotal text-dark">C$ 00.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Descuento:</strong> <span class="descuento text-danger">C$ 0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Cargos/Descuentos por forma de pago:</strong> <span class="cargos-pago text-warning">C$ 0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>IVA:</strong> <span class="iva text-dark">C$ 00.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <strong class="font-weight-bold">Total:</strong> <span class="totalNumero text-success font-weight-bold">C$ 00.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Notas o comentarios -->
+                        <div class="mb-4">
+                            <h5 class="font-weight-bold text-secondary">Notas</h5>
+                            <p id="notasPresupuesto" class="text-muted">Este presupuesto es válido por 30 días. Los precios están sujetos a cambios sin previo aviso. El costo incluye la instalación y los equipos mencionados.</p>
+                        </div>
+    
+                        <!-- Firma -->
+                        <div class="signature-section row text-center">
+                            <div class="col-md-6">
+                                <p><strong>Firma Cliente</strong></p>
+                                <div class="firma-line border-bottom border-secondary py-3" id="firmaCliente"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Firma Empresa</strong></p>
+                                <div class="firma-line border-bottom border-secondary py-3" id="firmaEmpresa"></div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script> 
+
+  // Función para obtener el número de orden de la URL
+  function obtenerParametroURL(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            console.log(urlParams)
+            return urlParams.get(param);
+        }
+
+        // Obtener el número de orden de la URL
+        const numeroOrden = obtenerParametroURL('orden');
+        const presupuestoCompleto = JSON.parse(localStorage.getItem("DianosticoCompleto")) || [];
+
+var dataOrden = presupuestoCompleto.find(item => {
+    return item.RecepcionData && item.ticketId === numeroOrden;
+});
+// Verificar si se obtuvo el parámetro y usarlo
+if (numeroOrden) {
+
+  cargarPresupuesto(dataOrden);
+  actualizarEstadoPresupuesto(numeroOrden, 'Presupuestado');
+
+  // Aquí puedes cargar los datos relacionados con el número de orden
+} else {
+  console.error("No se encontró el número de orden en la URL.");
+}
+
+
+
+// Función para cargar la información del presupuesto
+function cargarPresupuesto(orden) {
+
+   // Actualizar los elementos de la vista con los datos del presupuesto
+            document.getElementById('presupuestoNumero').innerText = `Presupuesto #${orden.ticketId}`;
+
+
+ // Insertar los detalles del cliente
+ document.getElementById('clienteNombre').innerText = ` ${orden.cliente.nombre}`;
+ document.getElementById('clienteTelefono').innerText = `${orden.cliente.telefono}`;
+ document.getElementById('clienteCorreo').innerText = `${orden.cliente.email}`;
+
+ generarPresupuesto(orden);
+ //insertar los datos de los productos
+// Referencia al cuerpo de la tabla
+const productosTabla = document.getElementById('productosTabla');
+
+orden.RecepcionData.forEach(producto => {
+    const fila = document.createElement('tr');
+    
+    // Asegurarte de que 'productos' existe
+    if (producto.productos) {
+        console.log(producto.productos[0].piezaId );
+
+        // Crear celdas
+        const celdaDescripcion = document.createElement('td');
+        celdaDescripcion.textContent =  producto.productos[0].piezaId || 'N/A';
+
+        const celdaCantidad = document.createElement('td');
+        celdaCantidad.textContent = producto.productos[0].costo || 1;
+
+        const celdaPrecioUnitario = document.createElement('td');
+        celdaPrecioUnitario.textContent = `C$ ${producto.productos[0].precio || 0}`;
+
+       
+        // Añadir celdas a la fila
+        fila.appendChild(celdaDescripcion);
+        fila.appendChild(celdaCantidad);
+        fila.appendChild(celdaPrecioUnitario);
+
+        // Añadir fila a la tabla
+        productosTabla.appendChild(fila);
+    } else {
+        console.warn('El producto no tiene datos en la propiedad productos.');
+    }
+});
+
+ //insertar los datos de los servicios 
+ const serviciosTabla = document.getElementById('serviciosTabla');
+
+ 
+ orden.RecepcionData.forEach(servicios => {
+    const fila = document.createElement('tr');
+    
+    // Asegurarte de que 'productos' existe
+    if (servicios.servicios) {
+
+        // Crear celdas
+        const celdaDescripcion = document.createElement('td');
+        celdaDescripcion.textContent =  servicios.servicios[0].servicioId || 'N/A';
+
+        const celdaCantidad = document.createElement('td');
+        celdaCantidad.textContent = servicios.servicios[0].costo || 1;
+
+        const celdaPrecioUnitario = document.createElement('td');
+        celdaPrecioUnitario.textContent = `C$ ${servicios.servicios[0].precio || 0}`;
+
+       
+        // Añadir celdas a la fila
+        fila.appendChild(celdaDescripcion);
+        fila.appendChild(celdaCantidad);
+        fila.appendChild(celdaPrecioUnitario);
+
+        // Añadir fila a la tabla
+        serviciosTabla.appendChild(fila);
+    } else {
+        console.warn('El producto no tiene datos en la propiedad productos.');
+    }
+});
+
+function generarPresupuesto(orden) {
+
+            const servicios = orden.RecepcionData[0].servicios || [];
+            console.log("servicios",servicios)
+
+            const productos = orden.RecepcionData[0].productos || [];
+            console.log("productos",productos)
+
+            const externos = orden.externos ? orden.externos.reduce((total, e) => total + (e.precio || 0), 0) : 0;
+
+            const manoDeObra = servicios.reduce((total, s) => total + (s.precio || 0), 0);
+            const repuestos = productos.reduce((total, p) => total + (p.precio || 0), 0);
+            const subtotal = manoDeObra + repuestos + externos;
+            const descuento = subtotal > 500 ? subtotal * 0.10 : 0; // Ejemplo: 10% de descuento.
+            const cargosPago = 25; // Cargos adicionales fijos.
+            const iva = subtotal * 0.15; // IVA del 15%.
+            const total = subtotal - descuento + cargosPago + iva;
+
+            // Actualizar valores en el modal
+            document.querySelector(".mano-obra").textContent = `C$ ${manoDeObra.toFixed(2)}`;
+            document.querySelector(".productos").textContent = `C$ ${repuestos.toFixed(2)}`;
+            document.querySelector(".externos").textContent = `C$ ${externos.toFixed(2)}`;
+            document.querySelector(".subtotal").textContent = `C$ ${subtotal.toFixed(2)}`;
+            document.querySelector(".descuento").textContent = `C$ ${descuento.toFixed(2)}`;
+            document.querySelector(".cargos-pago").textContent = `C$ ${cargosPago.toFixed(2)}`;
+            document.querySelector(".iva").textContent = `C$ ${iva.toFixed(2)}`;
+            document.querySelector(".totalNumero").textContent = `C$ ${total.toFixed(2)}`;
+
+           
+            // Generar el código QR
+            const qrCodeContainer = document.getElementById("qrcode");
+            qrCodeContainer.innerHTML = "";
+
+            new QRCode(qrCodeContainer, {
+                text:"https://barattonicaragua.com/soporte/",
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+           
+        }
+    
+
+
+}
+document.getElementById('generarPDF').addEventListener('click', function() {
+    const element = document.querySelector('.budget-container'); // Elemento que queremos convertir a PDF
+console.log(element)
+    const options = {
+      margin: [5, 15],
+      filename: 'presupuesto.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      html2canvas: { 
+        scale: 8, 
+    },
+    };
+
+    // Generar PDF usando html2pdf.js
+    html2pdf().from(element).set(options).save();
+  });
+  document.getElementById('volverPagina').addEventListener('click', function () {
+        window.location.href = 'Aprobar_el_presupuesto.html'; // Cambia por la URL deseada
+    });
+
+
+    
+    function actualizarEstadoPresupuesto(ticketId, nuevoEstado) {
+     
+     // Recuperar el arreglo desde localStorage
+     let presupuestoCompleto = JSON.parse(localStorage.getItem("DianosticoCompleto")) || [];
+ 
+  
+ 
+     // Buscar el objeto con el ticketId correspondiente y actualizar su estado si es necesario
+     let estadoActualizado = false;  // Variable para saber si el estado fue realmente actualizado
+     presupuestoCompleto = presupuestoCompleto.map(item => {
+      console.log("item",item)
+         if (item.ticketId === ticketId) {  // Comparamos con el ticketId dentro de RecepcionData
+             // Si el estado es diferente al nuevo estado, lo actualizamos
+             if (item.estado !== nuevoEstado) {
+                 item.estado = nuevoEstado;  // Actualizamos el estado
+                 estadoActualizado = true;  // Marcamos que el estado fue actualizado
+             } else {
+             }
+         }
+         return item;
+     });
+ 
+     // Guardamos el presupuesto actualizado en localStorage solo si hubo un cambio
+     if (estadoActualizado) {
+         localStorage.setItem("DianosticoCompleto", JSON.stringify(presupuestoCompleto));
+         
+     
+     } else {
+         console.log("El estado no se actualizó, no es necesario renderizar la lista.");
+     }
+ }
+    </script>
+</body>
+</html>

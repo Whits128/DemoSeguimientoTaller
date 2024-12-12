@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Barrato - Factura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .voucher {
+            width: 70mm;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .recibo {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .info, .comentario, .garantia, .tecnico, .fecha, .cajero {
+            text-align: left;
+            margin: 5px 0;
+        }
+        .monto-letras {
+            font-size: 12px;
+        }
+        .impresion {
+            text-align: right;
+            font-size: 10px;
+        }
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        td {
+            text-align: left;
+        }
+        td.align-right {
+            text-align: right;
+        }
+        tfoot td {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="voucher">
+    <h1>Tienda Baratto</h1>
+    <p class="info">Plaza el Sol, contigua a CSE. Teléfono: 12345678</p>
+    <p class="recibo">Número de Recibo: 001583</p>
+    <p class="fecha">Fecha: <span id="fecha"></span></p>
+    <p class="cajero">Cajero: rruiz</p>
+    <p class="info">Cliente: Pedro Morales</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th class="align-right">Precio (C$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cambio de Pantalla iPhone (Último Modelo)</td>
+                <td class="align-right">4000.00</td>
+            </tr>
+            <tr>
+                <td>Cambio de Batería</td>
+                <td class="align-right">1000.00</td>
+            </tr>
+            <tr>
+                <td>Mano de Obra</td>
+                <td class="align-right">500.00</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total (C$)</td>
+                <td class="align-right">5500.00</td>
+            </tr>
+            <tr>
+                <td>Total (USD)</td>
+                <td class="align-right">150.00</td> <!-- Asumiendo una tasa de cambio de 1 USD = 36.67 C$ -->
+            </tr>
+            <tr>
+                <td class="monto-letras" colspan="2">Monto en Letras: Cinco mil quinientos córdobas</td>
+            </tr>
+        </tfoot>
+    </table>
+    <p class="comentario"><strong>Comentario de la Orden:</strong> Diagnóstico pantalla quebrada y batería en mal estado.</p>
+    <p class="garantia"><strong>Garantía:</strong> La garantía de la reparación es de 30 días y vence el día 10/01/2025.</p>
+    <p class="tecnico"><strong>Técnico:</strong> Juan Pérez</p>
+    <p class="impresion">Fecha y Hora de Impresión: <span id="fecha-impresion"></span> <span id="hora-impresion"></span></p>
+</div>
+
+<script>
+    // Función para obtener la fecha y hora actual
+    function obtenerFechaHora() {
+        const fecha = new Date();
+        const opcionesFecha = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        const opcionesHora = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('fecha').textContent = fecha.toLocaleDateString('es-ES', opcionesFecha);
+        document.getElementById('fecha-impresion').textContent = fecha.toLocaleDateString('es-ES', opcionesFecha);
+        document.getElementById('hora-impresion').textContent = fecha.toLocaleTimeString('es-ES', opcionesHora);
+    }
+
+    // Llamar a la función para establecer la fecha y hora actual
+    obtenerFechaHora();
+</script>
+
+</body>
+</html>

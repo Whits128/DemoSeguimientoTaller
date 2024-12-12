@@ -1,52 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>404 Error - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div id="layoutError">
-            <div id="layoutError_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
-                                <div class="text-center mt-4">
-                                    <h1 class="display-1">401</h1>
-                                    <p class="lead">Unauthorized</p>
-                                    <p>Access to this resource is denied.</p>
-                                    <a href="index.html">
-                                        <i class="fas fa-arrow-left me-1"></i>
-                                        Return to Dashboard
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Orden</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+        .card, .modal-content {
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+        }
+        .card-header, .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-body, .modal-body {
+            padding: 15px 0;
+        }
+        .footer-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .info-text {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .info-text span {
+            font-weight: bold;
+        }
+        .detail-item {
+            margin-bottom: 10px;
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Detalle de orden
             </div>
-            <div id="layoutError_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+            <div class="card-body">
+                <div class="detail-item">
+                    <span><strong>Mano de obra:</strong> C$ 99,00</span>
+                </div>
+                <div class="detail-item">
+                    <span><strong>Productos o repuestos:</strong> C$ 0,00</span>
+                </div>
+                <div class="detail-item">
+                    <span><strong>Externos:</strong> C$ 0,00</span>
+                </div>
+                <div class="detail-item">
+                    <span><strong>Subtotal:</strong> C$ 99,00</span>
+                </div>
+                <div class="detail-item">
+                    <span><strong>Descuento:</strong> C$ 0,00</span>
+                </div>
+                <div class="detail-item">
+                    <span><strong>Cargos o descuentos por forma de pago:</strong> C$ 0,00</span>
+                </div>
+                <div class="detail-item">
+                    <span><strong>IVA:</strong> C$ 14,85</span>
+                </div>
+                <div class="detail-item total">
+                    <span><strong>Total:</strong> C$ 113,85</span>
+                </div>
+            </div>
+            <div class="footer-btn">
+                <button class="btn" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#modalDetalle">Aceptar</button>
+                <div class="info-text">
+                    <span>Subtotal: C$ 99,00</span> | <span>IVA: C$ 15</span> | <span>Total: C$ 114</span>
+                </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="modalDetalleLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDetalleLabel">Detalle de Orden</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-item">
+                        <span><strong>Mano de obra:</strong> C$ 99,00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span><strong>Productos o repuestos:</strong> C$ 0,00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span><strong>Externos:</strong> C$ 0,00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span><strong>Subtotal:</strong> C$ 99,00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span><strong>Descuento:</strong> C$ 0,00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span><strong>Cargos o descuentos por forma de pago:</strong> C$ 0,00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span><strong>IVA:</strong> C$ 14,85</span>
+                    </div>
+                    <div class="detail-item total">
+                        <span><strong>Total:</strong> C$ 113,85</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

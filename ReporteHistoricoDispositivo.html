@@ -7,21 +7,59 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
+        
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <!-- DevExtreme CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
       <!-- Hojas de estilo de DevExtreme -->
 <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
 <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
-
 <style>
-    .card-header i {
-        margin-right: 10px;
+    .subtitulo {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .detalle {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .detalle + .detalle::before {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: #000;
+        position: absolute;
+        top: -10px;
+        left: 0;
+    }
+    .detalle div {
+        flex: 1 1 50%;
+        margin-bottom: 5px;
+    }
+    .detalle h4 {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        background: #fff;
+        padding: 5px 10px;
+        border: 1px solid #000;
+        border-radius: 50%;
+        font-size: 18px;
+        font-weight: bold;
     }
 </style>
+
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
  <!-- Navbar Brand -->
  <a class="navbar-brand ps-3" href="Dashboard.html">
     <img src="/Imagen de WhatsApp 2024-12-12 a las 07.04.55_8640fc26.jpg" alt="Logo" style="height: 30px; margin-right: 10px;"> BARATTO
@@ -115,61 +153,67 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Lista de Diagnóstico                      </h1>
+                        <h1 class="mt-4">Histórico de Reparaciones                     </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Lista de Diagnóstico   </li>
+                            <li class="breadcrumb-item active">Histórico de Reparaciones   </li>
                         </ol>
                         <div class="row mt-5">
-                            
+                     
                             <div class="container mt-5">
-                                <div class="card">
-                                    <div class="card-header text-white bg-success">
-                                        <i class="fas fa-tools"></i> Modificar Estado de Reparación
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="alert alert-secondary" role="alert">
-                                            <i class="fas fa-info-circle"></i> Dispositivo: <strong> SAMSUNG </strong>, Modelo: 65489, Serie: 65489789
-                                        </div>
-                                        <form id="reparacionForm">
-                                            <div class="form-group">
-                                                <label for="idReparacion">Ticket</label>
-                                                <input type="number" class="form-control" id="idReparacion" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="estado">Estado</label>
-                                                <select class="form-control" id="estado" required>
-                                                    <option value="1">INGRESO</option>
-                                                    <option value="2">EJECUTANDO</option>
-                                                    <option value="3">ES ESPERA</option>
-                                                    <option value="4">FINALIZADO</option>
-                                                    <option value="5">CANCELADO</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="tecnico">Técnico</label>
-                                                <select class="form-control" id="tecnico" required>
-                                                    <option value="tecnico1">1 PEDRO MORALES</option>
-                                                    <option value="tecnico2">2 CARLOS SOSA</option>
-                                                    <option value="tecnico3">3 OMAR PEREZ</option>
-                                                    <option value="tecnico4">4 KENNTE ROMERO</option>
-                                                    <option value="tecnico5">5 ROBERTO RUIZ</option>                            
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="comentario">Comentario</label>
-                                                <textarea class="form-control" id="comentario" rows="3"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fas fa-check"></i> Actualizar Estado
-                                            </button>
-                                            <button type="button" class="btn btn-secondary" onclick="location.reload()">
-                                                <i class="fas fa-times"></i> Cancelar
-                                            </button>
-                                        </form>
-                                    </div>
+                                <div class="subtitulo">
+                                    <p><strong>Descripción del Dispositivo:</strong> iPhone 12 Pro</p>
+                                    <p><strong>Marca:</strong> Apple</p>
+                                    <p><strong>Número SKU:</strong> SKU12345</p>
+                                    <p><strong>Cliente:</strong> Juan Pérez</p>
+                                </div>
+                                <div class="detalle">
+                                    <h4>1</h4>
+                                    <div><strong>Número de Orden:</strong> 12345</div>
+                                    <div><strong>Fecha de la Orden:</strong> 01/10/2024</div>
+                                    <div><strong>Fecha de Finalización:</strong> 03/10/2024</div>
+                                    <div><strong>Comentario de Daños Encontrados:</strong> Pantalla quebrada y batería en mal estado</div>
+                                    <div><strong>Repuestos:</strong> Pantalla, Batería</div>
+                                    <div><strong>Mano de Obra:</strong> 500.00 C$</div>
+                                    <div><strong>Precio:</strong> 4500.00 C$</div>
+                                    <div><strong>Estado:</strong> Completado</div>
+                                </div>
+                                <div class="detalle">
+                                    <h4>2</h4>
+                                    <div><strong>Número de Orden:</strong> 12346</div>
+                                    <div><strong>Fecha de la Orden:</strong> 05/10/2024</div>
+                                    <div><strong>Fecha de Finalización:</strong> 07/10/2024</div>
+                                    <div><strong>Comentario de Daños Encontrados:</strong> Altavoz no funciona y problemas de conexión WiFi</div>
+                                    <div><strong>Repuestos:</strong> Altavoz, Módulo WiFi</div>
+                                    <div><strong>Mano de Obra:</strong> 300.00 C$</div>
+                                    <div><strong>Precio:</strong> 3000.00 C$</div>
+                                    <div><strong>Estado:</strong> En Proceso</div>
+                                </div>
+                                <div class="detalle">
+                                    <h4>3</h4>
+                                    <div><strong>Número de Orden:</strong> 12347</div>
+                                    <div><strong>Fecha de la Orden:</strong> 10/10/2024</div>
+                                    <div><strong>Fecha de Finalización:</strong> 12/10/2024</div>
+                                    <div><strong>Comentario de Daños Encontrados:</strong> Problemas de carga y sobrecalentamiento</div>
+                                    <div><strong>Repuestos:</strong> Puerto de carga, Sistema de enfriamiento</div>
+                                    <div><strong>Mano de Obra:</strong> 450.00 C$</div>
+                                    <div><strong>Precio:</strong> 4000.00 C$</div>
+                                    <div><strong>Estado:</strong> Pendiente</div>
+                                </div>
+                                <div class="detalle">
+                                    <h4>4</h4>
+                                    <div><strong>Número de Orden:</strong> 12348</div>
+                                    <div><strong>Fecha de la Orden:</strong> 15/10/2024</div>
+                                    <div><strong>Fecha de Finalización:</strong> 17/10/2024</div>
+                                    <div><strong>Comentario de Daños Encontrados:</strong> Cámara desenfocada y lente rayado</div>
+                                    <div><strong>Repuestos:</strong> Cámara, Lente</div>
+                                    <div><strong>Mano de Obra:</strong> 400.00 C$</div>
+                                    <div><strong>Precio:</strong> 3500.00 C$</div>
+                                    <div><strong>Estado:</strong> Completado</div>
                                 </div>
                             </div>
+
+                     
                         </div>
                     
                        
@@ -194,24 +238,72 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-         <!-- DevExtreme JS -->
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jquery.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jszip.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/dx.all.js"></script>
-   
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
-  
+
   <script>
-    document.getElementById('reparacionForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const idReparacion = document.getElementById('idReparacion').value;
-        const estado = document.getElementById('estado').value;
-        const tecnico = document.getElementById('tecnico').value;
-        const comentario = document.getElementById('comentario').value;
-        // Aquí agregarás la lógica para enviar esta información a tu servidor y actualizar la base de datos.
-        alert('Reparación ' + idReparacion + ' actualizada a ' + estado + ' por ' + tecnico + ' con el comentario: ' + comentario);
+     $(document).ready(function() {
+            // Verificar si los datos existen en localStorage
+            const repairData =  JSON.parse(localStorage.getItem("formData")) || [];
+      console.log(repairData)
+            
+
+      function cargarTablaPresupuesto() {
+    const tableBody = $(".custom-table tbody");
+    tableBody.empty();
+
+    // Verificación de datos
+    if (!repairData || repairData.length === 0) {
+        console.error("No se encontraron datos en 'presupuestoCompleto'.");
+        return;
+    }
+
+    // Mapeo de estados a colores
+    const estadoColores = {
+        "Por presupuestar": "color-assign",
+        "Presupuestado": "color-process",
+        "Por entregar": "color-deliver",
+        "Entregado": "color-completed",
+        "Rechazado": "color-rejected",
+        "Sin solución": "color-no-solution",
+        "pendiente de diagnóstico": "color-warranty"
+    };
+
+    // Iterar sobre los datos
+    repairData.forEach((data, index) => {
+        // Obtener el estado y color desde el mapeo
+        const estado = data.estato || "Por asignar";
+        const colorEstado = estadoColores[estado] || "color-default";  // Agregamos un valor por defecto
+
+        const row = `
+            <tr class="table-row" data-cliente="${data.clientName}" data-modelo="${data.deviceModel}" data-status="${data.status}">
+                <td>${data.nOrden || "N/A"}</td>
+                <td>${data.fecha || "N/A"}</td>
+                <td>${data.clientName || "N/A"}</td>
+                <td>${data.deviceModel || "N/A"}</td>
+                                <td>${data.deviceBrand || "N/A"}</td>
+
+                <td>${data.receptionDate || "N/A"}</td>
+                <td>
+                    <div class="dropdown-container dropdown-estados" data-index="${index}">
+                        <div class="estado dropdown-selected">
+                            <div class="color-box ${colorEstado}"></div> ${estado}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        `;
+        tableBody.append(row);
     });
+}
+
+
+    cargarTablaPresupuesto();
+
+
+
+
+        });
+    
+    
 </script>
 
 

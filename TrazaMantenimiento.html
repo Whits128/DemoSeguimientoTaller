@@ -95,8 +95,10 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
-            <!-- Sidebar Toggle-->
+ <!-- Navbar Brand -->
+ <a class="navbar-brand ps-3" href="Dashboard.html">
+    <img src="/Imagen de WhatsApp 2024-12-12 a las 07.04.55_8640fc26.jpg" alt="Logo" style="height: 30px; margin-right: 10px;"> BARATTO
+  </a>            <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -122,50 +124,65 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                            <div class="sb-sidenav-menu">
-                                <div class="nav">
-                                    <div class="sb-sidenav-menu-heading">Dashboard</div>
-                                    <a class="nav-link" href="Dashboard.html">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                        Dashboard
-                                    </a>
-                                    <div class="sb-sidenav-menu-heading">Interfaz</div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                        Páginas
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                            <a class="nav-link" href="ListaDiagnostico.html">
-                                                Lista Diagnostico
-    
-                                            </a>
-                                            <a class="nav-link" href="Recepcion_de_Reparaciones.html">
-                                                Diagnóstico y Presupuesto
-                                            </a>
-                                            <a class="nav-link" href="Aprobar_el_presupuesto.html">
-                                                Aprobar el presupuesto
+                        <div class="nav">
+                            <!-- Dashboard -->
+                            <div class="sb-sidenav-menu-heading">Dashboard</div>
+                            <a class="nav-link" href="Dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            
+                            <!-- Interfaz -->
+                            <div class="sb-sidenav-menu-heading">Interfaz</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Páginas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="Recepcion.html">Recepcion</a>
+                                    <a class="nav-link" href="Lista_de_Recepcion.html">Lista de Recepcion</a>
 
-                                            </a>
-                                          
-                                            <a class="nav-link" href="CambioEstado.html">
-                                                CambioEstado
+                                    <a class="nav-link" href="Recepcion_de_Reparaciones.html">Crear Dianostico</a>
+                                    <a class="nav-link" href="ListaDiagnostico.html">Lista Diagnóstico</a>
+                                    <a class="nav-link" href="Aprobar_el_presupuesto.html">Aprobar el Presupuesto</a>
+                                    <a class="nav-link" href="CambioEstado.html">Cambio Estado</a>
+                                    <a class="nav-link" href="RegistroInventario.html">Registro Inventario</a>
 
-                                            </a>
-                                        </nav>
-                                    </div>
-                                </div>
+                                </nav>
                             </div>
-                            <div class="sb-sidenav-footer">
-                                <div class="small">Logged in as:</div>
-                                Start Bootstrap
+                            
+                            <!-- Informe -->
+                            <div class="sb-sidenav-menu-heading">Informe</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInforme" aria-expanded="false" aria-controls="collapseInforme">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                                Informe
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseInforme" aria-labelledby="headingInforme" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link" href="ReporteConsolidadoTecnico.html">Consolidado Tecnico</a>
+                                    <a class="nav-link" href="ReporteDetalleGarantia.html">Detalle Garantia</a>
+                                    <a class="nav-link" href="ReporteDetalleInventario.html">Detalle Inventario</a>
+                                    <a class="nav-link" href="ReporteDetalleServicio.html">Detalle Servicio</a>
+                                    <a class="nav-link" href="ReporteKardex.html">Kardex</a>
+                                    <a class="nav-link" href="ReporteRecibosEmitidos.html">Recibos Emitidos</a>
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+
+                                </nav>
                             </div>
-                        </nav>
-                        
+                        </div>
                     </div>
-                   
+                    
+                    <!-- Footer -->
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        BARATTO
+                    </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -253,16 +270,17 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener datos del localStorage
-    var repairData = JSON.parse(localStorage.getItem("presupuestoCompleto")) || [];
+    var repairData = JSON.parse(localStorage.getItem("DianosticoCompleto")) || [];
     console.log(repairData)
     var idTicket = localStorage.getItem("ticketId");
     console.log(idTicket)
 
     // Buscar el ticket correspondiente
     var ticketInfo = repairData.find(item => {
-        return item.presupuesto && item.presupuesto[0] && item.presupuesto[0].ticketId === idTicket;
-    });
-    console.log(ticketInfo)
+    return item.RecepcionData && item.ticketId === idTicket;
+});
+
+    console.log("ticketInfo",ticketInfo)
 
     if (ticketInfo) {
         
@@ -270,9 +288,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".device-info").innerHTML = `
             <h5>Información del Dispositivo</h5>
             <p><strong>Dispositivo:</strong> ${ticketInfo.dispositivo || "Smartphone"}</p>
-            <p><strong>Modelo:</strong> ${ticketInfo.presupuesto[0].deviceModel || "No especificado"}</p>
-            <p><strong>Serie:</strong> ${ticketInfo.presupuesto[0].identificaciones.serial || "No especificado"}</p>
-            <p><strong>Descripción del Problema:</strong> ${ticketInfo.presupuesto[0].comentarioProblema || "No especificado"}</p>
+            <p><strong>Modelo:</strong> ${ticketInfo.RecepcionData.deviceModel || "No especificado"}</p>
+            <p><strong>Serie:</strong> ${ticketInfo.RecepcionData[0].identificaciones.serial || "No especificado"}</p>
+            <p><strong>Descripción del Problema:</strong> ${ticketInfo.RecepcionData.comentarioProblema || "No especificado"}</p>
             <p><strong>Fecha Recepción:</strong> ${ticketInfo.detalles ? ticketInfo.detalles.fechaCompromiso : "No especificada"}</p>
             <p><strong>Fecha Inicio Garantía:</strong> ${ticketInfo.fechaInicioGarantia || "2025-01-15"}</p>
             <p><strong>Fecha Vencimiento Garantía:</strong> ${ticketInfo.fechaVencimientoGarantia || "2025-01-15"}</p>

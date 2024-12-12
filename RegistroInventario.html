@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- DevExtreme CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+      <!-- Hojas de estilo de DevExtreme -->
+<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
+<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+ <!-- Navbar Brand -->
+ <a class="navbar-brand ps-3" href="Dashboard.html">
+    <img src="/Imagen de WhatsApp 2024-12-12 a las 07.04.55_8640fc26.jpg" alt="Logo" style="height: 30px; margin-right: 10px;"> BARATTO
+  </a>            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <!-- Dashboard -->
+                            <div class="sb-sidenav-menu-heading">Dashboard</div>
+                            <a class="nav-link" href="Dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            
+                            <!-- Interfaz -->
+                            <div class="sb-sidenav-menu-heading">Interfaz</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Páginas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="Recepcion.html">Recepcion</a>
+                                    <a class="nav-link" href="Lista_de_Recepcion.html">Lista de Recepcion</a>
+
+                                    <a class="nav-link" href="Recepcion_de_Reparaciones.html">Crear Dianostico</a>
+                                    <a class="nav-link" href="ListaDiagnostico.html">Lista Diagnóstico</a>
+                                    <a class="nav-link" href="Aprobar_el_presupuesto.html">Aprobar el Presupuesto</a>
+                                    <a class="nav-link" href="CambioEstado.html">Cambio Estado</a>
+                                    <a class="nav-link" href="RegistroInventario.html">Registro Inventario</a>
+
+                                </nav>
+                            </div>
+                            
+                            <!-- Informe -->
+                            <div class="sb-sidenav-menu-heading">Informe</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInforme" aria-expanded="false" aria-controls="collapseInforme">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                                Informe
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseInforme" aria-labelledby="headingInforme" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link" href="ReporteConsolidadoTecnico.html">Consolidado Tecnico</a>
+                                    <a class="nav-link" href="ReporteDetalleGarantia.html">Detalle Garantia</a>
+                                    <a class="nav-link" href="ReporteDetalleInventario.html">Detalle Inventario</a>
+                                    <a class="nav-link" href="ReporteDetalleServicio.html">Detalle Servicio</a>
+                                    <a class="nav-link" href="ReporteKardex.html">Kardex</a>
+                                    <a class="nav-link" href="ReporteRecibosEmitidos.html">Recibos Emitidos</a>
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        BARATTO
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Registro de Entrada/Salida de Componentes                     </h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Registro de Entrada/Salida de Componentes   </li>
+                        </ol>
+                        <div class="row mt-5">
+                     
+                            
+                            <div class="container mt-5">
+                                <form id="movimientoForm">
+                                    <div class="form-group">
+                                        <label for="fechaMovimiento">Fecha</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="date" class="form-control" id="fechaMovimiento" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tipoMovimiento">Tipo de Movimiento</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+                                            </div>
+                                            <select class="form-control" id="tipoMovimiento" required>
+                                                <option value="">Selecciona una opción</option>
+                                                <option value="entrada">Entrada</option>
+                                                <option value="salida">Salida</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="producto">Producto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-box"></i></span>
+                                            </div>
+                                            <select class="form-control" id="producto" required>
+                                                <option value="">Selecciona un producto</option>
+                                                <option value="pantalla_iphone">Pantalla iPhone</option>
+                                                <option value="bateria_iphone">Batería iPhone</option>
+                                                <option value="cable_usb">Cable USB</option>
+                                                <option value="cargador_rapido">Cargador Rápido</option>
+                                                <option value="funda_proteccion">Funda de Protección</option>
+                                                <option value="protector_pantalla">Protector de Pantalla</option>
+                                                <option value="audifonos">Audífonos</option>
+                                                <option value="altavoz_bluetooth">Altavoz Bluetooth</option>
+                                                <option value="tarjeta_memoria">Tarjeta de Memoria</option>
+                                                <option value="adaptador_red">Adaptador de Red</option>
+                                                <option value="repuesto_microfono">Repuesto de Micrófono</option>
+                                                <option value="modulo_camara">Módulo de Cámara</option>
+                                                <option value="panel_tactil">Panel Táctil</option>
+                                                <option value="repuesto_bocina">Repuesto de Bocina</option>
+                                                <option value="bateria_android">Batería Android</option>
+                                                <option value="pantalla_android">Pantalla Android</option>
+                                                <option value="cargador_inalambrico">Cargador Inalámbrico</option>
+                                                <option value="carcasa_externa">Carcasa Externa</option>
+                                                <option value="cable_hdmi">Cable HDMI</option>
+                                                <option value="tarjeta_video">Tarjeta de Video</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cantidadProducto">Cantidad</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-sort-numeric-up"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" id="cantidadProducto" placeholder="Ingresa la cantidad" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comentarios">Comentarios</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                                            </div>
+                                            <textarea class="form-control" id="comentarios" rows="3" placeholder="Agrega cualquier comentario adicional"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Registrar Movimiento</button>
+                                    <button type="reset" class="btn btn-secondary btn-block">Cancelar</button>
+                                </form>
+                                <!-- Modal de confirmación -->
+                                <div class="modal fade" id="confirmacionModal" tabindex="-1" role="dialog" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="confirmacionModalLabel">Confirmación</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                El movimiento de inventario ha sido registrado.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                     
+                        </div>
+                    
+                       
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-5">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; 2024</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+
+  <script>
+     $(document).ready(function() {
+            // Verificar si los datos existen en localStorage
+            const repairData =  JSON.parse(localStorage.getItem("formData")) || [];
+      console.log(repairData)
+            
+
+      function cargarTablaPresupuesto() {
+    const tableBody = $(".custom-table tbody");
+    tableBody.empty();
+
+    // Verificación de datos
+    if (!repairData || repairData.length === 0) {
+        console.error("No se encontraron datos en 'presupuestoCompleto'.");
+        return;
+    }
+
+    // Mapeo de estados a colores
+    const estadoColores = {
+        "Por presupuestar": "color-assign",
+        "Presupuestado": "color-process",
+        "Por entregar": "color-deliver",
+        "Entregado": "color-completed",
+        "Rechazado": "color-rejected",
+        "Sin solución": "color-no-solution",
+        "pendiente de diagnóstico": "color-warranty"
+    };
+
+    // Iterar sobre los datos
+    repairData.forEach((data, index) => {
+        // Obtener el estado y color desde el mapeo
+        const estado = data.estato || "Por asignar";
+        const colorEstado = estadoColores[estado] || "color-default";  // Agregamos un valor por defecto
+
+        const row = `
+            <tr class="table-row" data-cliente="${data.clientName}" data-modelo="${data.deviceModel}" data-status="${data.status}">
+                <td>${data.nOrden || "N/A"}</td>
+                <td>${data.fecha || "N/A"}</td>
+                <td>${data.clientName || "N/A"}</td>
+                <td>${data.deviceModel || "N/A"}</td>
+                                <td>${data.deviceBrand || "N/A"}</td>
+
+                <td>${data.receptionDate || "N/A"}</td>
+                <td>
+                    <div class="dropdown-container dropdown-estados" data-index="${index}">
+                        <div class="estado dropdown-selected">
+                            <div class="color-box ${colorEstado}"></div> ${estado}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        `;
+        tableBody.append(row);
+    });
+}
+
+
+    cargarTablaPresupuesto();
+
+
+
+
+        });
+    
+    
+</script>
+
+
+
+
+
+
+
+
+    </body>
+</html>

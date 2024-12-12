@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+
+
+        <style>
+       
+  
+          h1, h2 {
+              text-align: center;
+              color: #333;
+              margin-bottom: 10px;
+          }
+  
+          table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+          }
+  
+          table th, table td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+          }
+  
+          table th {
+              background-color: #f4f4f4;
+              color: #333;
+          }
+  
+          table tr:nth-child(even) {
+              background-color: #f9f9f9;
+          }
+  
+          table tr:hover {
+              background-color: #f1f1f1;
+          }
+  
+          .badge {
+              display: inline-block;
+              padding: 4px 8px;
+              border-radius: 4px;
+              font-size: 12px;
+              font-weight: bold;
+          }
+  
+          .badge-venta {
+              background-color: #007bff;
+              color: white;
+          }
+  
+          .badge-garantia {
+              background-color: #28a745;
+              color: white;
+          }
+  
+          .badge-pendiente {
+              background-color: #ffc107;
+              color: #333;
+          }
+  
+          .badge-completado {
+              background-color: #17a2b8;
+              color: white;
+          }
+      </style>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+ <!-- Navbar Brand -->
+ <a class="navbar-brand ps-3" href="Dashboard.html">
+    <img src="/Imagen de WhatsApp 2024-12-12 a las 07.04.55_8640fc26.jpg" alt="Logo" style="height: 30px; margin-right: 10px;"> BARATTO
+  </a>            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <!-- Dashboard -->
+                            <div class="sb-sidenav-menu-heading">Dashboard</div>
+                            <a class="nav-link" href="Dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            
+                            <!-- Interfaz -->
+                            <div class="sb-sidenav-menu-heading">Interfaz</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Páginas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="Recepcion.html">Recepcion</a>
+                                    <a class="nav-link" href="Lista_de_Recepcion.html">Lista de Recepcion</a>
+
+                                    <a class="nav-link" href="Recepcion_de_Reparaciones.html">Crear Dianostico</a>
+                                    <a class="nav-link" href="ListaDiagnostico.html">Lista Diagnóstico</a>
+                                    <a class="nav-link" href="Aprobar_el_presupuesto.html">Aprobar el Presupuesto</a>
+                                    <a class="nav-link" href="CambioEstado.html">Cambio Estado</a>
+                                    <a class="nav-link" href="RegistroInventario.html">Registro Inventario</a>
+
+                                </nav>
+                            </div>
+                            
+                            <!-- Informe -->
+                            <div class="sb-sidenav-menu-heading">Informe</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInforme" aria-expanded="false" aria-controls="collapseInforme">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                                Informe
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseInforme" aria-labelledby="headingInforme" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link" href="ReporteConsolidadoTecnico.html">Consolidado Tecnico</a>
+                                    <a class="nav-link" href="ReporteDetalleGarantia.html">Detalle Garantia</a>
+                                    <a class="nav-link" href="ReporteDetalleInventario.html">Detalle Inventario</a>
+                                    <a class="nav-link" href="ReporteDetalleServicio.html">Detalle Servicio</a>
+                                    <a class="nav-link" href="ReporteKardex.html">Kardex</a>
+                                    <a class="nav-link" href="ReporteRecibosEmitidos.html">Recibos Emitidos</a>
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+                                    <a class="nav-link" href="ReporteUlitidadServicio.html">Ulitidad Servicio</a>
+
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        BARATTO
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Recepción de Dispositivo                     </h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Recepción de Dispositivo   </li>
+                        </ol>
+                        <div class="row mt-5">
+                        
+    
+                            <form id="recepcionForm" class="p-4 bg-light rounded-4 shadow-sm">
+                                
+                                <!-- Fila para la selección del cliente y dispositivo (3 columnas) -->
+                                <div class="row g-4 mb-4">
+                                    <!-- Selección del Cliente -->
+                                    <div class="col-md-4">
+                                        <label for="customerId" class="form-label">Seleccionar Cliente</label>
+                                        <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#customerModal">
+                                            <i class="bi bi-person-fill"></i> Seleccionar Cliente
+                                        </button>
+                                    </div>
+                                    <!-- Selección del Dispositivo -->
+                                    <div class="col-md-4">
+                                        <label for="deviceId" class="form-label">Seleccionar Dispositivo</label>
+                                        <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#deviceModal">
+                                            <i class="bi bi-phone-fill"></i> Seleccionar Dispositivo
+                                        </button>
+                                    </div>
+                                    <!-- Tipo de Recepción -->
+                                    <div class="col-md-4">
+                                        <div class="row ">
+                    
+                                        
+                                        <label class="form-label">Tipo de Recepción</label>
+                                        <div class="form-check" style="width: 120px;">
+                                            <input class="form-check-input" type="radio" name="recepcionType" id="serviceRadio" value="servicio" checked>
+                                            <label class="form-check-label" for="serviceRadio">
+                                                <i class="bi bi-tools"></i> Por Servicio
+                                            </label>
+                                        </div>
+                                        <div class="form-check" style="width: 140px;">
+                                            <input class="form-check-input" type="radio" name="recepcionType" id="warrantyRadio" value="garantia">
+                                            <label class="form-check-label" for="warrantyRadio">
+                                                <i class="bi bi-shield-lock"></i> Por Garantía
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Información del cliente y dispositivo en 3 columnas -->
+                                <div class="row g-4 mb-4">
+                                    <!-- Información del Cliente -->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="customerName" class="form-label">Nombre del Cliente</label>
+                                            <input type="text" class="form-control" id="customerName" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="customerEmail" class="form-label">Correo del Cliente</label>
+                                            <input type="email" class="form-control" id="customerEmail" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="customerPhone" class="form-label">Teléfono del Cliente</label>
+                                            <input type="text" class="form-control" id="customerPhone" readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Información del Dispositivo -->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="deviceName" class="form-label">Nombre del Dispositivo</label>
+                                            <input type="text" class="form-control" id="deviceName" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="deviceBrand" class="form-label">Marca del Dispositivo</label>
+                                            <input type="text" class="form-control" id="deviceBrand" readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Descripción del problema -->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="problemDescription" class="form-label">Problema que presenta</label>
+                                            <textarea class="form-control" id="problemDescription" rows="4" placeholder="Escribe el problema que presenta el dispositivo"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Botón para guardar -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill">Guardar Dispositivo</button>
+                                </div>
+                            </form>   
+                             <!-- Modal Selección de Cliente -->
+                            <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content text-white bg-dark">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="customerModalLabel">Seleccionar Cliente</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Tabla de clientes -->
+                                            <div class="table-responsive">
+                                                <table class="table table-dark table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Nombre</th>
+                                                            <th>Correo</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Seleccionar</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="customerTable">
+                                                        <!-- Ejemplo de datos -->
+                                                        <tr data-id="1">
+                                                            <td>1</td>
+                                                            <td>Juan Pérez</td>
+                                                            <td>juan@example.com</td>
+                                                            <td>1234567890</td>
+                                                            <td><button type="button" class="btn btn-primary select-client">Seleccionar</button></td>
+                                                        </tr>
+                                                        <tr data-id="2">
+                                                            <td>2</td>
+                                                            <td>María Gómez</td>
+                                                            <td>maria@example.com</td>
+                                                            <td>0987654321</td>
+                                                            <td><button type="button" class="btn btn-primary select-client">Seleccionar</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Modal Selección de Dispositivo -->
+                            <div class="modal fade" id="deviceModal" tabindex="-1" aria-labelledby="deviceModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content text-white bg-dark">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deviceModalLabel">Seleccionar Dispositivo</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Filtros -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="brandFilter" class="form-label">Marca</label>
+                                                    <select id="brandFilter" class="form-select bg-dark text-white">
+                                                        <option value="">Todas</option>
+                                                        <option value="Apple">Apple</option>
+                                                        <option value="Samsung">Samsung</option>
+                                                        <option value="Xiaomi">Xiaomi</option>
+                                                        <option value="Huawei">Huawei</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="modelSearch" class="form-label">Modelo</label>
+                                                    <input type="text" id="modelSearch" class="form-control bg-dark text-white" placeholder="Buscar modelo">
+                                                </div>
+                                            </div>
+                                            <!-- Tabla de dispositivos -->
+                                            <div class="table-responsive">
+                                                <table class="table table-dark table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Marca</th>
+                                                            <th>Modelo</th>
+                                                            <th>Seleccionar</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="deviceTable">
+                                                        <!-- Ejemplo de datos -->
+                                                        <tr data-id="1">
+                                                            <td>1</td>
+                                                            <td>Apple</td>
+                                                            <td>iPhone 13</td>
+                                                            <td><button type="button" class="btn btn-primary select-device">Seleccionar</button></td>
+                                                        </tr>
+                                                        <tr data-id="2">
+                                                            <td>2</td>
+                                                            <td>Samsung</td>
+                                                            <td>Galaxy S21</td>
+                                                            <td><button type="button" class="btn btn-primary select-device">Seleccionar</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    
+                       
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-5">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; 2024</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+        <script>
+         $(document).ready(function () {
+    // Simulamos una lista de clientes y dispositivos
+    const savedClients = [
+    { id: '1', name: 'Juan Pérez', email: 'juan@example.com', phone: '1234567890' },
+    { id: '2', name: 'María Gómez', email: 'maria@example.com', phone: '0987654321' },
+    { id: '3', name: 'Carlos Ruiz', email: 'carlos@example.com', phone: '1112223334' },
+    { id: '4', name: 'Ana López', email: 'ana@example.com', phone: '4445556667' },
+    { id: '5', name: 'Luis Martínez', email: 'luis@example.com', phone: '7778889990' },
+    { id: '6', name: 'Sofía Fernández', email: 'sofia@example.com', phone: '1012023034' },
+    { id: '7', name: 'Pedro García', email: 'pedro@example.com', phone: '3034045056' },
+    { id: '8', name: 'Laura Moreno', email: 'laura@example.com', phone: '5056067078' },
+    { id: '9', name: 'Diego Herrera', email: 'diego@example.com', phone: '7078089090' },
+    { id: '10', name: 'Lucía Castillo', email: 'lucia@example.com', phone: '9091011121' }
+];
+
+const savedDevices = [
+    { id: '1', brand: 'Apple', model: 'iPhone 13' },
+    { id: '2', brand: 'Samsung', model: 'Galaxy S21' },
+    { id: '3', brand: 'Google', model: 'Pixel 6' },
+    { id: '4', brand: 'OnePlus', model: '9 Pro' },
+    { id: '5', brand: 'Xiaomi', model: 'Mi 11' },
+    { id: '6', brand: 'Sony', model: 'Xperia 5 III' },
+    { id: '7', brand: 'Huawei', model: 'P50 Pro' },
+    { id: '8', brand: 'Oppo', model: 'Find X3 Pro' },
+    { id: '9', brand: 'LG', model: 'Wing' },
+    { id: '10', brand: 'Motorola', model: 'Edge 20' }
+];
+
+
+
+    // Seleccionar cliente
+    $('#customerTable .select-client').click(function () {
+        const row = $(this).closest('tr');
+        const clientId = row.data('id');
+        const client = savedClients.find(client => client.id == clientId);
+
+        $('#customerName').val(client.name);
+        $('#customerEmail').val(client.email);
+        $('#customerPhone').val(client.phone);
+        $('#customerModal').modal('hide');
+    });
+
+    // Seleccionar dispositivo
+    $('#deviceTable .select-device').click(function () {
+        const row = $(this).closest('tr');
+        const deviceId = row.data('id');
+        const device = savedDevices.find(device => device.id == deviceId);
+
+        $('#deviceName').val(device.model);
+        $('#deviceBrand').val(device.brand);
+        $('#deviceModal').modal('hide');
+    });
+
+    // Método que genera los TicketId
+    function generateUniqueTicketId() {
+        let ticketIds = JSON.parse(localStorage.getItem('ticketIds')) || [];
+        let newTicketId;
+
+        do {
+            newTicketId = 'ORDEN-' + Date.now().toString().slice(-6);
+        } while (ticketIds.includes(newTicketId));
+
+        ticketIds.push(newTicketId);
+        localStorage.setItem('ticketIds', JSON.stringify(ticketIds));
+
+        return newTicketId;
+    }
+
+    // Guardar los datos del formulario en localStorage
+    function saveFormDataToLocalStorage() {
+        // Obtener los datos existentes del localStorage, si existen
+        let formData = JSON.parse(localStorage.getItem('formData')) || [];
+
+        // Crear un nuevo objeto con los datos del formulario
+        const newFormData = {
+            nOrden: generateUniqueTicketId(),
+            clientName: $('#customerName').val(),
+            clientEmail: $('#customerEmail').val(),
+            clientPhone: $('#customerPhone').val(),
+            deviceModel: $('#deviceName').val(),
+            deviceBrand: $('#deviceBrand').val(),
+            receptionDate: $('input[name="recepcionType"]:checked').val(),
+            receptionDetails: $('#problemDescription').val(),
+            estato: "pendiente de diagnóstico",
+            fecha: new Date().toLocaleString()  // Guardar la fecha en un formato más legible
+        };
+
+        // Agregar el nuevo dato al array existente
+        formData.push(newFormData);
+
+        // Guardar el array actualizado de nuevo en localStorage
+        localStorage.setItem('formData', JSON.stringify(formData));
+
+        // Mostrar en consola los datos guardados
+        console.log("Datos guardados en el localStorage:", formData);
+    }
+
+    // Enviar el formulario
+    $('#recepcionForm').submit(function (event) {
+        event.preventDefault();
+
+        // Guardar los datos del formulario en localStorage
+        saveFormDataToLocalStorage();
+
+        // Mostrar mensaje de éxito
+        alert('Formulario enviado y datos guardados!');
+    });
+});
+
+      </script>
+
+
+
+
+
+
+
+
+    </body>
+</html>

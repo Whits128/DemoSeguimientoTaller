@@ -3,151 +3,343 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estado y Seguimiento de Reparaciones</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Estado de Reparaciones</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
-    /* Estilo personalizado para separar los items */
-    .list-group-item {
-      margin-bottom: 10px; /* Espacio entre los elementos */
-      padding: 15px;
-      border-radius: .5rem;
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f6f9;
     }
-    .list-group {
-      padding: 0;
+
+    .hero-section {
+      background-color: #082858;
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      border-bottom: 3px solid #05b2b2;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .repair-card {
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      padding: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .repair-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .repair-card-header {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #082858;
+      margin-bottom: 10px;
+    }
+
+    .repair-card-body {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .repair-card-body .card-info {
+      width: 48%;
+      margin-bottom: 15px;
+    }
+
+    .repair-card-body .card-info span {
+      font-weight: bold;
+      color: #082858;
+    }
+
+    .repair-card-body .card-info .card-text {
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    .status {
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: white;
+    }
+
+    .status.pendiente {
+      background-color: #f39c12;
+    }
+
+    .status.enProceso {
+      background-color: #3498db;
+    }
+
+    .status.finalizado {
+      background-color: #2ecc71;
+    }
+
+    .status.garantia {
+      background-color: #8e44ad;
+    }
+
+    .status.revisado {
+      background-color: #f39c12;
+    }
+
+    .ticket-id {
+      font-weight: bold;
+      color: #c91d1f;
+    }
+
+    .search-input {
+      border-radius: 20px;
+      padding: 12px 20px;
+      width: 70%;
+      border: 2px solid #ccc;
+    }
+
+    .btn-search {
+      background-color: #05b2b2;
+      border-color: #05b2b2;
+      color: white;
+      border-radius: 20px;
+      padding: 12px 20px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn-search:hover {
+      background-color: #3a9c9c;
+      border-color: #3a9c9c;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-details {
+      background-color: #082858;
+      border-color: #082858;
+      color: white;
+      border-radius: 20px;
+      padding: 8px 15px;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .btn-details:hover {
+      background-color: #05b2b2;
+      border-color: #05b2b2;
+    }
+
+    /* Estilo para el modal */
+    .modal-content {
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      background-color: #082858;
+      color: white;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      padding: 20px;
+    }
+
+    .modal-header h5 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .modal-body {
+      padding: 30px;
+      background-color: #f4f6f9;
+    }
+
+    .detail-item {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail-item strong {
+      color: #082858;
+      font-weight: 600;
+    }
+
+    .detail-item span {
+      color: #05b2b2;
+      font-weight: 500;
+    }
+
+    .detail-item.total {
+      background-color: #c91d1f;
+      color: white;
+    }
+
+    .detail-item.total strong,
+    .detail-item.total span {
+      font-weight: bold;
+    }
+
+    .btn-close {
+      background-color: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .btn-close:hover {
+      color: #ffdddd;
     }
   </style>
 </head>
 <body>
 
-  <section class="vh-100">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
-          <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
-            <div class="card-body py-4 px-4 px-md-5">
-              <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
-                <i class="fas fa-check-square me-1"></i>
-                <u>Estado y Seguimiento de Reparaciones</u>
-              </p>
+  <section class="hero-section">
+    <h1>Estado de Reparaciones</h1>
+    <p>Consulta el estado de las reparaciones de los dispositivos de los clientes</p>
+  </section>
 
-              <div class="pb-2">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-row align-items-center">
-                      <input type="text" class="form-control form-control-lg" id="searchInput" placeholder="Buscar Reparaciones...">
-                      <button type="button" class="btn btn-primary ms-2" onclick="searchRepair()">Buscar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="search-container">
+          <input type="text" class="search-input" id="searchInput" placeholder="Buscar por cliente o Ticket ID...">
+          <button type="button" class="btn-search" onclick="searchRepair()">Buscar</button>
+        </div>
 
-              <hr class="my-4">
-
-              <ul class="list-group" id="repairList">
-                <!-- Los elementos de la lista se llenarán dinámicamente -->
-              </ul>
-
-            </div>
-          </div>
+        <div id="repairList">
+          <!-- Los elementos de la lista se llenarán dinámicamente -->
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Modal para asignar técnico y generar presupuesto -->
+  <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assignModalLabel">Asignar Técnico</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="detail-item">
+            <strong>Técnico:</strong>
+            <select class="form-select" id="technicianSelect">
+              <option value="1">Técnico 1</option>
+              <option value="2">Técnico 2</option>
+              <option value="3">Técnico 3</option>
+            </select>
+          </div>
+          <button class="btn-details" onclick="assignTechnician()">Asignar Técnico</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // Recuperar datos de reparaciones de localStorage
-    const repairData = JSON.parse(localStorage.getItem('repairData')) || [];
+    // Obtener el presupuesto actualizado de localStorage
+    const presupuestoCompleto = JSON.parse(localStorage.getItem("presupuestoCompleto")) || [];
 
-    // Función para cambiar el estado de la reparación
-    function toggleRepairStatus(ticketId) {
-      const updatedRepairs = repairData.map(repair => {
-        if (repair.ticketId === ticketId) {
-          repair.repairStatus.text = repair.repairStatus.text === 'Aprobado' ? 'Completado' : 'Aprobado';
-        }
-        return repair;
-      });
-
-      // Actualizar localStorage
-      localStorage.setItem('repairData', JSON.stringify(updatedRepairs));
-
-      // Volver a renderizar la lista
-      renderRepairList();
+    // Función para asignar un técnico a una reparación
+    function assignTechnician() {
+      const technician = document.getElementById('technicianSelect').value;
+      alert(`Técnico ${technician} asignado a la reparación`);
+      $('#assignModal').modal('hide');
     }
 
-    // Función para mostrar la lista de reparaciones
-    function renderRepairList() {
-      $('#repairList').empty();  // Limpiar la lista antes de llenarla
-
-      if (repairData.length > 0) {
-        repairData.forEach((repair) => {
-          const listItem = `
-            <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-              <div class="d-flex align-items-center">
-                <input class="form-check-input me-2" type="checkbox" value="" id="check-${repair.ticketId}" ${repair.repairStatus.text === 'Completado' ? 'checked' : ''} onclick="toggleRepairStatus('${repair.ticketId}')">
-                <div>
-                  <strong>${repair.ticketId}</strong> - ${repair.customerName}<br>
-                  <small>${repair.deviceBrand} ${repair.deviceModel}</small>
-                </div>
-              </div>
-              <div>
-                <span class="badge bg-${repair.repairStatus.text === 'Aprobado' ? 'warning' : 'success'}">${repair.repairStatus.text}</span>
-              </div>
-            </li>
-          `;
-          $('#repairList').append(listItem);
-        });
-      } else {
-        $('#repairList').html('<li class="list-group-item">No hay reparaciones registradas.</li>');
+    // Función para determinar la clase de estado
+    function getStatusClass(status) {
+      switch (status) {
+        case 'Por presupuestar':
+          return 'pendiente';
+        case 'Presupuestado':
+          return 'enProceso';
+        case 'Finalizado':
+          return 'finalizado';
+        case 'Garantía':
+          return 'garantia';
+        case 'Revisado': 
+          return 'revisado';
+        default:
+          return 'default-status';
       }
     }
 
-    // Función de búsqueda de reparaciones
+    function renderizarListaReparaciones() {
+      // Limpiar el contenedor de la lista antes de agregar los nuevos elementos
+      document.getElementById('repairList').innerHTML = '';
+
+      // Renderizar la lista de reparaciones
+      presupuestoCompleto.forEach((data) => {
+        const { cliente = {}, RecepcionData = [], estado } = data;
+        const clienteNombre = cliente.nombre || 'Nombre no disponible';
+        const clienteEmail = cliente.email || 'Email no disponible';
+        const ticketId = RecepcionData[0]?.ticketId || 'No disponible';
+        
+        const cardHTML = `
+          <div class="col-md-6">
+            <div class="repair-card">
+              <div class="repair-card-header">${clienteNombre}</div>
+              <div class="repair-card-body">
+                <div class="card-info">
+                  <span>Correo:</span><p class="card-text">${clienteEmail}</p>
+                </div>
+                <div class="card-info">
+                  <span>Ticket ID:</span><p class="card-text">${ticketId}</p>
+                </div>
+                <div class="card-info">
+                  <span>Estado:</span><p class="card-text">${estado}</p>
+                  <span class="status ${getStatusClass(estado)}">${estado}</span>
+                </div>
+                <div class="card-info">
+                  <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#assignModal">Asignar Técnico</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        document.getElementById('repairList').insertAdjacentHTML('beforeend', cardHTML);
+      });
+    }
+
     function searchRepair() {
-      const searchText = $('#searchInput').val().toLowerCase();
-
-      const filteredRepairs = repairData.filter(repair => {
-        return repair.customerName.toLowerCase().includes(searchText) || repair.ticketId.toLowerCase().includes(searchText);
-      });
-
-      // Renderizar las reparaciones filtradas
-      renderFilteredRepairs(filteredRepairs);
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+      const filteredRepairs = presupuestoCompleto.filter(data => 
+        (data.cliente.nombre && data.cliente.nombre.toLowerCase().includes(searchQuery)) ||
+        (data.RecepcionData[0]?.ticketId && data.RecepcionData[0].ticketId.toLowerCase().includes(searchQuery))
+      );
+      renderizarListaReparaciones(filteredRepairs);
     }
 
-    // Función para renderizar las reparaciones filtradas
-    function renderFilteredRepairs(filteredRepairs) {
-      $('#repairList').empty();
-
-      if (filteredRepairs.length > 0) {
-        filteredRepairs.forEach((repair) => {
-          const listItem = `
-            <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-              <div class="d-flex align-items-center">
-                <input class="form-check-input me-2" type="checkbox" value="" id="check-${repair.ticketId}" ${repair.repairStatus.text === 'Completado' ? 'checked' : ''} onclick="toggleRepairStatus('${repair.ticketId}')">
-                <div>
-                  <strong>${repair.ticketId}</strong> - ${repair.customerName}<br>
-                  <small>${repair.deviceBrand} ${repair.deviceModel}</small>
-                </div>
-              </div>
-              <div>
-                <span class="badge bg-${repair.repairStatus.text === 'Aprobado' ? 'warning' : 'success'}">${repair.repairStatus.text}</span>
-              </div>
-            </li>
-          `;
-          $('#repairList').append(listItem);
-        });
-      } else {
-        $('#repairList').html('<li class="list-group-item">No se encontraron reparaciones.</li>');
-      }
-    }
-
-    // Llamada a renderRepairList cuando la página se carga
-    $(document).ready(function() {
-      renderRepairList();
-      
-    });
+    // Inicializar la lista de reparaciones al cargar la página
+    renderizarListaReparaciones();
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

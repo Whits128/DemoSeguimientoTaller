@@ -9,19 +9,59 @@
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <!-- DevExtreme CSS -->
-      <!-- Hojas de estilo de DevExtreme -->
-<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
-<link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+
 
 <style>
-    .card-header i {
-        margin-right: 10px;
-    }
+
+
+  h1, h2 {
+      text-align: center;
+      color: #333;
+  }
+
+  h2 {
+      margin-top: 5px;
+      font-size: 18px;
+      font-weight: normal;
+      color: #666;
+  }
+
+  .rango-fechas {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+  table th, table td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center;
+  }
+
+  table th {
+      background-color: #f4f4f4;
+      color: #333;
+  }
+
+  table tr:nth-child(even) {
+      background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+      background-color: #f1f1f1;
+  }
 </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
  <!-- Navbar Brand -->
  <a class="navbar-brand ps-3" href="Dashboard.html">
     <img src="/Imagen de WhatsApp 2024-12-12 a las 07.04.55_8640fc26.jpg" alt="Logo" style="height: 30px; margin-right: 10px;"> BARATTO
@@ -115,61 +155,144 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Lista de Diagnóstico                      </h1>
+                        <h1 class="mt-4">Reporte de Detalle de Garantías                      </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Lista de Diagnóstico   </li>
+                            <li class="breadcrumb-item active">Reporte de Detalle de Garantías   </li>
                         </ol>
                         <div class="row mt-5">
                             
-                            <div class="container mt-5">
-                                <div class="card">
-                                    <div class="card-header text-white bg-success">
-                                        <i class="fas fa-tools"></i> Modificar Estado de Reparación
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="alert alert-secondary" role="alert">
-                                            <i class="fas fa-info-circle"></i> Dispositivo: <strong> SAMSUNG </strong>, Modelo: 65489, Serie: 65489789
-                                        </div>
-                                        <form id="reparacionForm">
-                                            <div class="form-group">
-                                                <label for="idReparacion">Ticket</label>
-                                                <input type="number" class="form-control" id="idReparacion" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="estado">Estado</label>
-                                                <select class="form-control" id="estado" required>
-                                                    <option value="1">INGRESO</option>
-                                                    <option value="2">EJECUTANDO</option>
-                                                    <option value="3">ES ESPERA</option>
-                                                    <option value="4">FINALIZADO</option>
-                                                    <option value="5">CANCELADO</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="tecnico">Técnico</label>
-                                                <select class="form-control" id="tecnico" required>
-                                                    <option value="tecnico1">1 PEDRO MORALES</option>
-                                                    <option value="tecnico2">2 CARLOS SOSA</option>
-                                                    <option value="tecnico3">3 OMAR PEREZ</option>
-                                                    <option value="tecnico4">4 KENNTE ROMERO</option>
-                                                    <option value="tecnico5">5 ROBERTO RUIZ</option>                            
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="comentario">Comentario</label>
-                                                <textarea class="form-control" id="comentario" rows="3"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fas fa-check"></i> Actualizar Estado
-                                            </button>
-                                            <button type="button" class="btn btn-secondary" onclick="location.reload()">
-                                                <i class="fas fa-times"></i> Cancelar
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                         
+                          <p>Rango de Fecha: 01/11/2024 - 15/11/2024</p>
+                          <table>
+                              <thead>
+                                  <tr>
+                                      <th>Número Orden</th>
+                                      <th>Fecha</th>
+                                      <th>Fecha Vencimiento de la Garantía</th>
+                                      <th>Técnico</th>
+                                      <th>SKU del Dispositivo</th>
+                                      <th>Descripción del Dispositivo</th>
+                                      <th>Descripción de la Garantía Reclamada</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>001</td>
+                                      <td>01/11/2024</td>
+                                      <td>01/11/2025</td>
+                                      <td>Juan Pérez</td>
+                                      <td>SKU12345</td>
+                                      <td>Celular XYZ</td>
+                                      <td>Problemas de batería</td>
+                                  </tr>
+                                  <tr>
+                                      <td>002</td>
+                                      <td>02/11/2024</td>
+                                      <td>02/11/2025</td>
+                                      <td>Ana López</td>
+                                      <td>SKU67890</td>
+                                      <td>Smart TV ABC</td>
+                                      <td>Fallos en la pantalla</td>
+                                  </tr>
+                                  <tr>
+                                      <td>003</td>
+                                      <td>03/11/2024</td>
+                                      <td>03/11/2025</td>
+                                      <td>Luis Fernández</td>
+                                      <td>SKU11223</td>
+                                      <td>Cámara DEF</td>
+                                      <td>Problemas de enfoque</td>
+                                  </tr>
+                                  <tr>
+                                      <td>004</td>
+                                      <td>04/11/2024</td>
+                                      <td>04/11/2025</td>
+                                      <td>Elena Ríos</td>
+                                      <td>SKU44556</td>
+                                      <td>Laptop GHI</td>
+                                      <td>Teclado defectuoso</td>
+                                  </tr>
+                                  <tr>
+                                      <td>005</td>
+                                      <td>05/11/2024</td>
+                                      <td>05/11/2025</td>
+                                      <td>Roberto Díaz</td>
+                                      <td>SKU77889</td>
+                                      <td>Tablet JKL</td>
+                                      <td>Pantalla táctil no responde</td>
+                                  </tr>
+                                  <tr>
+                                      <td>006</td>
+                                      <td>06/11/2024</td>
+                                      <td>06/11/2025</td>
+                                      <td>Carmen Suárez</td>
+                                      <td>SKU99001</td>
+                                      <td>Consola MNO</td>
+                                      <td>Problemas de conexión</td>
+                                  </tr>
+                                  <tr>
+                                      <td>007</td>
+                                      <td>07/11/2024</td>
+                                      <td>07/11/2025</td>
+                                      <td>Miguel Castillo</td>
+                                      <td>SKU22334</td>
+                                      <td>Celular PQR</td>
+                                      <td>Altavoz no funciona</td>
+                                  </tr>
+                                  <tr>
+                                      <td>008</td>
+                                      <td>08/11/2024</td>
+                                      <td>08/11/2025</td>
+                                      <td>Isabel Ortiz</td>
+                                      <td>SKU55667</td>
+                                      <td>Smart TV STU</td>
+                                      <td>Conexión WiFi inestable</td>
+                                  </tr>
+                                  <tr>
+                                      <td>009</td>
+                                      <td>09/11/2024</td>
+                                      <td>09/11/2025</td>
+                                      <td>Antonio Campos</td>
+                                      <td>SKU88900</td>
+                                      <td>Cámara VWX</td>
+                                      <td>Flash no funciona</td>
+                                  </tr>
+                                  <tr>
+                                      <td>010</td>
+                                      <td>10/11/2024</td>
+                                      <td>10/11/2025</td>
+                                      <td>Sara Méndez</td>
+                                      <td>SKU11221</td>
+                                      <td>Laptop YZ</td>
+                                      <td>Batería no carga</td>
+                                  </tr>
+                                  <tr>
+                                      <td>011</td>
+                                      <td>11/11/2024</td>
+                                      <td>11/11/2025</td>
+                                      <td>Pedro Herrera</td>
+                                      <td>SKU33445</td>
+                                      <td>Tablet ABC</td>
+                                      <td>Altavoz distorsionado</td>
+                                  </tr>
+                                  <tr>
+                                      <td>012</td>
+                                      <td>12/11/2024</td>
+                                      <td>12/11/2025</td>
+                                      <td>Laura Gutiérrez</td>
+                                      <td>SKU66778</td>
+                                      <td>Consola DEF</td>
+                                      <td>Problemas de software</td>
+                                  </tr>
+                              </tbody>
+                              <tfoot>
+                                  <tr>
+                                      <td colspan="7">Cantidad Total de Órdenes de Garantía:</td>
+                                      <td>12</td>
+                                  </tr>
+                              </tfoot>
+                          </table>
                         </div>
                     
                        
@@ -194,13 +317,7 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-         <!-- DevExtreme JS -->
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jquery.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/jszip.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/23.1.5/js/dx.all.js"></script>
-   
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" rel="stylesheet" />
-  <link href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" rel="stylesheet" />
+        
   
   <script>
     document.getElementById('reparacionForm').addEventListener('submit', function(event) {

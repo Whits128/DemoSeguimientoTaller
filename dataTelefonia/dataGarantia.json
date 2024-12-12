@@ -1,0 +1,164 @@
+[
+  {
+    "RecepcionData": [
+      {
+        "comentarioProblema": "El dispositivo no enciende",
+        "comentariosGarantia": "Garantía de reparación por 90 días",
+        "deviceModel": "iPhone 13",
+        "diasGarantia": "90",
+        "datosGarantia": {
+          "proveedor": "Apple Service Center",
+          "condiciones": "La garantía cubre defectos de fabricación, no daños físicos o por líquidos",
+          "vigencia": "2024-12-07 a 2025-03-09",
+          "soporteContacto": "800-555-APPLE"
+        },
+        "identificaciones": {
+          "imei": "356712345678901",
+          "serial": "ABC123DEF456",
+          "passcode": "",
+          "pattern": [1,2,3]
+        },
+        "productos": [
+          {
+            "costo": 1200,
+            "descripcion": "Batería original",
+            "piezaId": "Batería",
+            "precio": 1500
+          }
+        ],
+        "servicios": [
+          {
+            "servicioId": "SRV001",
+            "descripcion": "Reemplazo de batería",
+            "costo": 500,
+            "precio": 800
+          }
+        ],
+        "ticketId": "TICKET-289445",
+        "cliente": {
+          "email": "carlos@example.com",
+          "nombre": "Carlos Pérez",
+          "telefono": "555-1234"
+        },
+        "fecha": "2024-12-09",
+        "historial": [
+          {
+            "fecha": "2024-12-08T12:41:58Z",
+            "notetext": "Recepción realizada",
+            "role": "Admin",
+            "status": "Revisado",
+            "user": "Diego"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "RecepcionData": [
+      {
+        "comentarioProblema": "La pantalla tiene grietas",
+        "comentariosGarantia": "Sin garantía",
+        "deviceModel": "Samsung Galaxy S21",
+        "diasGarantia": "",
+        "datosGarantia": {
+          "proveedor": "Samsung Authorized Repair",
+          "condiciones": "El dispositivo no cuenta con cobertura de garantía vigente",
+          "vigencia": "N/A",
+          "soporteContacto": "800-555-SAMSUNG"
+        },
+        "identificaciones": {
+          "imei": "987654321012345",
+          "serial": "SGS21SER98765",
+          "passcode": "",
+          "pattern": [1,2,3,4,6]
+        },
+        "productos": [
+          {
+            "costo": 1500,
+            "descripcion": "Pantalla original AMOLED",
+            "piezaId": "Pantalla",
+            "precio": 2000
+          }
+        ],
+        "servicios": [
+          {
+            "servicioId": "SRV002",
+            "descripcion": "Reemplazo de pantalla",
+            "costo": 700,
+            "precio": 1200
+          }
+        ],
+        "ticketId": "TICKET-289446",
+        "cliente": {
+          "email": "luis@example.com",
+          "nombre": "Luis Martínez",
+          "telefono": "555-5678"
+        },
+        "fecha": "2024-12-09",
+        "historial": [
+          {
+            "fecha": "2024-12-08T14:21:58Z",
+            "notetext": "Pantalla revisada y dañada confirmada",
+            "role": "Técnico",
+            "status": "Diagnóstico completo",
+            "user": "Ana"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "RecepcionData": [
+      {
+        "comentarioProblema": "El altavoz no funciona correctamente",
+        "comentariosGarantia": "Revisión sin costo durante 30 días",
+        "deviceModel": "Huawei P50 Pro",
+        "diasGarantia": "30",
+        "datosGarantia": {
+          "proveedor": "Huawei Care Center",
+          "condiciones": "Cobertura limitada a servicios realizados en centros autorizados",
+          "vigencia": "2024-12-09 a 2025-01-08",
+          "soporteContacto": "800-555-HUAWEI"
+        },
+        "identificaciones": {
+          "imei": "123456789012347",
+          "serial": "HWP50SER1234",
+          "passcode": "",
+          "pattern": []
+        },
+        "productos": [
+          {
+            "costo": 800,
+            "descripcion": "Altavoz original",
+            "piezaId": "Altavoz",
+            "precio": 1200
+          }
+        ],
+        "servicios": [
+          {
+            "servicioId": "SRV003",
+            "descripcion": "Reparación de altavoz",
+            "costo": 400,
+            "precio": 700
+          }
+        ],
+        "ticketId": "TICKET-289447",
+        "cliente": {
+          "email": "mariana@example.com",
+          "nombre": "Mariana López",
+          "telefono": "555-9876"
+        },
+        "fecha": "2024-12-09",
+        "historial": [
+          {
+            "fecha": "2024-12-08T16:05:58Z",
+            "notetext": "Revisión inicial completada",
+            "role": "Supervisor",
+            "status": "Pendiente de aprobación",
+            "user": "Juan"
+          }
+        ]
+      }
+    ]
+  }
+]
